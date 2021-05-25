@@ -14,7 +14,7 @@ import org.omg.IOP.TAG_CODE_SETS;
 
 import java.util.HashMap;
 
-public class PlayerLevelingService implements Listener {
+public class PlayerLevelingService {
 
     private HashMap<Material, Integer> blockBreakExperienceMap;
     private final int DEFAULT_BLOCK_BREAK_XP = 1;
@@ -46,8 +46,7 @@ public class PlayerLevelingService implements Listener {
         this.blockBreakExperienceMap.put(Material.MUSHROOM_STEM, WOOD_BLOCK_BREAK_XP);
     }
 
-    @EventHandler
-    public void onBlockMined(BlockBreakEvent event) {
+    public void onBlockMined(Player player, Block block) {
         Player player = event.getPlayer();
         if(player.getGameMode() != GameMode.SURVIVAL) return;
         Block block = event.getBlock();
