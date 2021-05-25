@@ -21,3 +21,11 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+old
+spigot_server/crash-reports
+spigot_server/logs
+spigot_server/world
+spigot_server/world_nether
+spigot_server/world_the_end
+spigot_server/plugins/*
+!spigot_server/plugins/*.jar

@@ -1,0 +1,7 @@
+name: Ourcraft_2
+version: ${project.version}
+main: com.gabrielmartinmoran.ourcraft.ourcraft_2.Main
+api-version: 1.16
+authors: [ GabrielMartinMoran ]
+description: Ourcraft 2 plugin
+depend: [NBTAPI]
