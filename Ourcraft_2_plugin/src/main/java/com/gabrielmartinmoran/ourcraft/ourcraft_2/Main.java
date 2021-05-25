@@ -1,5 +1,6 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2;
 
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.commands.SpellbookCommand;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.leveling.PlayerLevelingService;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerDataProvider;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.recipes.RecipesLoader;
@@ -15,6 +16,9 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         System.out.println("Plugin Ourcraft 2 iniciado correctamente!");
+        // Commands
+        this.getCommand("spellbook").setExecutor(new SpellbookCommand());
+        // Event handlers
         getServer().getPluginManager().registerEvents(new RightClickListener(), this);
         getServer().getPluginManager().registerEvents(new MobSpawnListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerLoginListener(), this);

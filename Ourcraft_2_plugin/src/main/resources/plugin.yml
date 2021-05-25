@@ -5,3 +5,7 @@ api-version: 1.16
 authors: [ GabrielMartinMoran ]
 description: Ourcraft 2 plugin
 depend: [NBTAPI]
+commands:
+  spellbook:
+    description: Otorga al jugador el libro de conjuros especificado
+    usage: /<command> <tipo> <nivel>
