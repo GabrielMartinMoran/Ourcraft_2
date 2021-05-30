@@ -2,6 +2,7 @@ package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellTypes;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.SpellsUtils;
 import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -20,40 +21,30 @@ public class SpellBook implements CustomItem {
     private SpellTypes spellType;
     private int spellLevel;
 
-    private final int MODEL_DATA = 100001;
+    private HashMap<SpellTypes, Material> spellDataMap;
 
-    private class SpellBookData {
-        public ChatColor nameColor;
-        public String name;
-        public String lore;
-        public Material creationMaterial;
-
-        public SpellBookData(ChatColor nameColor, String name, String lore, Material creationMaterial) {
-            this.nameColor = nameColor;
-            this.name = name;
-            this.lore = lore;
-            this.creationMaterial = creationMaterial;
-        }
-    }
-
-    private HashMap<SpellTypes, SpellBookData> spellDataMap;
-
-    // Colores: https://codepen.io/0biwan/pen/ggVemP
     public SpellBook(SpellTypes spellType, int spellLevel) {
         this.spellType = spellType;
         this.spellLevel = spellLevel;
-        this.spellDataMap = new HashMap<SpellTypes, SpellBookData>();
-        this.spellDataMap.put(SpellTypes.LIGHTNING, new SpellBookData(ChatColor.AQUA, "Rayo", "Invoca rayos que caen en el objetivo", Material.GOLD_BLOCK));
-        this.spellDataMap.put(SpellTypes.FIREBALL, new SpellBookData(ChatColor.RED, "Bola de fuego", "Invoca una bola de fuego que arremete contra el objetivo", Material.FIRE_CHARGE));
-        this.spellDataMap.put(SpellTypes.NECROMANCER, new SpellBookData(ChatColor.DARK_GRAY, "Nigromancia", "Invoca esqueletos wither que atacan al objetivo", Material.WITHER_SKELETON_SKULL));
-        this.spellDataMap.put(SpellTypes.HEALING, new SpellBookData(ChatColor.LIGHT_PURPLE, "Curación", "Cura a todos los jugadores que se encuentren a pocos\nbloques de quien lanza el conjuro", Material.GHAST_TEAR));
-        this.spellDataMap.put(SpellTypes.LEVITATE, new SpellBookData(ChatColor.WHITE, "Levitar", "Hace levitar en el aire a quien lanza el conjuro", Material.SHULKER_SHELL));
-        this.spellDataMap.put(SpellTypes.TELEPORT, new SpellBookData(ChatColor.DARK_PURPLE, "Teletransporte", "Teletransporta al usuario cierta cantidad de\nbloques hacia adelante", Material.ENDER_EYE));
-        this.spellDataMap.put(SpellTypes.SLOW_FALL, new SpellBookData(ChatColor.WHITE, "Lenta caída", "Hace caer suavemente a quien lanza el conjuro", Material.PHANTOM_MEMBRANE));
-        this.spellDataMap.put(SpellTypes.FIRE_RESISTANCE, new SpellBookData(ChatColor.DARK_RED, "Resistencia ignea", "Hace resistir al fuego a quien lanza el conjuro", Material.MAGMA_CREAM));
-        this.spellDataMap.put(SpellTypes.MAGIC_ARROWS, new SpellBookData(ChatColor.YELLOW, "Flechas mágicas", "Lanza flechas mágicas al objetivo", Material.SPECTRAL_ARROW));
-        this.spellDataMap.put(SpellTypes.MAGIC_MISSILES, new SpellBookData(ChatColor.BLUE, "Misiles mágicos", "Lanza misiles mágicos que siguen al objetivo", Material.FIREWORK_ROCKET));
-        this.spellDataMap.put(SpellTypes.POISON_CLOUD, new SpellBookData(ChatColor.GREEN, "Nube venenosa", "Lanza un proyectil que genera una nube venenosa al impactar", Material.FERMENTED_SPIDER_EYE));
+        this.spellDataMap = new HashMap<SpellTypes, Material>();
+        this.spellDataMap.put(SpellTypes.LIGHTNING, Material.GOLD_BLOCK);
+        this.spellDataMap.put(SpellTypes.FIREBALL, Material.FIRE_CHARGE);
+        this.spellDataMap.put(SpellTypes.NECROMANCER, Material.WITHER_SKELETON_SKULL);
+        this.spellDataMap.put(SpellTypes.HEALING, Material.GHAST_TEAR);
+        this.spellDataMap.put(SpellTypes.LEVITATE, Material.SHULKER_SHELL);
+        this.spellDataMap.put(SpellTypes.TELEPORT, Material.ENDER_EYE);
+        this.spellDataMap.put(SpellTypes.SLOW_FALL, Material.PHANTOM_MEMBRANE);
+        this.spellDataMap.put(SpellTypes.FIRE_RESISTANCE, Material.MAGMA_CREAM);
+        this.spellDataMap.put(SpellTypes.MAGIC_ARROWS, Material.SPECTRAL_ARROW);
+        this.spellDataMap.put(SpellTypes.MAGIC_MISSILES, Material.FIREWORK_ROCKET);
+        this.spellDataMap.put(SpellTypes.POISON_CLOUD, Material.FERMENTED_SPIDER_EYE);
+        this.spellDataMap.put(SpellTypes.MAKE_LEVITATE, Material.PUFFERFISH);
+        this.spellDataMap.put(SpellTypes.NAUSEATING_ORB, Material.POISONOUS_POTATO);
+        this.spellDataMap.put(SpellTypes.BLINDNESS_ORB, Material.INK_SAC);
+        this.spellDataMap.put(SpellTypes.REALENTIZING_ORB, Material.SOUL_SAND);
+        this.spellDataMap.put(SpellTypes.EXPLODING_ORB, Material.TNT);
+        this.spellDataMap.put(SpellTypes.GOOD_LUCK, Material.RABBIT_FOOT);
+        this.spellDataMap.put(SpellTypes.HASTE, Material.DIAMOND_PICKAXE);
     }
 
     @Override
@@ -64,7 +55,7 @@ public class SpellBook implements CustomItem {
         meta.setLore(getItemLore(spellType));
         item.setItemMeta(meta);
         NBTItem nbt = new NBTItem(item);
-        nbt.setInteger("CustomModelData", MODEL_DATA);
+        nbt.setInteger("CustomModelData", CustomItemsModelData.SPELLBOOK.getModelData());
         if(spellType != SpellTypes.NONE) {
             nbt.setInteger("spellType", spellType.getId());
             nbt.setInteger("spellLevel", spellLevel);
@@ -101,7 +92,7 @@ public class SpellBook implements CustomItem {
 
     private Recipe getFirstLevelRecipe() {
         RecipeChoice.ExactChoice baseSpellbook = new RecipeChoice.ExactChoice((new SpellBook(SpellTypes.NONE, 0)).getItem());
-        Material modifier = this.spellDataMap.get(spellType).creationMaterial;
+        Material modifier = this.spellDataMap.get(spellType);
         NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class), getNamespaceKey());
         ShapedRecipe recipe = new ShapedRecipe(nsKey, getItem());
         recipe.shape("_m_","dse","_b_");
@@ -120,9 +111,8 @@ public class SpellBook implements CustomItem {
 
     private String getItemName(SpellTypes spellType, int level) {
         if (spellType == SpellTypes.NONE) return "Libro de conjuros vacío";
-        SpellBookData data = spellDataMap.get(spellType);
-        String formatter = "" + ChatColor.GOLD + "Libro de conjuros: " + data.nameColor + "%s" + ChatColor.GOLD + " nivel " + ChatColor.GREEN + "%d";
-        return String.format(formatter, data.name, level);
+        String formatter = "" + ChatColor.GOLD + "Libro de conjuros: " + spellType.getNameColor() + "%s" + ChatColor.GOLD + " nivel " + ChatColor.GREEN + "%d";
+        return String.format(formatter, spellType.getName(), level);
     }
 
     private ArrayList<String> getItemLore(SpellTypes spellType) {
@@ -131,9 +121,10 @@ public class SpellBook implements CustomItem {
             lores.add(getLoreLine("Utiliza este libro de conjuros vacío para crear"));
             lores.add(getLoreLine("libros de conjuro especializados"));
         } else {
-            for (String line: spellDataMap.get(spellType).lore.split("\n")) {
+            for (String line: spellType.getLore().split("\n")) {
                 lores.add(getLoreLine(line));
             }
+            lores.add("" + ChatColor.GREEN + ChatColor.ITALIC + "Costo de maná: " + ChatColor.AQUA + ChatColor.ITALIC + SpellsUtils.calculateSpellManaCost(spellType, spellLevel));
         }
         return lores;
     }
