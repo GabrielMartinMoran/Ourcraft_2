@@ -1,4 +1,4 @@
-package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.daggers;
+package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.ranged.bows;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItemsModelData;
@@ -8,35 +8,36 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class DiamongDagger extends BaseDagger {
+public class PracticeBow extends BaseBow {
+
     @Override
     public Recipe getRecipe() {
-        NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"diamond_dagger");
+        NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"bamboo_bow");
         ShapedRecipe recipe = new ShapedRecipe(nsKey, getItem());
-        recipe.shape("___","_d_","_s_");
+        recipe.shape("_bs","b_s","_bs");
         recipe.setIngredient('_', Material.AIR);
-        recipe.setIngredient('d', Material.DIAMOND);
-        recipe.setIngredient('s', Material.STICK);
+        recipe.setIngredient('b', Material.BAMBOO);
+        recipe.setIngredient('s', Material.STRING);
         return recipe;
     }
 
     @Override
-    public Material getMaterial() {
-        return Material.DIAMOND_SWORD
+    public Material getBaseMaterial() {
+        return Material.DIAMOND_SWORD;
     }
 
     @Override
     public String getName() {
-        return "Daga de diamante";
+        return "Arco de bamboo";
     }
 
     @Override
     public CustomItemsModelData getModelData() {
-        return CustomItemsModelData.DIAMOND_DAGGER;
+        return CustomItemsModelData.BAMBOO_BOW;
     }
 
     @Override
-    public int getDamage() {
-        return 5;
+    public float getProjectileVelocityModifier() {
+        return 0.8f;
     }
 }

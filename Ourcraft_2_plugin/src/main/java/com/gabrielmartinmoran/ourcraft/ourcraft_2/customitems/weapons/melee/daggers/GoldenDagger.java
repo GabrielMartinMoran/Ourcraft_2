@@ -1,20 +1,17 @@
-package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.daggers;
+package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.daggers;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItemsModelData;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Arrays;
 
 public class GoldenDagger extends BaseDagger {
     @Override
     public Recipe getRecipe() {
-        NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"wooden_dagger");
+        NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"golden_dagger");
         ShapedRecipe recipe = new ShapedRecipe(nsKey, getItem());
         recipe.shape("___","_g_","_s_");
         recipe.setIngredient('_', Material.AIR);
@@ -24,7 +21,7 @@ public class GoldenDagger extends BaseDagger {
     }
 
     @Override
-    public Material getMaterial() {
+    public Material getBaseMaterial() {
         return Material.GOLDEN_SWORD;
     }
 
@@ -39,7 +36,7 @@ public class GoldenDagger extends BaseDagger {
     }
 
     @Override
-    public int getDamage() {
+    public float getDamage() {
         return 2;
     }
 }

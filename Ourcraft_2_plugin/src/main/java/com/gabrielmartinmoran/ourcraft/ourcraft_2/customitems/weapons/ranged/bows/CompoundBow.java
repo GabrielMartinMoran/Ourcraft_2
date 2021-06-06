@@ -1,7 +1,8 @@
-package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.daggers;
+package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.ranged.bows;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItemsModelData;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ReinforcedString;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
@@ -11,39 +12,36 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 
-public class WoodenDagger extends BaseDagger {
+public class ReinforcedWoodenBow extends BaseBow {
+
     @Override
     public Recipe getRecipe() {
-        NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"wooden_dagger");
+        NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"reinforced_wooden_bow");
         ShapedRecipe recipe = new ShapedRecipe(nsKey, getItem());
-        recipe.shape("___","_p_","_s_");
+        RecipeChoice.ExactChoice reinforcedString = new RecipeChoice.ExactChoice((new ReinforcedString()).getItem());
+        recipe.shape("_pp","p_s","pss");
         recipe.setIngredient('_', Material.AIR);
         recipe.setIngredient('p', new RecipeChoice.MaterialChoice(Arrays.asList(
                 Material.ACACIA_PLANKS, Material.BIRCH_PLANKS, Material.CRIMSON_PLANKS,
                 Material.DARK_OAK_PLANKS, Material.OAK_PLANKS, Material.JUNGLE_PLANKS,
                 Material.SPRUCE_PLANKS, Material.WARPED_PLANKS
         )));
-        recipe.setIngredient('s', Material.STICK);
+        recipe.setIngredient('s', reinforcedString);
         return recipe;
     }
 
     @Override
-    public Material getMaterial() {
-        return Material.WOODEN_SWORD;
-    }
-
-    @Override
     public String getName() {
-        return "Daga de madera";
+        return "Arco de madera reforzado";
     }
 
     @Override
     public CustomItemsModelData getModelData() {
-        return CustomItemsModelData.WOODEN_DAGGER;
+        return CustomItemsModelData.REINFORCED_WOODEN_BOW;
     }
 
     @Override
-    public int getDamage() {
-        return 2;
+    public float getProjectileVelocityModifier() {
+        return 1.2f;
     }
 }
