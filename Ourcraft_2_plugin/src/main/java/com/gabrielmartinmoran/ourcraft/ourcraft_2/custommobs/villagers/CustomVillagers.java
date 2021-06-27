@@ -1,6 +1,11 @@
-package com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs;
+package com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.villagers;
 
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.CopperCoin;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.GoldenCoin;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.PlatinumCoin;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.SilverCoin;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.villagers.VillagerTrade;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.economy.EconomyTable;
 import org.bukkit.Material;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Villager;
@@ -16,36 +21,40 @@ import java.util.stream.Collectors;
 
 public class CustomVillagers {
 
+    private CopperCoin copperCoin = new CopperCoin();
+    private SilverCoin silverCoin = new SilverCoin();
+    private GoldenCoin goldenCoin = new GoldenCoin();
+    private PlatinumCoin platinumCoin = new PlatinumCoin();
+
     private Random rand;
-    private List<VillagerTrade> trades = Arrays.asList(
-        new VillagerTrade(Villager.Profession.FARMER, 1, getCoin(1), null, new ItemStack(Material.WHEAT_SEEDS, 32)),
-        new VillagerTrade(Villager.Profession.FARMER, 1, getCoin(2), null, new ItemStack(Material.CARROT, 32)),
-        new VillagerTrade(Villager.Profession.FARMER, 1, getCoin(3), null, new ItemStack(Material.POTATO, 32)),
-        new VillagerTrade(Villager.Profession.FARMER, 1, getCoin(3), null, new ItemStack(Material.BEETROOT_SEEDS, 64)),
-        new VillagerTrade(Villager.Profession.FARMER, 1, getCoin(3), null, new ItemStack(Material.BREAD, 10)),
-        new VillagerTrade(Villager.Profession.FARMER, 1, getCoin(3), null, new ItemStack(Material.APPLE, 5)),
-        new VillagerTrade(Villager.Profession.FARMER, 1, getCoin(3), null, new ItemStack(Material.HAY_BLOCK, 3)),
-        new VillagerTrade(Villager.Profession.FARMER, 1, new ItemStack(Material.WHEAT, 15), null, getCoin(1))
-    );
+    /*private List<VillagerTrade> trades = Arrays.asList(
+        // Farmer
+        new VillagerTrade(Villager.Profession.FARMER, 1, copperCoin.getItem(1), null, new ItemStack(Material.WHEAT_SEEDS, 32)),
+        new VillagerTrade(Villager.Profession.FARMER, 1, copperCoin.getItem(2), null, new ItemStack(Material.CARROT, 32)),
+        new VillagerTrade(Villager.Profession.FARMER, 1, copperCoin.getItem(3), null, new ItemStack(Material.POTATO, 32)),
+        new VillagerTrade(Villager.Profession.FARMER, 1, copperCoin.getItem(3), null, new ItemStack(Material.BEETROOT_SEEDS, 64)),
+        new VillagerTrade(Villager.Profession.FARMER, 1, silverCoin.getItem(3), null, new ItemStack(Material.BREAD, 10)),
+        new VillagerTrade(Villager.Profession.FARMER, 1, goldenCoin.getItem(3), null, new ItemStack(Material.APPLE, 5)),
+        new VillagerTrade(Villager.Profession.FARMER, 1, platinumCoin.getItem(3), null, new ItemStack(Material.HAY_BLOCK, 3)),
+        new VillagerTrade(Villager.Profession.FARMER, 1, new ItemStack(Material.WHEAT, 15), null, copperCoin.getItem(1)),
+        // Toolsmith
+        new VillagerTrade(Villager.Profession.TOOLSMITH, 1, new ItemStack(Material.IRON_INGOT, 10), null, copperCoin.getItem(1)),
+        new VillagerTrade(Villager.Profession.TOOLSMITH, 1, new ItemStack(Material.GOLD_INGOT, 10), null, silverCoin.getItem(1)),
+        new VillagerTrade(Villager.Profession.TOOLSMITH, 1, new ItemStack(Material.DIAMOND, 10), null, goldenCoin.getItem(1))
+    );*/
 
     public CustomVillagers() {
         this.rand = new Random();
     }
 
-    private ItemStack getCoin(int amount) {
-        ItemStack coin = new ItemStack(Material.YELLOW_DYE, amount);
-        ItemMeta meta = coin.getItemMeta();
-        meta.setDisplayName("Moneda de oro");
-        coin.setItemMeta(meta);
-        return coin;
-    }
-
     // Retorna false cuando no encuentra recipe para agregar
     public boolean addRecipe(Villager villager, MerchantRecipe originalRecipe) {
-        VillagerTrade trade = this.getRecipe(villager);
-        if (trade == null) return false;
+        //VillagerTrade trade = this.getRecipe(villager);
+        //if (trade == null) return false;
+        MerchantRecipe recipe = EconomyTable.getTrade(villager.getProfession(), villager.getVillagerLevel());
+        if (recipe == null) return false;
         ArrayList<MerchantRecipe> recipes = new ArrayList<MerchantRecipe>(villager.getRecipes());
-        MerchantRecipe recipe = trade.getRecipe();
+        //MerchantRecipe recipe = trade.getRecipe();
         recipe.setMaxUses(originalRecipe.getMaxUses());
         recipe.setVillagerExperience(originalRecipe.getVillagerExperience());
         recipes.add(recipe);
@@ -69,7 +78,7 @@ public class CustomVillagers {
         return false;
     }
 
-    private VillagerTrade getRecipe(Villager villager) {
+    /*private VillagerTrade getRecipe(Villager villager) {
         List<VillagerTrade> filteredTrades = this.trades.stream().filter(trade ->
                 trade.getProfession().equals(villager.getProfession()) &&
                 trade.getLevel() == villager.getVillagerLevel() &&
@@ -77,5 +86,5 @@ public class CustomVillagers {
         ).collect(Collectors.toList());
         if(filteredTrades.isEmpty()) return null;
         return filteredTrades.get(rand.nextInt(filteredTrades.size()));
-    }
+    }*/
 }

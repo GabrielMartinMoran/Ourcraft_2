@@ -1,38 +1,36 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.mobs;
 
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.CustomMobsTypes;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.MobDrop;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.PlayerHeads;
-import io.lumine.xikage.mythicmobs.MythicMobs;
-import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
-import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Mob;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MMTest extends CustomMob {
+public class Mimic extends CustomMob {
 
     @Override
     public void spawn(World world, Location location) {
-        spawnMythicMobsEntity(location, "UndeadWizzard");
+        spawnMythicMobsEntity(location, "Mimic");
     }
 
     @Override
-    protected boolean preventNaturalDrops() {
+    public boolean preventNaturalDrops() {
         return true;
     }
 
     @Override
-    protected List<MobDrop> getCustomDrops() {
+    public List<MobDrop> getCustomDrops() {
         ArrayList<MobDrop> drops = new ArrayList<MobDrop>();
-        drops.add(new MobDrop(10, 1, new ItemStack(Material.NETHER_STAR), 1, 2));
-        drops.add(new MobDrop(90, 0, null, 1, 1));
+        drops.add(new MobDrop(25, 1, new ItemStack(Material.IRON_INGOT), 1, 3));
+        drops.add(new MobDrop(25, 2, new ItemStack(Material.GOLD_INGOT), 1, 3));
+        drops.add(new MobDrop(5, 3, new ItemStack(Material.DIAMOND), 1, 1));
+        drops.add(new MobDrop(2, 4, new ItemStack(Material.EMERALD), 1, 1));
+        drops.add(new MobDrop(1, 5, new ItemStack(Material.BARREL), 1, 1));
+        drops.add(new MobDrop(42, 0, null, 1, 1));
         return drops;
     }
 }

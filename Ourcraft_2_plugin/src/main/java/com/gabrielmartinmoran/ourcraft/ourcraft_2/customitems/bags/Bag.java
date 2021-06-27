@@ -1,6 +1,8 @@
-package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems;
+package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.bags;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItem;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItemsModelData;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellTypes;
 import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.Material;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Bag implements CustomItem {
+public class Bag extends CustomItem {
 
     private final int BAG_SIZE = 3;
 
@@ -26,7 +28,7 @@ public class Bag implements CustomItem {
     public ItemStack getItem() {
         ItemStack item = new ItemStack(Material.CARROT_ON_A_STICK, 1);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName("Bolsa de items");
+        meta.setDisplayName("Bolsa de cuero");
         meta.setLore(Arrays.asList("Una bolsa para guardar items"));
         item.setItemMeta(meta);
         NBTItem nbt = new NBTItem(item);

@@ -1,10 +1,7 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.bags;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItem;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItemsModelData;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ReinforcedLeather;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ReinforcedString;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.*;
 import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -17,21 +14,20 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 
-public class ReinforcedBag implements CustomItem {
+public class OgreSkinBag extends CustomItem {
 
-    private final int MODEL_DATA = 100002;
-    private final int BAG_SIZE = 9;
+    private final int BAG_SIZE = 18;
 
 
     @Override
     public ItemStack getItem() {
         ItemStack item = new ItemStack(Material.WARPED_FUNGUS_ON_A_STICK, 1);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName("Bolsa de items reforzada");
-        meta.setLore(Arrays.asList("Una bolsa reforzada para guardar items"));
+        meta.setDisplayName("Bolsa de piel de ogro");
+        meta.setLore(Arrays.asList("Una bolsa hecha de piel de ogro para guardar items"));
         item.setItemMeta(meta);
         NBTItem nbt = new NBTItem(item);
-        nbt.setInteger("CustomModelData", CustomItemsModelData.REINFORCED_BAG.getModelData());
+        nbt.setInteger("CustomModelData", CustomItemsModelData.OGRE_SKIN_BAG.getModelData());
         nbt.setBoolean("isBag", true);
         nbt.setInteger("bagSize", BAG_SIZE);
         return nbt.getItem();
@@ -39,13 +35,13 @@ public class ReinforcedBag implements CustomItem {
 
     @Override
     public Recipe getRecipe() {
-        NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"reinforced_bag");
+        NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"ogre_skin_bag");
         ShapedRecipe recipe = new ShapedRecipe(nsKey, getItem());
         RecipeChoice.ExactChoice reinforcedString = new RecipeChoice.ExactChoice((new ReinforcedString()).getItem());
-        RecipeChoice.ExactChoice reinforcedLeather = new RecipeChoice.ExactChoice((new ReinforcedLeather()).getItem());
+        RecipeChoice.ExactChoice ogreSkin = new RecipeChoice.ExactChoice((new OgreSkin()).getItem());
         recipe.shape("sls","l_l","lll");
         recipe.setIngredient('_', Material.AIR);
-        recipe.setIngredient('l', reinforcedLeather);
+        recipe.setIngredient('l', ogreSkin);
         recipe.setIngredient('s', reinforcedString);
         return recipe;
     }

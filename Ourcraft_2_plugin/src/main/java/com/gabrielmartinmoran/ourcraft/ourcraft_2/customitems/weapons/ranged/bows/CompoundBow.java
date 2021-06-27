@@ -12,15 +12,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 
-public class ReinforcedWoodenBow extends BaseBow {
+public class CompoundBow extends BaseBow {
 
     @Override
     public Recipe getRecipe() {
-        NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"reinforced_wooden_bow");
+        NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"compound_bow");
         ShapedRecipe recipe = new ShapedRecipe(nsKey, getItem());
         RecipeChoice.ExactChoice reinforcedString = new RecipeChoice.ExactChoice((new ReinforcedString()).getItem());
-        recipe.shape("_pp","p_s","pss");
+        recipe.shape("ipi","p_s","iss");
         recipe.setIngredient('_', Material.AIR);
+        recipe.setIngredient('i', Material.IRON_INGOT);
         recipe.setIngredient('p', new RecipeChoice.MaterialChoice(Arrays.asList(
                 Material.ACACIA_PLANKS, Material.BIRCH_PLANKS, Material.CRIMSON_PLANKS,
                 Material.DARK_OAK_PLANKS, Material.OAK_PLANKS, Material.JUNGLE_PLANKS,
@@ -32,16 +33,16 @@ public class ReinforcedWoodenBow extends BaseBow {
 
     @Override
     public String getName() {
-        return "Arco de madera reforzado";
+        return "Arco compuesto";
     }
 
     @Override
     public CustomItemsModelData getModelData() {
-        return CustomItemsModelData.REINFORCED_WOODEN_BOW;
+        return CustomItemsModelData.COMPOUND_BOW;
     }
 
     @Override
     public float getProjectileVelocityModifier() {
-        return 1.2f;
+        return 1.5f;
     }
 }

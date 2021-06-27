@@ -1,0 +1,10 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+     "layer0": "item/sugar"
+    },
+    "overrides": [
+     { "predicate": {"custom_model_data": 100034}, "model": "item/raw_iron"},
+     { "predicate": {"custom_model_data": 100035}, "model": "item/raw_iron_block"}
+    ]
+   }

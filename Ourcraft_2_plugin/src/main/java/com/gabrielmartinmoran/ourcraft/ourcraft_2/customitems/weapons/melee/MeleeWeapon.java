@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class MeleeWeapon implements CustomItem {
+public abstract class MeleeWeapon extends CustomItem {
 
     private final float BASE_ATTACK_SPEED = 4;
 
@@ -96,9 +96,9 @@ public abstract class MeleeWeapon implements CustomItem {
         if(lore.size() > 0) lore.add("");
         // Attributes section
         lore.add("" + ChatColor.GRAY + "When in Main Hand:");
-        lore.add(" " + ChatColor.DARK_GREEN + this.getDamage() + " Attack Damage");
+        lore.add(" " + ChatColor.DARK_GREEN + this.getDamage() + " Base Attack Damage");
         if (this.getCharacteristics().contains(MeleeWeaponCharacteristics.THROWABE)) {
-            lore.add(" " + ChatColor.DARK_GREEN + this.getThrowingDamage() + " Throwing Damage");
+            lore.add(" " + ChatColor.DARK_GREEN + this.getThrowingDamage() + " Base Throwing Damage");
         }
         lore.add(" " + ChatColor.DARK_GREEN + this.getAttackSpeed() + " Attack Speed");
         if(this.getKnockback() > 0) {

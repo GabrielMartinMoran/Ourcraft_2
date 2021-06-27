@@ -1,11 +1,21 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata;
 
-public enum PlayerAttribute {
+public enum PlayerAttributes {
     MAGIC("Magia"),
     MELEE("Combate cuerpo a cuerpo"),
     RANGED("Combate a distancia"),
-    CHOPPING("Tala"),
-    MINNING("Minería"),
-    DIGGING("Excavación"),
-    FARMING("Agricultura")
+    RESISTANCE("Resistencia"),
+    CARPENTRY("Carpintería"),
+    MINING("Minería"),
+    FARMING("Granja");
+
+    private String displayName;
+
+    private PlayerAttributes(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getDisplayName() {
+        return this.displayName;
+    }
 }

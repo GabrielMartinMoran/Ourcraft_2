@@ -1,6 +1,9 @@
-package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems;
+package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.spells;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItem;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItemsModelData;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.MagicEssence;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellTypes;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.SpellsUtils;
 import de.tr7zw.nbtapi.NBTItem;
@@ -16,7 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 
-public class SpellScroll implements CustomItem {
+public class SpellScroll extends CustomItem {
 
     private SpellTypes spellType;
     private int spellLevel;
@@ -44,14 +47,15 @@ public class SpellScroll implements CustomItem {
 
     @Override
     public Recipe getRecipe() {
+        ItemStack result = this.getItem();
+        result.setAmount(6);
         RecipeChoice.ExactChoice spellbook = new RecipeChoice.ExactChoice((new SpellBook(spellType, spellLevel)).getItem());
         NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class), getNamespaceKey());
-        ShapedRecipe recipe = new ShapedRecipe(nsKey, getItem());
-        recipe.shape("_f_","bip","_d_");
-        recipe.setIngredient('_', Material.AIR);
+        ShapedRecipe recipe = new ShapedRecipe(nsKey, result);
+        RecipeChoice.ExactChoice magicEssence = new RecipeChoice.ExactChoice((new MagicEssence()).getItem());
+        recipe.shape("bfp","epp","ppp");
         recipe.setIngredient('f', Material.FEATHER);
-        recipe.setIngredient('i', Material.INK_SAC);
-        recipe.setIngredient('d', Material.DIAMOND);
+        recipe.setIngredient('e', magicEssence);
         recipe.setIngredient('p', Material.PAPER);
         recipe.setIngredient('b', spellbook);
         return recipe;

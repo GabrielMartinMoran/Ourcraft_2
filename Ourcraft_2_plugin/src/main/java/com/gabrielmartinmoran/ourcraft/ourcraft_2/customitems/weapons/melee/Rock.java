@@ -2,12 +2,12 @@ package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItemsModelData;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.MeleeWeapon;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.weapons.melee.MeleeWeaponCharacteristics;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
-import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -55,7 +55,7 @@ public class Rock extends MeleeWeapon {
 
     @Override
     public float getThrowingDamage() {
-        return 2;
+        return 1;
     }
 
     @Override

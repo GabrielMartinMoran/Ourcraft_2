@@ -8,7 +8,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class PracticeBow extends BaseBow {
+public class BambooBow extends BaseBow {
 
     @Override
     public Recipe getRecipe() {
@@ -19,11 +19,6 @@ public class PracticeBow extends BaseBow {
         recipe.setIngredient('b', Material.BAMBOO);
         recipe.setIngredient('s', Material.STRING);
         return recipe;
-    }
-
-    @Override
-    public Material getBaseMaterial() {
-        return Material.DIAMOND_SWORD;
     }
 
     @Override
@@ -38,6 +33,6 @@ public class PracticeBow extends BaseBow {
 
     @Override
     public float getProjectileVelocityModifier() {
-        return 0.8f;
+        return 0.7f;
     }
 }

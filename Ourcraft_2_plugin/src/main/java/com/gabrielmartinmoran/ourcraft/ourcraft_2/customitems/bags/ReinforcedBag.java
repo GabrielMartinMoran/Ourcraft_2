@@ -1,6 +1,7 @@
-package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems;
+package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.bags;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.*;
 import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -13,9 +14,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 
-public class ReinforcedBag implements CustomItem {
+public class ReinforcedBag extends CustomItem {
 
-    private final int MODEL_DATA = 100002;
     private final int BAG_SIZE = 9;
 
 
@@ -23,7 +23,7 @@ public class ReinforcedBag implements CustomItem {
     public ItemStack getItem() {
         ItemStack item = new ItemStack(Material.WARPED_FUNGUS_ON_A_STICK, 1);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName("Bolsa de items reforzada");
+        meta.setDisplayName("Bolsa de cuero reforzado");
         meta.setLore(Arrays.asList("Una bolsa reforzada para guardar items"));
         item.setItemMeta(meta);
         NBTItem nbt = new NBTItem(item);

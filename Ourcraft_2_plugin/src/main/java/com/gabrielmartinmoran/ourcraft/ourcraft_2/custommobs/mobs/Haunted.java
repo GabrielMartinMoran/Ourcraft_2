@@ -1,5 +1,6 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.mobs;
 
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.CustomMobsTypes;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.PlayerHeads;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -7,11 +8,12 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Monster;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-public class Haunted implements CustomMob {
+public class Haunted extends CustomMob {
 
     private final double MAX_HEALTH = 30;
     private final double FOLLOW_RANGE = 32;
@@ -23,23 +25,15 @@ public class Haunted implements CustomMob {
 
     @Override
     public void spawn(World world, Location location) {
-        Monster mob = (Monster) world.spawnEntity(location, EntityType.HUSK);
-        mob.setCustomName("Haunted");
+        Mob mob = this.spawnEntity(world, location, EntityType.HUSK);
         mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(MAX_HEALTH);
         mob.setHealth(MAX_HEALTH);
         mob.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(FOLLOW_RANGE);
         mob.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(ATTACK_DAMAGE);
-        mob.getEquipment().setHelmet(PlayerHeads.get(HEAD_TEXTURE));
+        mob.getEquipment().setHelmet(PlayerHeads.get(HEAD_TEXTURE, "Cabeza de Haunted"));
+        mob.getEquipment().setHelmetDropChance(0.1f);
         mob.getEquipment().setChestplate(this.getLeatherEquipment(Material.LEATHER_CHESTPLATE, CHESTPLATE_COLOR));
         mob.getEquipment().setLeggings(this.getLeatherEquipment(Material.LEATHER_LEGGINGS, LEGGINGS_COLOR));
         mob.getEquipment().setBoots(this.getLeatherEquipment(Material.LEATHER_BOOTS, BOOTS_COLOR));
-    }
-
-    private ItemStack getLeatherEquipment(Material itemMaterial, Color color) {
-        ItemStack item = new ItemStack(itemMaterial, 1);
-        LeatherArmorMeta meta = (LeatherArmorMeta)item.getItemMeta();
-        meta.setColor(color);
-        item.setItemMeta(meta);
-        return item;
     }
 }

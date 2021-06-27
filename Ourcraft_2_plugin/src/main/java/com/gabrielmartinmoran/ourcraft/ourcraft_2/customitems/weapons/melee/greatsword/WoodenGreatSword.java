@@ -2,7 +2,6 @@ package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.gre
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItemsModelData;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.daggers.BaseDagger;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
@@ -17,7 +16,7 @@ public class WoodenGreatSword extends BaseGreatSword {
     public Recipe getRecipe() {
         NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"wooden_greatsword");
         ShapedRecipe recipe = new ShapedRecipe(nsKey, getItem());
-        recipe.shape("_pp","_pp","_s_");
+        recipe.shape("__p","pp_","sp_");
         recipe.setIngredient('_', Material.AIR);
         recipe.setIngredient('p', new RecipeChoice.MaterialChoice(Arrays.asList(
                 Material.ACACIA_PLANKS, Material.BIRCH_PLANKS, Material.CRIMSON_PLANKS,
@@ -45,6 +44,6 @@ public class WoodenGreatSword extends BaseGreatSword {
 
     @Override
     public float getDamage() {
-        return 5;
+        return 6;
     }
 }

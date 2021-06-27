@@ -2,7 +2,6 @@ package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.dag
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItemsModelData;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.daggers.BaseDagger;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;

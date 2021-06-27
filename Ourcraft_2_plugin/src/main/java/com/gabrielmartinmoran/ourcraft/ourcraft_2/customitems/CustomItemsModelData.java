@@ -1,2 +1,51 @@
-package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems;public enum CustomItemsModelData {
+package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems;
+
+public enum CustomItemsModelData {
+    SPELLBOOK(100001),
+    BAG(100002),
+    REINFORCED_LEATHER(100003),
+    REINFORCED_STRING(100004),
+    REINFORCED_BAG(100005),
+    SPELL_SCROLL(100006),
+    COPPER_COIN(100007),
+    SILVER_COIN(100008),
+    GOLDEN_COIN(100009),
+    PLATINUM_COIN(100010),
+    WOODEN_DAGGER(100011),
+    GOLDEN_DAGGER(100012),
+    STONE_DAGGER(100013),
+    IRON_DAGGER(100014),
+    DIAMOND_DAGGER(100015),
+    NETHERITE_DAGGER(100016),
+    WOODEN_GREATSWORD(100017),
+    GOLDEN_GREATSWORD(100018),
+    STONE_GREATSWORD(100019),
+    IRON_GREATSWORD(100020),
+    DIAMOND_GREATSWORD(100021),
+    NETHERITE_GREATSWORD(100022),
+    ROCK(100023),
+    BAMBOO_BOW(100024),
+    REINFORCED_WOODEN_BOW(100025),
+    COMPOUND_BOW(100026),
+    REINFORCED_COMPOUND_BOW(100027),
+    MANA_ESSENCE(100028),
+    MAGIC_ESSENCE(100029),
+    OGRE_SKIN(100030),
+    OGRE_SKIN_BAG(100031),
+    COMBAT_PEARL(100032),
+    ORC_SKIN(100033),
+    RAW_IRON(100034),
+    RAW_IRON_BLOCK(100035),
+    RAW_GOLD(100036),
+    RAW_GOLD_BLOCK(100037);
+
+    private int modelNumber;
+
+    private CustomItemsModelData(int modelNumber) {
+        this.modelNumber = modelNumber;
+    }
+
+    public int getModelData() {
+        return this.modelNumber;
+    }
 }

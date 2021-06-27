@@ -4,6 +4,7 @@ import com.gabrielmartinmoran.ourcraft.ourcraft_2.hydration.HydrationDecreaseEve
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerDataProvider;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellsResolver;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.PlayerUtils;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.weapons.melee.MeleeWeaponsResolver;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -16,18 +17,20 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
-public class RightClickListener implements Listener {
+public class ClickListener implements Listener {
 
     private PlayerUtils playerUtils;
     private SpellsResolver spellsResolver;
+    private MeleeWeaponsResolver meleeWeaponsResolver;
 
-    public RightClickListener() {
+    public ClickListener() {
         playerUtils = new PlayerUtils();
         spellsResolver = new SpellsResolver();
+        meleeWeaponsResolver = new MeleeWeaponsResolver();
     }
 
     @EventHandler
-    public void onPlayerRightClick(PlayerInteractEvent event) {
+    public void onPlayerClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         Action action = event.getAction();
         ItemStack item = event.getItem();
@@ -38,11 +41,15 @@ public class RightClickListener implements Listener {
                 this.spellsResolver.resolveSpell(player, item);
                 return;
             }
+            if (this.meleeWeaponsResolver.isThrowable(item)) {
+                this.meleeWeaponsResolver.throwWeapon(player, item);
+                return;
+            }
         }
-        this.reduceHydration(event);
+        this.handleHydration(event);
     }
 
-    private void reduceHydration(PlayerInteractEvent event) {
+    private void handleHydration(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         Action action = event.getAction();
         ItemStack item = event.getItem();
@@ -56,19 +63,19 @@ public class RightClickListener implements Listener {
                 break;
             }
             if (waterFound) {
-                player.playSound(player.getLocation(), Sound.ENTITY_GENERIC_DRINK, 100, 1);
+                player.playSound(player.getLocation(), Sound.ENTITY_GENERIC_DRINK, 1f, 1f);
                 Location particlesLoc = player.getLocation();
                 particlesLoc.setY(particlesLoc.getY() + 1);
                 player.spawnParticle(Particle.WATER_SPLASH, particlesLoc, 10);
-                PlayerDataProvider.get(player).getHydration().addHydration(1);
+                PlayerDataProvider.get(player).getHydrationManager().addHydration(2);
+                PlayerDataProvider.get(player).getHydrationManager().handleNotPurifiedWaterDrinking(player);
             }
         }
-        if(action.equals(Action.LEFT_CLICK_AIR)) {
+        if (action.equals(Action.LEFT_CLICK_AIR)) {
             HydrationDecreaseEvents hEvent = HydrationDecreaseEvents.ATTACK;
-            if(item == null) hEvent = HydrationDecreaseEvents.ATTACK_NO_WEAPON;
-            PlayerDataProvider.get(player).getHydration().consumeHydration(hEvent);
+            if (item == null) hEvent = HydrationDecreaseEvents.ATTACK_NO_WEAPON;
+            if (player.getGameMode() != GameMode.CREATIVE)
+                PlayerDataProvider.get(player).getHydrationManager().consumeHydration(hEvent);
         }
     }
-
-
 }

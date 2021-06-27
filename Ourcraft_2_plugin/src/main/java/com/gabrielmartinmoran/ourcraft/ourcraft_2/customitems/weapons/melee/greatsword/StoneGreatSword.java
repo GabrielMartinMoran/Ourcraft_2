@@ -16,7 +16,7 @@ public class StoneGreatSword extends BaseGreatSword {
     public Recipe getRecipe() {
         NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"stone_greatsword");
         ShapedRecipe recipe = new ShapedRecipe(nsKey, getItem());
-        recipe.shape("_cc","_cc","_s_");
+        recipe.shape("__c","cc_","sc_");
         recipe.setIngredient('_', Material.AIR);
         recipe.setIngredient('c', new RecipeChoice.MaterialChoice(Arrays.asList(Material.COBBLESTONE, Material.BLACKSTONE)));
         recipe.setIngredient('s', Material.STICK);
@@ -40,6 +40,6 @@ public class StoneGreatSword extends BaseGreatSword {
 
     @Override
     public float getDamage() {
-        return 6;
+        return 7;
     }
 }

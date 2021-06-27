@@ -1,0 +1,10 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+     "layer0": "item/iron_sword"
+    },
+    "overrides": [
+     { "predicate": {"custom_model_data": 100014}, "model": "item/weapons/melee/daggers/iron_dagger"},
+     { "predicate": {"custom_model_data": 100020}, "model": "item/weapons/melee/greatswords/iron_greatsword"}
+    ]
+   }

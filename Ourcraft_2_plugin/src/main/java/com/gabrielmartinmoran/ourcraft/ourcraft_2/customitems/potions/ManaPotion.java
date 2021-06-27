@@ -1,46 +1,36 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.potions;
 
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItem;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ManaEssence;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ReinforcedString;
 import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.Color;
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.NamespacedKey;
+import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public abstract class BaseManaPotion implements CustomItem {
-
-    public static final String IS_MANA_POTION_TAG = "isManaPotion";
-    public static final String MANA_RECOVER_AMOUNT_TAG = "manaRecoverAmount";
-
-    @Override
-    public ItemStack getItem() {
-        ItemStack item = new ItemStack(Material.POTION, 1);
-        PotionMeta meta = (PotionMeta) item.getItemMeta();
-        meta.setDisplayName(this.getName());
-        meta.setColor(Color.fromRGB(3, 152, 252));
-        item.setItemMeta(meta);
-        NBTItem nbt = new NBTItem(item);
-        nbt.setBoolean(IS_MANA_POTION_TAG, true);
-        nbt.setInteger(MANA_RECOVER_AMOUNT_TAG, this.getManaRecoverAmount());
-        return nbt.getItem();
-    }
+public class ManaPotion extends BaseManaPotion {
 
     @Override
     public Recipe getRecipe() {
-        return null;
+        NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"mana_potion");
+        ShapelessRecipe recipe = new ShapelessRecipe(nsKey, getItem());
+        RecipeChoice.ExactChoice manaEssence = new RecipeChoice.ExactChoice((new ManaEssence()).getItem());
+        recipe.addIngredient(Material.GLASS_BOTTLE);
+        recipe.addIngredient(manaEssence);
+        return recipe;
     }
 
+    @Override
     protected String getName() {
-        return "Poción de mana";
+        return "Poción de maná";
     }
 
-    protected int getPotionLevel() {
-        return 1;
-    }
-
+    @Override
     protected int getManaRecoverAmount() {
-        return 0;
+        return 20;
     }
 }

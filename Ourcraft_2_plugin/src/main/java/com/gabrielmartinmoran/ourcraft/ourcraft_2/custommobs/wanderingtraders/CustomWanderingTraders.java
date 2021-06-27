@@ -1,9 +1,12 @@
-package com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.villagers;
+package com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.wanderingtraders;
 
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.armors.CustomArmor;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.armors.CustomArmorGenerator;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.CopperCoin;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.GoldenCoin;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.PlatinumCoin;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.SilverCoin;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.villagers.VillagerTrade;
 import org.bukkit.Material;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.WanderingTrader;
@@ -23,37 +26,53 @@ public class CustomWanderingTraders {
     private GoldenCoin goldenCoin = new GoldenCoin();
     private PlatinumCoin platinumCoin = new PlatinumCoin();
     private Random rand;
-    private List<VillagerTrade> trades = Arrays.asList(
-            new VillagerTrade(Villager.Profession.NONE, 1, copperCoin.getItem(1), null, new ItemStack(Material.WHEAT_SEEDS, 32)),
-            new VillagerTrade(Villager.Profession.NONE, 1, copperCoin.getItem(2), null, new ItemStack(Material.CARROT, 32)),
-            new VillagerTrade(Villager.Profession.NONE, 1, copperCoin.getItem(3), null, new ItemStack(Material.POTATO, 32)),
-            new VillagerTrade(Villager.Profession.NONE, 1, copperCoin.getItem(3), null, new ItemStack(Material.BEETROOT_SEEDS, 64)),
-            new VillagerTrade(Villager.Profession.NONE, 1, silverCoin.getItem(3), null, new ItemStack(Material.BREAD, 10)),
-            new VillagerTrade(Villager.Profession.NONE, 1, goldenCoin.getItem(3), null, new ItemStack(Material.APPLE, 5)),
-            new VillagerTrade(Villager.Profession.NONE, 1, platinumCoin.getItem(3), null, new ItemStack(Material.HAY_BLOCK, 3)),
-            new VillagerTrade(Villager.Profession.NONE, 1, new ItemStack(Material.WHEAT, 15), null, copperCoin.getItem(1))
+    private CustomArmorGenerator customArmorGenerator;
+    private final int UNLIMITED_TRADES_AMOUNT = 999999;
+    private final double CUSTOM_ARMOR_PROBABILITY = 0.4d;
+    private final int CUSTOM_ARMOR_MAX_USES = 1;
+    private List<WanderingTraderTrade> trades = Arrays.asList(
+            new WanderingTraderTrade(copperCoin.getItem(10), null, silverCoin.getItem(1), true),
+            new WanderingTraderTrade(silverCoin.getItem(10), null, goldenCoin.getItem(1), true),
+            new WanderingTraderTrade(goldenCoin.getItem(10), null, platinumCoin.getItem(1), true),
+            new WanderingTraderTrade(silverCoin.getItem(1), null, copperCoin.getItem(10), true),
+            new WanderingTraderTrade(goldenCoin.getItem(1), null, silverCoin.getItem(10), true),
+            new WanderingTraderTrade(platinumCoin.getItem(1), null, goldenCoin.getItem(10), true)
     );
 
     public CustomWanderingTraders() {
         this.rand = new Random();
+        this.customArmorGenerator = new CustomArmorGenerator();
     }
 
     // Retorna false cuando no encuentra recipe para agregar
-    public boolean addRecipe(Villager villager, MerchantRecipe originalRecipe) {
-        VillagerTrade trade = this.getRecipe(villager);
-        if (trade == null) return false;
-        ArrayList<MerchantRecipe> recipes = new ArrayList<MerchantRecipe>(villager.getRecipes());
-        MerchantRecipe recipe = trade.getRecipe();
-        recipe.setMaxUses(originalRecipe.getMaxUses());
-        recipe.setVillagerExperience(originalRecipe.getVillagerExperience());
+    public boolean addRecipe(WanderingTrader trader, MerchantRecipe originalRecipe) {
+        ArrayList<MerchantRecipe> recipes = new ArrayList<MerchantRecipe>(trader.getRecipes());
+        MerchantRecipe recipe = null;
+        if(this.shouldAddCustomArmor()) {
+            recipe = this.generateCustomArmorRecipe();
+        } else {
+            WanderingTraderTrade trade = this.getRecipe(trader);
+            if (trade == null) return false;
+            recipe = trade.getRecipe();
+            if (trade.isUnlimitedTrade()) {
+                recipe.setMaxUses(UNLIMITED_TRADES_AMOUNT);
+            } else {
+                recipe.setMaxUses(originalRecipe.getMaxUses());
+            }
+            recipe.setVillagerExperience(originalRecipe.getVillagerExperience());
+        }
         recipes.add(recipe);
-        villager.setRecipes(recipes);
+        trader.setRecipes(recipes);
         return true;
     }
 
-    private boolean tradeAlreadyAdded(WanderingTrader trader, VillagerTrade trade) {
+    private boolean shouldAddCustomArmor() {
+        return this.rand.nextDouble() <= CUSTOM_ARMOR_PROBABILITY;
+    }
+
+    private boolean tradeAlreadyAdded(WanderingTrader trader, WanderingTraderTrade trade) {
         MerchantRecipe newRecipe = trade.getRecipe();
-        for (MerchantRecipe recipe: villager.getRecipes()) {
+        for (MerchantRecipe recipe: trader.getRecipes()) {
             List<ItemStack> existingIngredients = recipe.getIngredients();
             List<ItemStack> newIngredients = newRecipe.getIngredients();
             boolean sameFirstCost = existingIngredients.get(0).isSimilar(newIngredients.get(0)) &&
@@ -67,9 +86,40 @@ public class CustomWanderingTraders {
         return false;
     }
 
-    private VillagerTrade getRecipe(WanderingTrader trader) {
-        List<VillagerTrade> filteredTrades = this.trades.stream().filter(trade -> !this.tradeAlreadyAdded(trader, trade)).collect(Collectors.toList());
+    private WanderingTraderTrade getRecipe(WanderingTrader trader) {
+        List<WanderingTraderTrade> filteredTrades = this.trades.stream().filter(trade -> !this.tradeAlreadyAdded(trader, trade)).collect(Collectors.toList());
         if(filteredTrades.isEmpty()) return null;
         return filteredTrades.get(rand.nextInt(filteredTrades.size()));
+    }
+
+    private MerchantRecipe generateCustomArmorRecipe() {
+        CustomArmor customArmor = this.customArmorGenerator.generateArmor();
+        MerchantRecipe recipe = new MerchantRecipe(customArmor.getItem(), CUSTOM_ARMOR_MAX_USES);
+        long copperCost = customArmor.calculateCopperCost();
+        int copperCoins = 0;
+        int silverCoins = 0;
+        int goldenCoins = 0;
+        int platinumCoins = 0;
+        while (copperCost > 0) {
+            copperCoins ++;
+            copperCost--;
+            if (copperCoins > 64) {
+                copperCoins -= 60;
+                silverCoins += 6;
+            }
+            if (silverCoins > 64) {
+                silverCoins -= 60;
+                goldenCoins += 6;
+            }
+            if (goldenCoins > 64) {
+                goldenCoins -= 60;
+                platinumCoins += 6;
+            }
+        }
+        if(platinumCoins > 0) recipe.addIngredient(platinumCoin.getItem(platinumCoins));
+        if(goldenCoins > 0) recipe.addIngredient(goldenCoin.getItem(goldenCoins));
+        if(recipe.getIngredients().size() < 2 && silverCoins > 0) recipe.addIngredient(silverCoin.getItem(silverCoins));
+        if(recipe.getIngredients().size() < 2 && copperCoins > 0) recipe.addIngredient(copperCoin.getItem(copperCoins));
+        return recipe;
     }
 }

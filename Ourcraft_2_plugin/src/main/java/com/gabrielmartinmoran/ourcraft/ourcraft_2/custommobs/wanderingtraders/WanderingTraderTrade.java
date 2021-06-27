@@ -1,4 +1,4 @@
-package com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.villagers;
+package com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.wanderingtraders;
 
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
@@ -6,18 +6,23 @@ import org.bukkit.inventory.MerchantRecipe;
 
 public class WanderingTraderTrade {
 
-    private Villager.Profession profession;
-    private int level;
     private ItemStack firstCost;
     private ItemStack secondCost;
     private ItemStack result;
+    private boolean unlimitedTrades;
 
-    public WanderingTraderTrade(Villager.Profession profession, int level, ItemStack firstCost, ItemStack secondCost, ItemStack result) {
-        this.profession = profession;
-        this.level = level;
+    public WanderingTraderTrade(ItemStack firstCost, ItemStack secondCost, ItemStack result, boolean unlimitedTrades) {
         this.firstCost = firstCost;
         this.secondCost = secondCost;
         this.result = result;
+        this.unlimitedTrades = unlimitedTrades;
+    }
+
+    public WanderingTraderTrade(ItemStack firstCost, ItemStack secondCost, ItemStack result) {
+        this.firstCost = firstCost;
+        this.secondCost = secondCost;
+        this.result = result;
+        this.unlimitedTrades = false;
     }
 
     public MerchantRecipe getRecipe() {
@@ -27,11 +32,7 @@ public class WanderingTraderTrade {
         return recipe;
     }
 
-    public Villager.Profession getProfession() {
-        return this.profession;
-    }
-
-    public int getLevel() {
-        return this.level;
+    public boolean isUnlimitedTrade() {
+        return this.unlimitedTrades;
     }
 }

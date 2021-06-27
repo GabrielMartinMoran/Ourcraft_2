@@ -1,0 +1,16 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+     "layer0": "item/firework_star"
+    },
+    "overrides": [
+     { "predicate": {"custom_model_data": 100007}, "model": "item/copper_coin"},
+     { "predicate": {"custom_model_data": 100008}, "model": "item/silver_coin"},
+     { "predicate": {"custom_model_data": 100009}, "model": "item/golden_coin"},
+     { "predicate": {"custom_model_data": 100010}, "model": "item/platinum_coin"},
+     { "predicate": {"custom_model_data": 100028}, "model": "item/mana_essence"},
+     { "predicate": {"custom_model_data": 100029}, "model": "item/magic_essence"},
+     { "predicate": {"custom_model_data": 100036}, "model": "item/raw_gold"},
+     { "predicate": {"custom_model_data": 100037}, "model": "item/raw_gold_block"}
+    ]
+   }

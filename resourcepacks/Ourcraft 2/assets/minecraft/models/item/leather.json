@@ -1,0 +1,11 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+     "layer0": "item/leather"
+    },
+    "overrides": [
+     { "predicate": {"custom_model_data": 100003}, "model": "item/reinforced_leather"},
+     { "predicate": {"custom_model_data": 100030}, "model": "item/ogre_skin"},
+     { "predicate": {"custom_model_data": 100033}, "model": "item/orc_skin"}
+    ]
+   }

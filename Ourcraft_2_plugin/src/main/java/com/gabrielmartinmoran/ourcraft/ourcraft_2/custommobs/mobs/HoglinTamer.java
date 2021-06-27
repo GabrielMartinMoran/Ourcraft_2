@@ -1,45 +1,44 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.mobs;
 
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.CustomMobsTypes;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.PlayerHeads;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Mob;
-import org.bukkit.entity.Phantom;
-import org.bukkit.entity.Skeleton;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-public class PhantomRider extends CustomMob {
+public class HoglinTamer extends CustomMob {
 
-    private final int PHANTOM_SIZE = 2;
-    private final int PHANTOM_MAX_HEALTH = 25;
     private final int FOLLOW_RANGE = 64;
+    private final String HEAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2UyZmJhZWYzMzFlOTA1ZDRiMmM1ZTY5MzVkZWY5NGM4ZTRjMzJlY2EwMzE3ZDE0M2E0NDExOTNhZThmODI0ZSJ9fX0";
 
 
     @Override
     public void spawn(World world, Location location) {
-        Phantom phantom = (Phantom) this.spawnEntity(world, location, EntityType.PHANTOM);
-        phantom.setSize(PHANTOM_SIZE);
-        phantom.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(PHANTOM_MAX_HEALTH);
-        phantom.setHealth(PHANTOM_MAX_HEALTH);
-        phantom.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(FOLLOW_RANGE);
+        Hoglin hoglin = (Hoglin) this.spawnEntity(world, location, EntityType.HOGLIN);
+        hoglin.setImmuneToZombification(true);
+        hoglin.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(FOLLOW_RANGE);
+        hoglin.setAdult();
 
-        Skeleton passenger = (Skeleton) this.spawnEntity(world, location, EntityType.SKELETON);
+        Zombie passenger = (Zombie) this.spawnEntity(world, location, EntityType.ZOMBIE);
+        passenger.setBaby();
         passenger.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(FOLLOW_RANGE);
-        passenger.getEquipment().setItemInMainHand(new ItemStack(Material.WOODEN_SWORD));
-        passenger.getEquipment().setItemInOffHand(this.getBow());
-        passenger.getEquipment().setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
-        passenger.getEquipment().setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));
-        phantom.addPassenger(passenger);
+        passenger.getEquipment().setItemInMainHand(this.getSword());
+        passenger.getEquipment().setHelmet(PlayerHeads.get(HEAD, "Cabeza de domador de Hoglin"));
+        passenger.getEquipment().setHelmetDropChance(0.1f);
+        passenger.getEquipment().setChestplate(new ItemStack(Material.GOLDEN_CHESTPLATE));
+        passenger.getEquipment().setLeggings(new ItemStack(Material.GOLDEN_LEGGINGS));
+        passenger.getEquipment().setBoots(new ItemStack(Material.GOLDEN_BOOTS));
+        hoglin.addPassenger(passenger);
     }
 
-    private ItemStack getBow() {
-        ItemStack itemStack = new ItemStack(Material.BOW);
-        itemStack.addEnchantment(Enchantment.ARROW_KNOCKBACK, 1);
-        itemStack.addEnchantment(Enchantment.ARROW_DAMAGE, 1);
+    private ItemStack getSword() {
+        ItemStack itemStack = new ItemStack(Material.GOLDEN_SWORD);
+        itemStack.addEnchantment(Enchantment.DAMAGE_ALL, 2);
+        itemStack.addEnchantment(Enchantment.FIRE_ASPECT, 2);
         return itemStack;
     }
 }

@@ -11,10 +11,12 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
 
 import java.util.Arrays;
 
-public class PurifiedWater implements CustomItem {
+public class PurifiedWaterBottle extends CustomItem {
 
     public static final String IS_PURIFIED_WATER_TAG = "isPurifiedWater";
 
@@ -33,8 +35,11 @@ public class PurifiedWater implements CustomItem {
     @Override
     public Recipe getRecipe() {
         NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"purified_water_bottle");
-        RecipeChoice.ExactChoice waterBottle = new RecipeChoice.ExactChoice(new ItemStack(Material.POTION, 1, (byte)0));
-        Recipe recipe = new FurnaceRecipe(nsKey, this.getItem(), waterBottle, 5, 200);
+        ItemStack waterBottle = new ItemStack(Material.POTION, 1);
+        PotionMeta meta = (PotionMeta) waterBottle.getItemMeta();
+        meta.setBasePotionData(new PotionData(PotionType.WATER));
+        waterBottle.setItemMeta(meta);
+        Recipe recipe = new FurnaceRecipe(nsKey, this.getItem(), new RecipeChoice.ExactChoice(waterBottle), 5, 200);
         return recipe;
     }
 }

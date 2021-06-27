@@ -15,11 +15,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class MaterialPrice {
+public class EconomyItem {
 
     private final int DEFAULT_MAX_USES = 1;
     public Villager.Profession villagerProfession;
-    private Material material;
+    private ItemStack baseItem;
     private int copperUnitSellPrice;
     public boolean allowSell;
     public boolean allowBuy;
@@ -47,13 +47,21 @@ public class MaterialPrice {
     );
 
     /**
-     * @param material: material identificador del item
      * @param copperUnitSellPrice: indica el precio estandar al que el jugador vende el objeto
      */
-    public MaterialPrice(Villager.Profession villagerProfession, Material material, int copperUnitSellPrice, boolean allowSell, boolean allowBuy) {
+    public EconomyItem(Villager.Profession villagerProfession, Material material, int copperUnitSellPrice, boolean allowSell, boolean allowBuy) {
         this.rand = new Random();
         this.villagerProfession = villagerProfession;
-        this.material = material;
+        this.baseItem = new ItemStack(material);
+        this.copperUnitSellPrice = copperUnitSellPrice;
+        this.allowSell = allowSell;
+        this.allowBuy = allowBuy;
+    }
+
+    public EconomyItem(Villager.Profession villagerProfession, ItemStack baseItem, int copperUnitSellPrice, boolean allowSell, boolean allowBuy) {
+        this.rand = new Random();
+        this.villagerProfession = villagerProfession;
+        this.baseItem = baseItem;
         this.copperUnitSellPrice = copperUnitSellPrice;
         this.allowSell = allowSell;
         this.allowBuy = allowBuy;
@@ -61,7 +69,7 @@ public class MaterialPrice {
 
     public MerchantRecipe getBuyRecipe(int villagerLevel) {
         int tradeAmount = this.generateRecipeAmount();
-        MerchantRecipe recipe = new MerchantRecipe(new ItemStack(this.material, tradeAmount), DEFAULT_MAX_USES);
+        MerchantRecipe recipe = new MerchantRecipe(this.getItemAmount(tradeAmount), DEFAULT_MAX_USES);
         this.completeRecipeBuyCosts(recipe, tradeAmount, villagerLevel);
         return recipe;
     }
@@ -70,20 +78,12 @@ public class MaterialPrice {
         int tradeAmount = this.generateRecipeAmount();
         ItemStack tradeResult = this.generateRecipeSellProfit(tradeAmount, villagerLevel);
         MerchantRecipe recipe = new MerchantRecipe(tradeResult, DEFAULT_MAX_USES);
-        recipe.addIngredient(new ItemStack(this.material, tradeAmount));
-        return recipe;
-    }
-
-    private MerchantRecipe getRecipe(int villagerLevel, boolean isSelling) {
-        int tradeAmount = this.generateRecipeAmount();
-        MerchantRecipe recipe = new MerchantRecipe(new ItemStack(this.material), tradeAmount);
-        this.completeRecipeBuyCosts(recipe, tradeAmount, villagerLevel);
+        recipe.addIngredient(this.getItemAmount(tradeAmount));
         return recipe;
     }
 
     private int generateRecipeAmount() {
-        ItemStack stack = new ItemStack(this.material);
-        int maxStackSize = stack.getMaxStackSize();
+        int maxStackSize = this.baseItem.getMaxStackSize();
         if (maxStackSize == 1) return maxStackSize;
         List<Integer> stackDividers = Arrays.asList(1, 2, 4, 8);
         int stackDivider = stackDividers.get(this.rand.nextInt(stackDividers.size()));
@@ -144,5 +144,11 @@ public class MaterialPrice {
         if(goldenCoins > 0) return goldenCoin.getItem(goldenCoins + Math.round(silverCoins / 10));
         if(silverCoins > 0) return silverCoin.getItem(silverCoins + Math.round(copperCoins / 10));
         return copperCoin.getItem(copperCoins);
+    }
+
+    private ItemStack getItemAmount(int amount) {
+        ItemStack itemStack = this.baseItem.clone();
+        itemStack.setAmount(amount);
+        return itemStack;
     }
 }

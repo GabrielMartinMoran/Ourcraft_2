@@ -1,0 +1,9 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+     "layer0": "item/string"
+    },
+    "overrides": [
+     { "predicate": {"custom_model_data": 100004}, "model": "item/reinforced_string"}
+    ]
+   }

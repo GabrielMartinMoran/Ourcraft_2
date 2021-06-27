@@ -1,30 +1,23 @@
-package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.daggers;
+package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.ranged.bows;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.MeleeWeapon;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.ranged.RangedWeapon;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.weapons.melee.MeleeWeaponCharacteristics;
+import org.bukkit.Material;
 
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class BaseDagger extends MeleeWeapon {
+public abstract class BaseBow extends RangedWeapon {
 
     @Override
-    public float getAttackSpeed() {
-        return 2f;
+    public float getProjectileVelocityModifier() {
+        return 1f;
     }
 
     @Override
-    public List<MeleeWeaponCharacteristics> getCharacteristics() {
-        return Arrays.asList(MeleeWeaponCharacteristics.THROWABE);
+    public Material getBaseMaterial() {
+        return Material.BOW;
     }
 
-    @Override
-    public float getKnockback() {
-        return -0.5f;
-    }
-
-    @Override
-    public float getThrowingDamage() {
-        return (int) Math.ceil(this.getDamage() / 2);
-    }
 }

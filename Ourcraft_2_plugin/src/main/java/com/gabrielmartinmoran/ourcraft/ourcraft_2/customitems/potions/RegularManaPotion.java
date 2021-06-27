@@ -1,27 +1,33 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.potions;
 
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItem;
-import de.tr7zw.nbtapi.NBTItem;
-import org.bukkit.Color;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ManaEssence;
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.inventory.RecipeChoice;
+import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class ManaPotion extends BaseManaPotion {
+public class RegularManaPotion extends BaseManaPotion {
 
     @Override
-    protected String getName() {
-        return "Poción de mana";
+    public Recipe getRecipe() {
+        NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"regular_mana_potion");
+        ShapelessRecipe recipe = new ShapelessRecipe(nsKey, getItem());
+        RecipeChoice.ExactChoice manaEssence = new RecipeChoice.ExactChoice((new ManaEssence()).getItem());
+        recipe.addIngredient(Material.GLASS_BOTTLE);
+        for (int i = 0; i < 2; i++) recipe.addIngredient(manaEssence);
+        return recipe;
     }
 
     @Override
-    protected int getPotionLevel() {
-        return 1;
+    protected String getName() {
+        return "Poción de maná regular";
     }
 
     @Override
     protected int getManaRecoverAmount() {
-        return 20;
+        return 50;
     }
 }

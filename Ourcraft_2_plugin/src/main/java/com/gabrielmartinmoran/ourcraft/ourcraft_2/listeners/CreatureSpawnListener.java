@@ -1,23 +1,26 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.CustomMobsSpawner;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.CustomMobsManager;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Creature;
-import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
-public class MobSpawnListener implements Listener {
+public class CreatureSpawnListener implements Listener {
 
-    private CustomMobsSpawner customMobsSpawner;
+    private CustomMobsManager customMobsSpawner;
 
-    public MobSpawnListener() {
-        this.customMobsSpawner = new CustomMobsSpawner();
+    public CreatureSpawnListener() {
+        this.customMobsSpawner = new CustomMobsManager();
     }
 
     @EventHandler
     public void onMobSpawn(CreatureSpawnEvent event) {
-        Creature creature = (Creature)event.getEntity();
-        this.customMobsSpawner.replaceIfNeeded(creature);
+        if (event.getEntity() instanceof LivingEntity && !event.getSpawnReason().equals(CreatureSpawnEvent.SpawnReason.CUSTOM)) {
+            LivingEntity mob = (LivingEntity) event.getEntity();
+            if (!this.customMobsSpawner.isCustomMob(mob)) this.customMobsSpawner.replaceIfNeeded(mob);
+        }
     }
 }

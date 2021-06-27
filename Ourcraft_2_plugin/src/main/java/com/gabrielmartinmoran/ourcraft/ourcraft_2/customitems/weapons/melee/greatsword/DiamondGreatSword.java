@@ -5,18 +5,15 @@ import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItemsModelDa
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Arrays;
 
 public class DiamondGreatSword extends BaseGreatSword {
     @Override
     public Recipe getRecipe() {
         NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"diamond_greatsword");
         ShapedRecipe recipe = new ShapedRecipe(nsKey, getItem());
-        recipe.shape("_dd","_dd","_s_");
+        recipe.shape("__d","dd_","sd_");
         recipe.setIngredient('_', Material.AIR);
         recipe.setIngredient('d', Material.DIAMOND);
         recipe.setIngredient('s', Material.STICK);
@@ -39,7 +36,5 @@ public class DiamondGreatSword extends BaseGreatSword {
     }
 
     @Override
-    public float getDamage() {
-        return 8;
-    }
+    public float getDamage() { return 9; }
 }

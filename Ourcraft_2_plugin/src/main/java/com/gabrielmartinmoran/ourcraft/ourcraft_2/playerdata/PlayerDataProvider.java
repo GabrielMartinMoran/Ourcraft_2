@@ -3,6 +3,7 @@ package com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.BufferedWriter;
@@ -22,6 +23,10 @@ public class PlayerDataProvider {
 
     private static HashMap<String, PlayerData> dataMap = new HashMap<String, PlayerData>();
 
+    public static PlayerData get(Player player) {
+        return get(player.getName());
+    }
+
     public static PlayerData get(String playerName) {
         if (dataMap.containsKey(playerName)) return dataMap.get(playerName);
         String json = loadJsonData(playerName);
@@ -29,6 +34,10 @@ public class PlayerDataProvider {
         PlayerData data = PlayerData.fromJson(json);
         dataMap.put(playerName, data);
         return data;
+    }
+
+    public static void set(Player player, PlayerData playerData) {
+        set(player.getName(), playerData);
     }
 
     public static void set(String playerName, PlayerData playerData) {
@@ -41,7 +50,7 @@ public class PlayerDataProvider {
     }
 
     public static void createData(String playerName) {
-        PlayerData data = new PlayerData();
+        PlayerData data = new PlayerData(playerName);
         saveJsonData(playerName, data.toJson());
     }
     

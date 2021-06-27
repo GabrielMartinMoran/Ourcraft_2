@@ -1,0 +1,32 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+     "layer0": "item/bow"
+    },
+    "overrides": [
+        { "predicate": {"pulling": 0}, "model": "item/weapons/ranged/bow/idle"},
+        { "predicate": {"pulling": 1}, "model": "item/weapons/ranged/bow/pulling_0"},
+        { "predicate": {"pulling": 1, "pull": 0.65}, "model": "item/weapons/ranged/bow/pulling_1"},
+        { "predicate": {"pulling": 1, "pull": 0.9}, "model": "item/weapons/ranged/bow/pulling_2"},
+
+        { "predicate": {"custom_model_data": 100024}, "model": "item/weapons/ranged/bamboo_bow/idle"},
+        { "predicate": {"custom_model_data": 100024, "pulling": 1}, "model": "item/weapons/ranged/bamboo_bow/pulling_0"},
+        { "predicate": {"custom_model_data": 100024, "pulling": 1, "pull": 0.65}, "model": "item/weapons/ranged/bamboo_bow/pulling_1"},
+        { "predicate": {"custom_model_data": 100024, "pulling": 1, "pull": 0.9}, "model": "item/weapons/ranged/bamboo_bow/pulling_2"},
+        
+        { "predicate": {"custom_model_data": 100025}, "model": "item/weapons/ranged/reinforced_wooden_bow/idle"},
+        { "predicate": {"custom_model_data": 100025, "pulling": 1}, "model": "item/weapons/ranged/reinforced_wooden_bow/pulling_0"},
+        { "predicate": {"custom_model_data": 100025, "pulling": 1, "pull": 0.65}, "model": "item/weapons/ranged/reinforced_wooden_bow/pulling_1"},
+        { "predicate": {"custom_model_data": 100025, "pulling": 1, "pull": 0.9}, "model": "item/weapons/ranged/reinforced_wooden_bow/pulling_2"},
+
+        { "predicate": {"custom_model_data": 100026}, "model": "item/weapons/ranged/compound_bow/idle"},
+        { "predicate": {"custom_model_data": 100026, "pulling": 1}, "model": "item/weapons/ranged/compound_bow/pulling_0"},
+        { "predicate": {"custom_model_data": 100026, "pulling": 1, "pull": 0.65}, "model": "item/weapons/ranged/compound_bow/pulling_1"},
+        { "predicate": {"custom_model_data": 100026, "pulling": 1, "pull": 0.9}, "model": "item/weapons/ranged/compound_bow/pulling_2"},
+
+        { "predicate": {"custom_model_data": 100027}, "model": "item/weapons/ranged/reinforced_compound_bow/idle"},
+        { "predicate": {"custom_model_data": 100027, "pulling": 1}, "model": "item/weapons/ranged/reinforced_compound_bow/pulling_0"},
+        { "predicate": {"custom_model_data": 100027, "pulling": 1, "pull": 0.65}, "model": "item/weapons/ranged/reinforced_compound_bow/pulling_1"},
+        { "predicate": {"custom_model_data": 100027, "pulling": 1, "pull": 0.9}, "model": "item/weapons/ranged/reinforced_compound_bow/pulling_2"}
+    ]
+   }

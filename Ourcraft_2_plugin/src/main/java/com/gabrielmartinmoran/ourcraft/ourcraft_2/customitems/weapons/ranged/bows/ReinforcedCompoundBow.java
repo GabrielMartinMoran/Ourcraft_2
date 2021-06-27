@@ -12,37 +12,33 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 
-public class CompoundBow extends BaseBow {
+public class ReinforcedCompoundBow extends BaseBow {
 
     @Override
     public Recipe getRecipe() {
-        NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"reinforced_wooden_bow");
+        NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class),"reinforced_compound_bow");
         ShapedRecipe recipe = new ShapedRecipe(nsKey, getItem());
         RecipeChoice.ExactChoice reinforcedString = new RecipeChoice.ExactChoice((new ReinforcedString()).getItem());
-        recipe.shape("ipi","p_s","iss");
+        recipe.shape("did","i_s","dss");
         recipe.setIngredient('_', Material.AIR);
-        recipe.setIngredient('s', Material.IRON_INGOT);
-        recipe.setIngredient('p', new RecipeChoice.MaterialChoice(Arrays.asList(
-                Material.ACACIA_PLANKS, Material.BIRCH_PLANKS, Material.CRIMSON_PLANKS,
-                Material.DARK_OAK_PLANKS, Material.OAK_PLANKS, Material.JUNGLE_PLANKS,
-                Material.SPRUCE_PLANKS, Material.WARPED_PLANKS
-        )));
+        recipe.setIngredient('i', Material.IRON_INGOT);
+        recipe.setIngredient('d', Material.DIAMOND);
         recipe.setIngredient('s', reinforcedString);
         return recipe;
     }
 
     @Override
     public String getName() {
-        return "Arco de madera reforzado";
+        return "Arco compuesto reforzado";
     }
 
     @Override
     public CustomItemsModelData getModelData() {
-        return CustomItemsModelData.COMPOUND_BOW;
+        return CustomItemsModelData.REINFORCED_COMPOUND_BOW;
     }
 
     @Override
     public float getProjectileVelocityModifier() {
-        return 1.4f;
+        return 1.8f;
     }
 }

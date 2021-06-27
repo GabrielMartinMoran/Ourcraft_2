@@ -29,3 +29,7 @@ spigot_server/world_nether
 spigot_server/world_the_end
 spigot_server/plugins/*
 !spigot_server/plugins/*.jar
+!spigot_server/plugins/MythicMobs/Mobs/*
+!spigot_server/plugins/MythicMobs/Skills/*
+!spigot_server/plugins/MythicMobs/config.yml
+!spigot_server/plugins/LibsDisguises/configs/*

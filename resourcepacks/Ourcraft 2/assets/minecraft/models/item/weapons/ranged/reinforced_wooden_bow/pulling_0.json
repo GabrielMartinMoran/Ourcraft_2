@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "custom/weapons/ranged/bows/reinforced_wooden_bow/pulling_0"
+	}
+}

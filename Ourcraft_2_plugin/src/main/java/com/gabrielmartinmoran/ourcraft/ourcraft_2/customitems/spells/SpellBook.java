@@ -1,6 +1,10 @@
-package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems;
+package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.spells;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItem;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItemsModelData;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.MagicEssence;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ManaEssence;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellTypes;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.SpellsUtils;
 import de.tr7zw.nbtapi.NBTItem;
@@ -13,9 +17,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-public class SpellBook implements CustomItem {
+public class SpellBook extends CustomItem {
 
 
     private SpellTypes spellType;
@@ -42,9 +45,18 @@ public class SpellBook implements CustomItem {
         this.spellDataMap.put(SpellTypes.NAUSEATING_ORB, Material.POISONOUS_POTATO);
         this.spellDataMap.put(SpellTypes.BLINDNESS_ORB, Material.INK_SAC);
         this.spellDataMap.put(SpellTypes.REALENTIZING_ORB, Material.SOUL_SAND);
-        this.spellDataMap.put(SpellTypes.EXPLODING_ORB, Material.TNT);
+        this.spellDataMap.put(SpellTypes.EXPLODING_ORB, Material.END_CRYSTAL);
         this.spellDataMap.put(SpellTypes.GOOD_LUCK, Material.RABBIT_FOOT);
         this.spellDataMap.put(SpellTypes.HASTE, Material.DIAMOND_PICKAXE);
+        this.spellDataMap.put(SpellTypes.MAGIC_SHOT, Material.LAPIS_BLOCK);
+        this.spellDataMap.put(SpellTypes.FIRE_RETARDANT_EFFORD, Material.REDSTONE_BLOCK);
+        this.spellDataMap.put(SpellTypes.EXPLOSION, Material.TNT);
+        this.spellDataMap.put(SpellTypes.SPEED_UP, Material.GOLDEN_CARROT);
+        this.spellDataMap.put(SpellTypes.SPEED_UP_EFFORD, Material.CARROT);
+        this.spellDataMap.put(SpellTypes.BURNING_ORB, Material.FLINT_AND_STEEL);
+        this.spellDataMap.put(SpellTypes.FAKE_LIFE, Material.GOLDEN_APPLE);
+        this.spellDataMap.put(SpellTypes.SELF_HEALING, Material.ENCHANTED_GOLDEN_APPLE);
+        this.spellDataMap.put(SpellTypes.CLEAN_STATUSES, Material.MILK_BUCKET);
     }
 
     @Override
@@ -70,22 +82,26 @@ public class SpellBook implements CustomItem {
         RecipeChoice.ExactChoice previousTierChoice = new RecipeChoice.ExactChoice((new SpellBook(spellType, spellLevel - 1)).getItem());
         NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class), getNamespaceKey());
         ShapedRecipe recipe = new ShapedRecipe(nsKey, getItem());
-        recipe.shape("_g_","brb","_g_");
+        RecipeChoice.ExactChoice magicEssence = new RecipeChoice.ExactChoice((new MagicEssence()).getItem());
+        RecipeChoice.ExactChoice manaEssence = new RecipeChoice.ExactChoice((new ManaEssence()).getItem());
+        recipe.shape("_m_","beb","_m_");
         recipe.setIngredient('_', Material.AIR);
-        recipe.setIngredient('g', Material.GOLD_INGOT);
         recipe.setIngredient('b', previousTierChoice);
-        recipe.setIngredient('r', Material.REDSTONE);
+        recipe.setIngredient('m', manaEssence);
+        recipe.setIngredient('e', magicEssence);
+
         return recipe;
     }
 
     private Recipe getEmptySpellbookRecipe() {
         NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class), "empty_spellbook");
         ShapedRecipe recipe = new ShapedRecipe(nsKey, getItem());
-        recipe.shape("_d_","gbg","_e_");
+        RecipeChoice.ExactChoice magicEssence = new RecipeChoice.ExactChoice((new MagicEssence()).getItem());
+        RecipeChoice.ExactChoice manaEssence = new RecipeChoice.ExactChoice((new ManaEssence()).getItem());
+        recipe.shape("_m_","ebe","_m_");
         recipe.setIngredient('_', Material.AIR);
-        recipe.setIngredient('d', Material.DIAMOND);
-        recipe.setIngredient('e', Material.EMERALD);
-        recipe.setIngredient('g', Material.GOLD_INGOT);
+        recipe.setIngredient('e', magicEssence);
+        recipe.setIngredient('m', manaEssence);
         recipe.setIngredient('b', Material.WRITABLE_BOOK);
         return recipe;
     }
@@ -95,13 +111,14 @@ public class SpellBook implements CustomItem {
         Material modifier = this.spellDataMap.get(spellType);
         NamespacedKey nsKey = new NamespacedKey(JavaPlugin.getPlugin(Main.class), getNamespaceKey());
         ShapedRecipe recipe = new ShapedRecipe(nsKey, getItem());
-        recipe.shape("_m_","dse","_b_");
+        RecipeChoice.ExactChoice magicEssence = new RecipeChoice.ExactChoice((new MagicEssence()).getItem());
+        RecipeChoice.ExactChoice manaEssence = new RecipeChoice.ExactChoice((new ManaEssence()).getItem());
+        recipe.shape("_i_","msm","_e_");
         recipe.setIngredient('_', Material.AIR);
-        recipe.setIngredient('d', Material.DIAMOND);
-        recipe.setIngredient('e', Material.EMERALD);
-        recipe.setIngredient('m', modifier);
+        recipe.setIngredient('i', modifier);
         recipe.setIngredient('s', baseSpellbook);
-        recipe.setIngredient('b', Material.ENCHANTED_BOOK);
+        recipe.setIngredient('m', manaEssence);
+        recipe.setIngredient('e', magicEssence);
         return recipe;
     }
 
@@ -124,7 +141,7 @@ public class SpellBook implements CustomItem {
             for (String line: spellType.getLore().split("\n")) {
                 lores.add(getLoreLine(line));
             }
-            lores.add("" + ChatColor.GREEN + ChatColor.ITALIC + "Costo de maná: " + ChatColor.AQUA + ChatColor.ITALIC + SpellsUtils.calculateSpellManaCost(spellType, spellLevel));
+            lores.add("" + ChatColor.GREEN + ChatColor.ITALIC + "Costo de maná: " + ChatColor.AQUA + ChatColor.ITALIC + SpellsUtils.calculateSpellBookManaCost(spellType, spellLevel));
         }
         return lores;
     }

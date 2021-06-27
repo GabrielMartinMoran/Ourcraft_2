@@ -5,32 +5,28 @@ import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellTypes;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-public class SpellTypeCooldown {
+public class SpellCooldown {
 
     private SpellTypes spellType;
     private LocalDateTime lastCast;
+    private double cooldownSeconds;
 
-    public SpellTypeCooldown(SpellTypes spellType, LocalDateTime lastCast) {
+    public SpellCooldown(SpellTypes spellType) {
         this.spellType = spellType;
-        this.lastCast = lastCast;
     }
 
-    public SpellTypes getSpellType() {
-        return spellType;
-    }
-
-    public LocalDateTime getLastCast() {
-        return lastCast;
-    }
-
-    public void resetLastCast() {
+    public void resetCooldown(int level) {
         this.lastCast = LocalDateTime.now();
+        this.cooldownSeconds = this.spellType.getCooldownByLevel(level);
     }
 
-    public long getSecondsSinceLastCast() {
-        return ChronoUnit.SECONDS.between(this.lastCast, LocalDateTime.now());
+    public boolean isReady() {
+        return ChronoUnit.SECONDS.between(this.lastCast, LocalDateTime.now()) >= this.cooldownSeconds;
     }
 
-
-
+    public long getPendingCooldownSeconds() {
+        long diff = (long) (this.cooldownSeconds - ChronoUnit.SECONDS.between(this.lastCast, LocalDateTime.now()));
+        if(diff < 0) return 0;
+        return diff;
+    }
 }

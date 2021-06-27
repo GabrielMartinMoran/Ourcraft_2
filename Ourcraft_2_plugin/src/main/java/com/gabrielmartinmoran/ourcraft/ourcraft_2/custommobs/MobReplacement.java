@@ -1,31 +1,30 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.mobs.CustomMob;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.mobs.Haunted;
 import org.bukkit.Location;
 import org.bukkit.World;
 
-import java.util.HashMap;
-
 public class MobReplacement {
 
-    private double spawnProbability;
+    private double spawnWeight;
     private CustomMobsTypes mobType;
-    private HashMap<CustomMobsTypes, CustomMob> cutomMobs;
 
-    public MobReplacement(double spawnProbability, CustomMobsTypes mobType) {
-        this.spawnProbability = spawnProbability;
+    public MobReplacement(double spawnWeight, CustomMobsTypes mobType) {
+        this.spawnWeight = spawnWeight;
         this.mobType = mobType;
-        this.cutomMobs = new HashMap<CustomMobsTypes, CustomMob>();
-        this.cutomMobs.put(CustomMobsTypes.HAUNTED, new Haunted());
     }
 
     public void spawn(World world, Location location) {
-        cutomMobs.get(mobType).spawn(world, location);
+        if(this.mobType.getCustomMob() == null) {
+            System.out.println("No se ha especificado una instancia de CustomMob para el mob " + this.mobType.name());
+            return;
+        }
+        CustomMob customMob = this.mobType.getCustomMob();
+        customMob.spawn(world, location);
     }
 
-    public double getSpawnProbability() {
-        return spawnProbability;
+    public double getSpawnWeight() {
+        return spawnWeight;
     }
 
     public CustomMobsTypes getMobType() {

@@ -1,0 +1,1 @@
+java -Xms6G -Xmx6G -DIReallyKnowWhatIAmDoingISwear=true -jar spigot-1.16.5.jar nogui

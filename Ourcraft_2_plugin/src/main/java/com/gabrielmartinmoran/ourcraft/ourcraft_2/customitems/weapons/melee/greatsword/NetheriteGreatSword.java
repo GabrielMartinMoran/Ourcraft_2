@@ -2,16 +2,12 @@ package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.gre
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItemsModelData;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.daggers.DiamondDagger;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
-import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.SmithingRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Arrays;
 
 public class NetheriteGreatSword extends BaseGreatSword {
     @Override
@@ -38,6 +34,6 @@ public class NetheriteGreatSword extends BaseGreatSword {
 
     @Override
     public float getDamage() {
-        return 9;
+        return 10;
     }
 }

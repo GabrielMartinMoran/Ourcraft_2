@@ -1,4 +1,4 @@
-package com.gabrielmartinmoran.ourcraft.ourcraft_2;
+package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerDataProvider;
 import org.bukkit.Bukkit;

@@ -4,8 +4,17 @@ main: com.gabrielmartinmoran.ourcraft.ourcraft_2.Main
 api-version: 1.16
 authors: [ GabrielMartinMoran ]
 description: Ourcraft 2 plugin
-depend: [NBTAPI]
+depend: [NBTAPI, MythicMobs]
 commands:
   spellbook:
     description: Otorga al jugador el libro de conjuros especificado
     usage: /<command> <tipo> <nivel>
+  debug:
+    description: Opciones de depuracion
+    usage: /<command> <metodo>
+  stats:
+    description: Estadisticas del jugador
+    usage: /<command>
+  playerdata:
+    description: Datos de jugador
+    usage: /<command> <metodo>
