@@ -207,8 +207,8 @@ public class RecipesLocker {
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 50, "minecraft:diamond_chestplate"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 52, "minecraft:netherite_boots_smithing"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 54, "minecraft:netherite_helmet_smithing"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 58, "minecraft:netherite_leggings_smithing"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 60, "minecraft:netherite_chestplate_smithing"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 56, "minecraft:netherite_leggings_smithing"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 58, "minecraft:netherite_chestplate_smithing"));
 
         // CARPENTRY
         int CARPENTRY_PLANKS_UNLOCK_LEVEL = 2;
@@ -233,7 +233,6 @@ public class RecipesLocker {
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_SIGN_UNLOCK_LEVEL, "minecraft:dark_oak_sign"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_SIGN_UNLOCK_LEVEL, "minecraft:crimson_sign"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_SIGN_UNLOCK_LEVEL, "minecraft:warped_sign"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 5, "minecraft:wooden_axe"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 7, "minecraft:ladder"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 8, "minecraft:bowl"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 9, "minecraft:wooden_hoe"));
@@ -259,6 +258,7 @@ public class RecipesLocker {
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_BED_UNLOCK_LEVEL, "minecraft:red_bed"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_BED_UNLOCK_LEVEL, "minecraft:white_bed"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_BED_UNLOCK_LEVEL, "minecraft:yellow_bed"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 16, "minecraft:note_block"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 17, "minecraft:chest"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 19, "minecraft:golden_axe"));
         int CARPENTRY_BUTTON_UNLOCK_LEVEL = 21;
@@ -280,15 +280,15 @@ public class RecipesLocker {
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_SLAB_UNLOCK_LEVEL, "minecraft:crimson_slab"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_SLAB_UNLOCK_LEVEL, "minecraft:warped_slab"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 25, "minecraft:stone_axe"));
-        int CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL = 27;
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:oak_pressure_plate"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:spruce_pressure_plate"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:birch_pressure_plate"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:jungle_pressure_plate"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:acacia_pressure_plate"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:dark_oak_pressure_plate"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:crimson_pressure_plate"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:warped_pressure_plate"));
+        int CARPENTRY_DOOR_UNLOCK_LEVEL = 27;
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:oak_door"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:spruce_door"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:birch_door"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:jungle_door"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:acacia_door"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:dark_oak_door"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:crimson_door"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:warped_door"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 29, "minecraft:composter"));
         int CARPENTRY_STAIRS_UNLOCK_LEVEL = 31;
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_STAIRS_UNLOCK_LEVEL, "minecraft:oak_stairs"));
@@ -343,15 +343,15 @@ public class RecipesLocker {
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 55, "minecraft:scaffolding"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 56, "minecraft:jukebox"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 57, "minecraft:diamond_axe"));
-        int CARPENTRY_DOOR_UNLOCK_LEVEL = 59;
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:oak_door"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:spruce_door"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:birch_door"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:jungle_door"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:acacia_door"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:dark_oak_door"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:crimson_door"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_DOOR_UNLOCK_LEVEL, "minecraft:warped_door"));
+        int CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL = 59;
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:oak_pressure_plate"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:spruce_pressure_plate"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:birch_pressure_plate"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:jungle_pressure_plate"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:acacia_pressure_plate"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:dark_oak_pressure_plate"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:crimson_pressure_plate"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:warped_pressure_plate"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 60, "minecraft:netherite_axe_smithing"));
 
         // MINNING

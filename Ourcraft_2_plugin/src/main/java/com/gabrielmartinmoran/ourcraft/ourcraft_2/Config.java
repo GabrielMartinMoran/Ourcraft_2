@@ -14,6 +14,6 @@ public class Config {
     public static final double SPELL_CAST_XP_MULTIPLIER = 5d;
     public static final double SPELL_CAST_XP_POW_FACTOR = 1.5d;
     public static final double PORTAl_CREATION_MAX_DETECTION_RANGE = 5d;
-    public static final int NETHER_PORTAL_ACTIVATION_MAGIC_MIN_LEVEL = 30;
-    public static final int TELEPORTER_CREATION_MAGIC_MIN_LEVEL = 60;
+    public static final int NETHER_PORTAL_ACTIVATION_MAGIC_MIN_LEVEL = 32;
+    public static final int TELEPORTER_CREATION_MAGIC_MIN_LEVEL = 65;
 }

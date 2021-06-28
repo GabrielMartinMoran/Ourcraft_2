@@ -157,8 +157,9 @@ public class RecipesLoader {
         // Manzana de oro encantada
         ShapedRecipe enchantedGoldenApple = new ShapedRecipe(new NamespacedKey(plugin,"enchanted_golden_apple"), new ItemStack(Material.ENCHANTED_GOLDEN_APPLE));
         enchantedGoldenApple.shape("ggg","gag","ggg");
-        enchantedGoldenApple.setIngredient('g', Material.GOLD_INGOT);
+        enchantedGoldenApple.setIngredient('g', Material.GOLD_BLOCK);
         enchantedGoldenApple.setIngredient('a', Material.APPLE);
+        plugin.getServer().addRecipe(enchantedGoldenApple);
         // Lingote de hierro
         plugin.getServer().addRecipe(new FurnaceRecipe(
                 new NamespacedKey(plugin, "iron_ingot_from_smelting_raw_iron"),
@@ -219,8 +220,6 @@ public class RecipesLoader {
                 9f,
                 900
         ));
-
-        plugin.getServer().addRecipe(enchantedGoldenApple);
     }
 }
 

@@ -1,3 +1,7 @@
+import { navbar } from "./navbar.js";
+import { footer } from "./footer.js";
+import { router } from "./router.js";
+
 function getImageTag(url) {
   return `<img src="${url}" style="height: 1.5rem"></img>`;
 }
@@ -88,6 +92,7 @@ const TAGS = [
 ];
 function replaceTags() {
   const regex = /{{ *([\w\d]+) *, *(\d+) *}}/gm;
+  let m = null;
   while ((m = regex.exec(document.body.innerHTML)) !== null) {
     if (m.index === regex.lastIndex) {
       regex.lastIndex++;
@@ -131,8 +136,13 @@ function includeHTML() {
 }
 
 function onLoad() {
-  includeHTML();
-  replaceTags();
+  /* Router */
+  router.register();
+  router.renderHash();
+  /* NavBar */
+  navbar.render();
+  /* Footer */
+  footer.render();
 }
 
 $(document).ready(function () {

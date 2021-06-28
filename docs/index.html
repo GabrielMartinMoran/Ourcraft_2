@@ -16,41 +16,14 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
     integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd"
     crossorigin="anonymous"></script>
-  <script src="js/app.js"></script>
+  <script type="module" src="js/app.js"></script>
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-  <include src="navbar.html"></include>
-  <div class="m-2">
-    <h1>Ourcraft</h1>
-    <div class="row h-100">
-      <div class="col-md-6">
-        <div class="m-4">
-          <img class="col-md-3 w-100" src="img/icon.png">
-          <div class="col-md-9">
-            <p>
-              Ourcraft es un server de Minecraft con cierta dificultad agregada, dada por la existencia de <a
-                href="races.html">razas</a>,
-              <a href="craftings.html">crafteos limitados</a> y <a href="mechanics.html">nuevas mecánicas</a>.
-            </p>
-            <p>
-              También te invitamos a <a href="https://discord.gg/UZZ6rxv">unirte al chat de Discord</a>.
-            </p>
-            <p>
-              Para jugar, en caso de no tener cuenta premium de Minecraft, recomendamos que te descargues el launcher
-              <a href="https://tlauncher.org/en/"> TLauncher</a>.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <iframe class="w-100 h-100" src="https://discordapp.com/widget?id=723281601554939964&theme=dark"
-          allowtransparency="true" frameborder="0"></iframe>
-      </div>
-    </div>
-  </div>
-  <include src="footer.html"></include>
+  <div id="navbar"></div>
+  <div class="m-2" id="viewport"></div>
+  <div id="footer"></div>
 </body>
 
 </html>
