@@ -242,7 +242,7 @@ export const recipes = {
                 <div class="m-2">
                     <p>${recipe.description}</p>
                     <div class="text-center">
-                        ${recipes.generateRecipeImgContainer('/img/recipes/' + recipe.img + '.png')}
+                        ${recipes.generateRecipeImgContainer('img/recipes/' + recipe.img + '.png')}
                     </div>
                 </div>
                 <br>
