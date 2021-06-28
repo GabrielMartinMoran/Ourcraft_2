@@ -6,9 +6,10 @@ export const home = {
                 <div class="m-4">
                     <div class="col-md-9">
                         <h1><img width="50" src="img/icon.png"> Ourcraft 2</h1>
-                        <h5>Servidor de minecraft PVE / PVP / ROL para Minecraft 1.16.5</h5>
+                        <h5>Servidor de Minecraft PVE / PVP / ROL para Minecraft 1.16.5</h5>
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/xlqZZVUQ9II" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <p>Ourcraft 2 es la secuela del servidor de minecraft Ourcraft</p>
+                        <br>
+                        <p>Ourcraft 2 es la secuela del servidor de Minecraft Ourcraft (vigente a mediados de 2020)</p>
                         <p>Ourcraft 2 es un servidor de Minecraft con nuevas mecánicas, tales como:</p>
                         <ul>
                             <li>Sistema de hidratación</li>
@@ -16,8 +17,7 @@ export const home = {
                             <li>Nuevos items que mejoran la experiencia de juego</li>
                             <li>Nuevos mobs hostiles</li>
                             <li>Nuevo sistema de economía</li>
-                        </ul>
-                        
+                        </ul>                        
                         <p>Te invitamos a <a href="https://discord.gg/UZZ6rxv">unirte al chat de Discord</a>.</p>
                         <p>
                         Para jugar, en caso de no tener cuenta premium de Minecraft, recomendamos que te descargues el launcher
