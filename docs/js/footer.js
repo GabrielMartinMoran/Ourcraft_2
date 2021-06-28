@@ -4,7 +4,7 @@ export const footer = {
         <br>
         <div class="footer">
             <label style="padding-left: 10px;">© ${new Date().getFullYear()} Copyright: Gabriel Martín Moran</label>
-            <label class="float-right" style="margin-right: 10px;">Versión: 0.2.0</label>
+            <label class="float-right" style="margin-right: 10px;">Versión: 1.0.0</label>
         </div>
         `;
     }
