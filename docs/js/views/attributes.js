@@ -238,7 +238,22 @@ export const attributes = {
     ],
 
     getHTML: () => {
-        let content = /*html*/`<h1>Atributos</h1><div class="row md-2">`;
+        let content = /*html*/`
+        <h1>Atributos</h1>
+        <div class="md-2">
+            <p>
+            Existen 5 atributos que cada jugador puede subir de nivel a su gusto. Al alcanzar ciertos niveles, algunos atributos desbloquean
+            crafteos o construcciones que el jugador no puede realizar hasta que tenga el nivel suficiente en el atributo correspondiente.
+            </p>
+            <p>Algunas características especiales (aparte de los crafteos) obtenidas al subir de nivel son:</p>
+            <ul>
+                <li><b>Combate cuerpo a cuerpo:</b> Aumenta la cantidad de daño y velocidad de ataque al subir de nivel</li>
+                <li><b>Resistencia:</b> Aumenta la cantidad de salud máxima al subir de nivel</li>
+                <li><b>Magia:</b> Aumenta la cantidad máxima de maná y la tasa de recuperación de maná al subir de nivel</li>
+            </ul>
+            <p>A continuación se listan los crafteos desbloqueados por atributo al alcanzar cada nivel:</p>
+            <div class="row">
+        `;
         for (const attribute of attributes.ATTRIBUTES_LIST) {
             let attributeSection = /*html*/`
             <h3>${attribute.name}</h3>
@@ -254,7 +269,7 @@ export const attributes = {
             attributeSection += /*html*/`</ul><br>`;
             content += /*html*/`<div class="col-4">${attributeSection}</div>`;
         }
-        content += '</div>';
+        content += '</div></div>';
         return content;
     }
 }
