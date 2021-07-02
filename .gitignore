@@ -30,7 +30,9 @@ spigot_server/plugins/*
 !spigot_server/plugins/MythicMobs/Skills/*
 !spigot_server/plugins/MythicMobs/RandomSpawns/*
 !spigot_server/plugins/MythicMobs/config.yml
-!spigot_server/plugins/LibsDisguises/configs/*
+!spigot_server/plugins/MythicMobs/config.yml
+!spigot_server/plugins/OpeNLogin/config.yml
+!spigot_server/plugins/OpeNLogin/lang/*
 
 spigot_server/banned-ips.json
 spigot_server/banned-players.json
