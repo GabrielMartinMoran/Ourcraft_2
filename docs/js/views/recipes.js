@@ -237,7 +237,7 @@ export const recipes = {
 
     getRecipeHTML: (recipe) => {
         return /*html*/`
-            <div class="col-6">
+            <div class="col-xl-6 col-xs-12">
                 <h4>${recipe.name}</h4>
                 <div class="m-2">
                     <p>${recipe.description}</p>
