@@ -20,6 +20,7 @@ public class PlayerData {
     private HashMap<SpellTypes, SpellCooldown> spellsCooldown;
     private PlayerHydration hydration;
     private HashMap<PlayerAttributes, PlayerAttribute> attributes;
+    private HashMap<String, String> memories;
 
     public PlayerData(String playerName) {
         this.playerName = playerName;
@@ -32,6 +33,7 @@ public class PlayerData {
             this.attributes.put(attribute, new PlayerAttribute(attribute));
         }
         this.difficultyZone = 1;
+        this.memories = new HashMap<String, String>();
     }
 
     public int getAttributeLevel(PlayerAttributes attribute) {
@@ -128,5 +130,9 @@ public class PlayerData {
         Gson gson = new Gson();
         PlayerData data = gson.fromJson(json, PlayerData.class);
         return data;
+    }
+
+    public HashMap<String, String> getMemories() {
+        return this.memories;
     }
 }

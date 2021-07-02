@@ -37,6 +37,9 @@ public class MeleeWeaponsEffectsService implements Runnable {
         if (this.meleeWeaponsResolver.isImpractical(item)) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, POTION_EFFECT_TICKS, 1, false, false));
         }
+        if (this.meleeWeaponsResolver.isHeavy(item)) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, POTION_EFFECT_TICKS, 0, false, false));
+        }
     }
 
 }

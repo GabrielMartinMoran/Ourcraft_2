@@ -131,6 +131,8 @@ public class SpellsResolver {
                 LivingEntity lEntity = (LivingEntity) target;
                 this.damageEntity(lEntity, 4 * spellLevel, projectile);
                 lEntity.removePotionEffect(PotionEffectType.LEVITATION);
+            } else {
+                projectile.getWorld().createExplosion(projectile.getLocation(), (int)Math.ceil(spellLevel / 2d),  false, false, (Entity) projectile.getShooter());
             }
             projectile.getWorld().spawnParticle(Particle.CRIT_MAGIC, projectile.getLocation(), spellLevel * 40);
             projectile.getWorld().playSound(projectile.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1f, 1f);
@@ -209,6 +211,17 @@ public class SpellsResolver {
             projectile.getWorld().spawnParticle(Particle.FLAME, projectile.getLocation(), spellLevel * 40);
             projectile.getWorld().playSound(projectile.getLocation(), Sound.ENTITY_GENERIC_EXTINGUISH_FIRE, 1f, 1f);
             return;
+        }
+        if (spellType == SpellTypes.MAGIC_ARROWS) {
+            if (target != null) {
+                LivingEntity lEntity = (LivingEntity) target;
+                int defaultNoDamageTicks = lEntity.getNoDamageTicks();
+                lEntity.setNoDamageTicks(0);
+                lEntity.damage(2 * spellLevel, (Entity) projectile.getShooter());
+                lEntity.setNoDamageTicks(defaultNoDamageTicks);
+            }
+            projectile.getWorld().spawnParticle(Particle.CRIT, projectile.getLocation(), spellLevel * 50);
+            projectile.getWorld().playSound(projectile.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1f, 1.5f);
         }
     }
 
@@ -349,12 +362,7 @@ public class SpellsResolver {
         for (int i = 0; i < level; i++) {
             SpectralArrow arrow = player.launchProjectile(SpectralArrow.class);
             arrow.setPickupStatus(AbstractArrow.PickupStatus.DISALLOWED);
-            Vector velocity = arrow.getVelocity();
-            Vector dir = player.getLocation().getDirection();
-            dir.normalize();
-            dir.multiply(1 + (3d * i));
-            velocity.add(dir);
-            arrow.setVelocity(velocity);
+            this.tagProjectile(arrow, SpellTypes.MAGIC_ARROWS, level);
         }
     }
 

@@ -4,7 +4,8 @@ public enum Commands {
     SPELLBOOK("spellbook"),
     DEBUG("debug"),
     STATS("stats"),
-    PLAYERDATA("playerdata");
+    PLAYERDATA("playerdata"),
+    MEMORIES("memories");
 
     private String command;
 

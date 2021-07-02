@@ -138,30 +138,30 @@ public class RecipesLocker {
         // MELEE
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 5, "ourcraft_2:wooden_dagger"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 7, "minecraft:wooden_sword"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 9, "ourcraft_2:wooden_axe"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 9, "minecraft:wooden_axe"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 11, "ourcraft_2:wooden_greatsword"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 13, "ourcraft_2:golden_dagger"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 15, "minecraft:golden_sword"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 17, "ourcraft_2:golden_axe"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 17, "minecraft:golden_axe"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 19, "ourcraft_2:golden_greatsword"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 21, "ourcraft_2:stone_dagger"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 23, "minecraft:stone_sword"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 25, "ourcraft_2:stone_axe"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 25, "minecraft:stone_axe"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 27, "ourcraft_2:stone_greatsword"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 29, "minecraft:shield"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 31, "ourcraft_2:iron_dagger"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 33, "minecraft:anvil"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 35, "minecraft:iron_sword"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 37, "ourcraft_2:iron_axe"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 37, "minecraft:iron_axe"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 39, "ourcraft_2:iron_greatsword"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 41, "minecraft:grindstone"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 43, "ourcraft_2:diamond_dagger"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 45, "minecraft:diamond_sword"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 47, "ourcraft_2:diamond_axe"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 47, "minecraft:diamond_axe"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 49, "ourcraft_2:diamond_greatsword"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 51, "ourcraft_2:netherite_dagger"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 53, "minecraft:netherite_sword_smithing"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 55, "ourcraft_2:netherite_axe"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 55, "minecraft:netherite_axe"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 57, "ourcraft_2:netherite_greatsword"));
 
         // RANGED

@@ -16,5 +16,8 @@ commands:
     description: Estadisticas del jugador
     usage: /<command>
   playerdata:
-    description: Datos de jugador
+    description: Datos del jugador
+    usage: /<command> <metodo>
+  memories:
+    description: Memorias del jugador
     usage: /<command> <metodo>

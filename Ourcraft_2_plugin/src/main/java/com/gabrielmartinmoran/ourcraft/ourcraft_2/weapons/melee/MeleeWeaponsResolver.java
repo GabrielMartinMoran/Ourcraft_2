@@ -50,6 +50,31 @@ public class MeleeWeaponsResolver {
         return nbt.hasKey(MeleeWeaponCharacteristics.IMPRACTICAL.getTag()) && nbt.getBoolean(MeleeWeaponCharacteristics.IMPRACTICAL.getTag());
     }
 
+    public boolean isLifedrainer(ItemStack item) {
+        NBTItem nbt = new NBTItem(item);
+        return nbt.hasKey(MeleeWeaponCharacteristics.LIFEDRAINER.getTag()) && nbt.getBoolean(MeleeWeaponCharacteristics.LIFEDRAINER.getTag());
+    }
+
+    public boolean isIncapacitating(ItemStack item) {
+        NBTItem nbt = new NBTItem(item);
+        return nbt.hasKey(MeleeWeaponCharacteristics.INCAPACITATING.getTag()) && nbt.getBoolean(MeleeWeaponCharacteristics.INCAPACITATING.getTag());
+    }
+
+    public boolean isHeavy(ItemStack item) {
+        NBTItem nbt = new NBTItem(item);
+        return nbt.hasKey(MeleeWeaponCharacteristics.HEAVY.getTag()) && nbt.getBoolean(MeleeWeaponCharacteristics.HEAVY.getTag());
+    }
+
+    public boolean isBleeding(ItemStack item) {
+        NBTItem nbt = new NBTItem(item);
+        return nbt.hasKey(MeleeWeaponCharacteristics.BLEEDING.getTag()) && nbt.getBoolean(MeleeWeaponCharacteristics.BLEEDING.getTag());
+    }
+
+    public boolean isNumbing(ItemStack item) {
+        NBTItem nbt = new NBTItem(item);
+        return nbt.hasKey(MeleeWeaponCharacteristics.NUMBING.getTag()) && nbt.getBoolean(MeleeWeaponCharacteristics.NUMBING.getTag());
+    }
+
     public void onThrowableWeaponCollide(Projectile snowball, Entity target) {
         ItemStack item = ((Snowball) snowball).getItem();
         boolean broken = this.itemUtils.reduceItemDurability(item, snowball);

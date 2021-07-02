@@ -8,15 +8,18 @@ import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.AttributeLevelingHa
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerDataProvider;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
@@ -28,6 +31,22 @@ public class BlockBreakListener implements Listener {
     public BlockBreakListener() {
         this.attributeLevelingHandler = new AttributeLevelingHandler();
         this.rand = new Random();
+    }
+
+    @EventHandler
+    public void entityExplodeEvent(EntityExplodeEvent event) {
+        for (Block block: event.blockList()) {
+            if(block.getType().equals(Material.GOLD_ORE)) {
+                block.getWorld().dropItem(block.getLocation(), new RawGold().getItem());
+                block.setType(Material.AIR);
+                continue;
+            }
+            if(block.getType().equals(Material.IRON_ORE)) {
+                block.getWorld().dropItem(block.getLocation(), new RawIron().getItem());
+                block.setType(Material.AIR);
+                continue;
+            }
+        }
     }
 
     @EventHandler

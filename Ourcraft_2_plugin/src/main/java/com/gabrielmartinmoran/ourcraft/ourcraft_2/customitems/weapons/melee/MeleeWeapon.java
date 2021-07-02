@@ -19,7 +19,7 @@ import java.util.UUID;
 
 public abstract class MeleeWeapon extends CustomItem {
 
-    private final float BASE_ATTACK_SPEED = 4;
+    public static final float BASE_ATTACK_SPEED = 4;
 
     public abstract Material getBaseMaterial();
     public abstract String getName();

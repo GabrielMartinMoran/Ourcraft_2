@@ -11,7 +11,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
@@ -24,12 +23,17 @@ hs_err_pid*
 old
 spigot_server/crash-reports
 spigot_server/logs
-spigot_server/world
-spigot_server/world_nether
-spigot_server/world_the_end
+spigot_server/world*
 spigot_server/plugins/*
 !spigot_server/plugins/*.jar
 !spigot_server/plugins/MythicMobs/Mobs/*
 !spigot_server/plugins/MythicMobs/Skills/*
+!spigot_server/plugins/MythicMobs/RandomSpawns/*
 !spigot_server/plugins/MythicMobs/config.yml
 !spigot_server/plugins/LibsDisguises/configs/*
+
+spigot_server/banned-ips.json
+spigot_server/banned-players.json
+spigot_server/usercache.json
+spigot_server/whitelist.json
+spigot_server/ops.json

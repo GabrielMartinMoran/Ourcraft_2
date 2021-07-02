@@ -6,6 +6,8 @@ import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.CopperCoin;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.GoldenCoin;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.PlatinumCoin;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.SilverCoin;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.CustomMeleeWeapon;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.CustomMeleeWeaponGenerator;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.villagers.VillagerTrade;
 import org.bukkit.Material;
 import org.bukkit.entity.Villager;
@@ -27,8 +29,11 @@ public class CustomWanderingTraders {
     private PlatinumCoin platinumCoin = new PlatinumCoin();
     private Random rand;
     private CustomArmorGenerator customArmorGenerator;
+    private CustomMeleeWeaponGenerator customMeleeWeaponGenerator;
     private final int UNLIMITED_TRADES_AMOUNT = 999999;
-    private final double CUSTOM_ARMOR_PROBABILITY = 0.4d;
+    private final double CUSTOM_ARMOR_PROBABILITY = 0.3d;
+    private final double CUSTOM_WEAPON_PROBABILITY = 0.3d;
+    private final double SECOND_RECIPE_PROBABILITY = 0.5d;
     private final int CUSTOM_ARMOR_MAX_USES = 1;
     private List<WanderingTraderTrade> trades = Arrays.asList(
             new WanderingTraderTrade(copperCoin.getItem(10), null, silverCoin.getItem(1), true),
@@ -42,17 +47,33 @@ public class CustomWanderingTraders {
     public CustomWanderingTraders() {
         this.rand = new Random();
         this.customArmorGenerator = new CustomArmorGenerator();
+        this.customMeleeWeaponGenerator = new CustomMeleeWeaponGenerator();
     }
 
     // Retorna false cuando no encuentra recipe para agregar
     public boolean addRecipe(WanderingTrader trader, MerchantRecipe originalRecipe) {
         ArrayList<MerchantRecipe> recipes = new ArrayList<MerchantRecipe>(trader.getRecipes());
+        MerchantRecipe recipe = this.getRandomRecipe(trader, originalRecipe);
+        if (recipe != null) recipes.add(recipe);
+        // Probabilidad de que agregue una segunda receta
+        if (this.rand.nextDouble() <= SECOND_RECIPE_PROBABILITY) {
+            MerchantRecipe secondRecipe = this.getRandomRecipe(trader, originalRecipe);
+            if (secondRecipe != null) recipes.add(secondRecipe);
+        }
+        if (recipes.isEmpty()) return false;
+        trader.setRecipes(recipes);
+        return true;
+    }
+
+    private MerchantRecipe getRandomRecipe(WanderingTrader trader, MerchantRecipe originalRecipe) {
         MerchantRecipe recipe = null;
         if(this.shouldAddCustomArmor()) {
             recipe = this.generateCustomArmorRecipe();
+        } else if(this.shouldAddCustomWeapon()){
+            recipe = this.generateCustomWeaponRecipe();
         } else {
             WanderingTraderTrade trade = this.getRecipe(trader);
-            if (trade == null) return false;
+            if (trade == null) return null;
             recipe = trade.getRecipe();
             if (trade.isUnlimitedTrade()) {
                 recipe.setMaxUses(UNLIMITED_TRADES_AMOUNT);
@@ -61,13 +82,15 @@ public class CustomWanderingTraders {
             }
             recipe.setVillagerExperience(originalRecipe.getVillagerExperience());
         }
-        recipes.add(recipe);
-        trader.setRecipes(recipes);
-        return true;
+        return recipe;
     }
 
     private boolean shouldAddCustomArmor() {
         return this.rand.nextDouble() <= CUSTOM_ARMOR_PROBABILITY;
+    }
+
+    private boolean shouldAddCustomWeapon() {
+        return this.rand.nextDouble() <= CUSTOM_WEAPON_PROBABILITY;
     }
 
     private boolean tradeAlreadyAdded(WanderingTrader trader, WanderingTraderTrade trade) {
@@ -96,6 +119,19 @@ public class CustomWanderingTraders {
         CustomArmor customArmor = this.customArmorGenerator.generateArmor();
         MerchantRecipe recipe = new MerchantRecipe(customArmor.getItem(), CUSTOM_ARMOR_MAX_USES);
         long copperCost = customArmor.calculateCopperCost();
+        this.addRecipeCoinsCost(recipe, copperCost);
+        return recipe;
+    }
+
+    private MerchantRecipe generateCustomWeaponRecipe() {
+        CustomMeleeWeapon customWeapon = this.customMeleeWeaponGenerator.generateWeapon();
+        MerchantRecipe recipe = new MerchantRecipe(customWeapon.getItem(), CUSTOM_ARMOR_MAX_USES);
+        long copperCost = customWeapon.calculateCopperCost();
+        this.addRecipeCoinsCost(recipe, copperCost);
+        return recipe;
+    }
+
+    private void addRecipeCoinsCost(MerchantRecipe recipe, long copperCost) {
         int copperCoins = 0;
         int silverCoins = 0;
         int goldenCoins = 0;
@@ -120,6 +156,6 @@ public class CustomWanderingTraders {
         if(goldenCoins > 0) recipe.addIngredient(goldenCoin.getItem(goldenCoins));
         if(recipe.getIngredients().size() < 2 && silverCoins > 0) recipe.addIngredient(silverCoin.getItem(silverCoins));
         if(recipe.getIngredients().size() < 2 && copperCoins > 0) recipe.addIngredient(copperCoin.getItem(copperCoins));
-        return recipe;
     }
 }
+
