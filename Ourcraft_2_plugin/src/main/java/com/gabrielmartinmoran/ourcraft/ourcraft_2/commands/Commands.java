@@ -5,7 +5,8 @@ public enum Commands {
     DEBUG("debug"),
     STATS("stats"),
     PLAYERDATA("playerdata"),
-    MEMORIES("memories");
+    MEMORIES("memories"),
+    DIFFICULTYZONE("difficultyzone");
 
     private String command;
 

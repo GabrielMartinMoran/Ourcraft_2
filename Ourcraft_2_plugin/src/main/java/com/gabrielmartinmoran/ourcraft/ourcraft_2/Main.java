@@ -52,6 +52,7 @@ public final class Main extends JavaPlugin {
         this.getCommand(Commands.STATS.toString()).setExecutor(new StatsCommand());
         this.getCommand(Commands.PLAYERDATA.toString()).setExecutor(new PlayerDataCommands());
         this.getCommand(Commands.MEMORIES.toString()).setExecutor(new MemoriesCommand());
+        this.getCommand(Commands.DIFFICULTYZONE.toString()).setExecutor(new DifficultyZoneCommand());
     }
 
     private void configureEventHandlers() {

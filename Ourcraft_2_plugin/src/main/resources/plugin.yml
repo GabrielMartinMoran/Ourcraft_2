@@ -21,3 +21,6 @@ commands:
   memories:
     description: Memorias del jugador
     usage: /<command> <metodo>
+  difficultyzone:
+    description: Zona de dificultad en la que se encuentra el jugador
+    usage: /<command>
