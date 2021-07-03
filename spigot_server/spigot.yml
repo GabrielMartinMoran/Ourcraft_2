@@ -94,8 +94,8 @@ world-settings:
     seed-portal: 34222645
     dragon-death-sound-radius: 0
     merge-radius:
-      exp: 3.0
-      item: 2.5
+      exp: 6.0
+      item: 4.0
     entity-tracking-range:
       players: 48
       animals: 48
