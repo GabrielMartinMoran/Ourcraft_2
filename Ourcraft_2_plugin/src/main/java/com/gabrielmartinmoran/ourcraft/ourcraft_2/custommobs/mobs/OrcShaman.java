@@ -32,7 +32,7 @@ public class OrcShaman extends CustomMob {
     @Override
     public List<MobDrop> getCustomDrops() {
         ArrayList<MobDrop> drops = new ArrayList<MobDrop>();
-        drops.add(new MobDrop(1, 3, new MagicEssence().getItem(), 1, 1));
+        drops.add(new MobDrop(2, 3, new MagicEssence().getItem(), 1, 1));
         drops.add(new MobDrop(2, 2, new ManaEssence().getItem(), 1, 2));
         drops.add(new MobDrop(1, 2, new SpellScroll(SpellTypes.POISON_CLOUD, 1).getItem(), 1, 1));
         drops.add(new MobDrop(3, 1, new OrcSkin().getItem(), 1, 1));

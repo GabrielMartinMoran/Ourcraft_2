@@ -18,6 +18,7 @@ import java.util.Arrays;
 public class AttributeLevelingHandler {
 
     private final ItemStack ROCK_ITEM = new Rock().getItem();
+    private final double MIN_HARDNESS_TO_RETRIEVE_XP = 0.3d;
 
     public void onBlockBreak(Player player, Block broken) {
         if (player.getGameMode() != GameMode.SURVIVAL) return;
@@ -79,19 +80,20 @@ public class AttributeLevelingHandler {
     private boolean isCarpentryBlockBreak(Block block, ItemStack tool) {
         String toolMaterialName = tool.getType().toString();
         // Checkeamos el log por si rompe con la mano
-        return block.getType().getHardness() > 0 && (block.getType().toString().endsWith("_LOG") || toolMaterialName.endsWith("_AXE"));
+        return block.getType().getHardness() >= MIN_HARDNESS_TO_RETRIEVE_XP && (block.getType().toString().endsWith("_LOG") || toolMaterialName.endsWith("_AXE"));
     }
 
     private boolean isMiningBlockBreak(Block block, ItemStack tool) {
         String toolMaterialName = tool.getType().toString();
-        return block.getType().getHardness() > 0 && (toolMaterialName.endsWith("_PICKAXE") || toolMaterialName.endsWith("_SHOVEL") || tool.isSimilar(ROCK_ITEM));
+        return block.getType().getHardness() >= MIN_HARDNESS_TO_RETRIEVE_XP && (toolMaterialName.endsWith("_PICKAXE") || toolMaterialName.endsWith("_SHOVEL") || tool.isSimilar(ROCK_ITEM));
     }
 
     private boolean isFarmingBlockBreak(Block block, ItemStack tool) {
         String toolMaterialName = tool.getType().toString();
         return toolMaterialName.endsWith("_HOE") || block.getType().toString().endsWith("_LEAVES") ||
                 block.getType().toString().endsWith("_SAPLIN") || Arrays.asList(
-                Material.SUGAR_CANE, Material.KELP, Material.SUGAR_CANE, Material.GRASS, Material.SEAGRASS,
+                Material.SUGAR_CANE, Material.KELP, Material.BROWN_MUSHROOM_BLOCK, Material.RED_MUSHROOM_BLOCK,
+                Material.MUSHROOM_STEM, Material.GRASS, Material.SEAGRASS,
                 Material.WHEAT, Material.POTATOES, Material.CARROTS, Material.BEETROOTS, Material.SWEET_BERRY_BUSH,
                 Material.VINE, Material.TWISTING_VINES_PLANT, Material.WEEPING_VINES_PLANT, Material.MELON,
                 Material.PUMPKIN, Material.NETHER_WART, Material.BROWN_MUSHROOM, Material.RED_MUSHROOM,
