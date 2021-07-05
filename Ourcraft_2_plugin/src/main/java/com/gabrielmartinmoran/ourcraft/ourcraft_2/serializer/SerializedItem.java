@@ -19,7 +19,8 @@ public class SerializedItem {
         serialized.material = item.getType();
         serialized.amount = item.getAmount();
         net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
-        serialized.nbtCompound = nmsItem.getTag().toString();
+        NBTTagCompound tagCompound = nmsItem.getTag();
+        if(tagCompound != null) serialized.nbtCompound = tagCompound.toString();
         return new Gson().toJson(serialized);
     }
 
@@ -28,13 +29,15 @@ public class SerializedItem {
         ItemStack item = new ItemStack(serialized.material, serialized.amount);
         ItemMeta itemMeta = item.getItemMeta();
         item.setItemMeta(itemMeta);
-        try {
-            NBTTagCompound nbtTagCompound = MojangsonParser.parse(serialized.nbtCompound);
-            net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
-            nmsItem.setTag(nbtTagCompound);
-            return CraftItemStack.asBukkitCopy(nmsItem);
-        } catch (CommandSyntaxException e) {
-            e.printStackTrace();
+        if (serialized.nbtCompound != null) {
+            try {
+                NBTTagCompound nbtTagCompound = MojangsonParser.parse(serialized.nbtCompound);
+                net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
+                nmsItem.setTag(nbtTagCompound);
+                return CraftItemStack.asBukkitCopy(nmsItem);
+            } catch (CommandSyntaxException e) {
+                e.printStackTrace();
+            }
         }
         return item;
     }
