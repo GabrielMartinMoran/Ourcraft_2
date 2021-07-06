@@ -11,19 +11,13 @@ import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.dagg
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.greatsword.DiamondGreatSword;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.greatsword.IronGreatSword;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.ranged.bows.BambooBow;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.WordUtils;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.TippedArrowsHelper;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.AbstractArrow;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.TippedArrow;
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
@@ -111,14 +105,7 @@ public class EconomyTable {
                     PotionEffectType.SLOW, PotionEffectType.WATER_BREATHING, PotionEffectType.HEAL,
                     PotionEffectType.INCREASE_DAMAGE, PotionEffectType.POISON, PotionEffectType.INCREASE_DAMAGE,
                     PotionEffectType.WEAKNESS, PotionEffectType.SLOW_FALLING, PotionEffectType.SLOW_DIGGING)) {
-                ItemStack tippedArrow = new ItemStack(Material.TIPPED_ARROW);
-                PotionMeta tippedArrowMeta = (PotionMeta) tippedArrow.getItemMeta();
-                tippedArrowMeta.setColor(effect.getColor());
-                String name = "Arrow of " + WordUtils.capitalizeFully(effect.getName().replaceAll("_", " ").toLowerCase());
-                if(amplifier >= 1) name += " " + StringUtils.repeat("I", amplifier + 1);
-                tippedArrowMeta.setDisplayName(name);
-                tippedArrowMeta.addCustomEffect(effect.createEffect(TIPPED_ARROW_EFFECT_DURATION, amplifier), true);
-                tippedArrow.setItemMeta(tippedArrowMeta);
+                ItemStack tippedArrow = TippedArrowsHelper.getArrow(effect, amplifier, TIPPED_ARROW_EFFECT_DURATION);
                 pricesList.add(new EconomyItem(Villager.Profession.FLETCHER, tippedArrow, BASE_TIPPED_ARROW_COST * (amplifier + 1), false, true));
             }
         }

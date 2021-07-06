@@ -131,7 +131,7 @@ RagersRage:
   - playerwithin{d=32} true
   Skills:
   - potion{type=SPEED;duration=200;level=12;hasParticles=false}
-  - potion{type=STRENGTH;duration=200;level=4;hasParticles=false}
+  - potion{type=INCREASE_DAMAGE;duration=200;level=4;hasParticles=false}
 
 SpiderWebSpit:
   Cooldown: 5 # segundos

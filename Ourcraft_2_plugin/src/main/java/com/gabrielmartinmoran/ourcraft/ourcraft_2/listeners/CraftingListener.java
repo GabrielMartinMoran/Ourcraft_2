@@ -1,12 +1,17 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.Config;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.crafting.RecipesLocker;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.crafting.TippedArrowUnlock;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.hydration.HydrationDecreaseEvents;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.AttributeLevelingHandler;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerAttributes;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerData;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerDataProvider;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.TippedArrowsHelper;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,6 +21,10 @@ import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.Potion;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionEffect;
 
 public class CraftingListener implements Listener {
 
@@ -29,7 +38,10 @@ public class CraftingListener implements Listener {
 
     @EventHandler
     public void onPrepareCraft(PrepareItemCraftEvent event) {
-        if (event.getRecipe() == null) return;
+        if (event.getRecipe() == null) {
+            this.handleTippedArrowCrafting(event);
+            return;
+        };
         HumanEntity hw = event.getView().getPlayer();
         PlayerData playerData = PlayerDataProvider.get(hw.getName());
         if (!this.recipesLocker.isRecipeAvaliable(playerData, event.getRecipe())) {
@@ -71,5 +83,31 @@ public class CraftingListener implements Listener {
             realAmount = lowerAmount * craftedItem.getAmount();
         }
         return realAmount;
+    }
+
+    private void handleTippedArrowCrafting(PrepareItemCraftEvent event) {
+        // Checkeamos si son flechas especiales
+        ItemStack[] matrix = event.getInventory().getMatrix();
+        if (matrix.length < 9) return;
+        int potionIndex = 4;
+        for (int i = 0; i < matrix.length; i++) {
+            if (matrix[i] == null) return;
+            if (matrix[i].getType() == Material.ARROW && i != potionIndex) continue;
+            if (matrix[i].getType() == Material.POTION && i == potionIndex) continue;
+            return;
+        }
+        PotionMeta potionMeta = (PotionMeta) matrix[potionIndex].getItemMeta();
+        Player player = (Player) event.getView().getPlayer();
+        for (TippedArrowUnlock tippedArrowUnlock: Config.TIPPED_ARROWS_UNLOCKS) {
+            if (PlayerDataProvider.get(player).getAttributeLevel(PlayerAttributes.RANGED) < tippedArrowUnlock.unlockLevel) continue;
+            PotionData potionData = potionMeta.getBasePotionData();
+            int potionAmplifier = potionData.isUpgraded() ? 1 : 0;
+            int potionDuration = potionData.isExtended() ? Config.TICKS_PER_SECOND * 600 : Config.TICKS_PER_SECOND * 300;
+            if(potionData.getType().getEffectType() == tippedArrowUnlock.effect && potionAmplifier == tippedArrowUnlock.amplifier) {
+                event.getInventory().setResult(TippedArrowsHelper.getArrow(tippedArrowUnlock.effect, tippedArrowUnlock.amplifier, potionDuration, 8));
+                //player.updateInventory();
+                return;
+            }
+        }
     }
 }

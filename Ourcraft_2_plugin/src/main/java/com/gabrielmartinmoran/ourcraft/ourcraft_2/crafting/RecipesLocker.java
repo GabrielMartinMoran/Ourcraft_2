@@ -61,7 +61,8 @@ public class RecipesLocker {
         List<LockedRecipe> filtered = lockedRecipes.stream().filter(recipe -> recipe.getAttribute().equals(attribute) && recipe.getMinLevel() == level).collect(Collectors.toList());
         boolean netherPortalUnlocked = attribute.equals(PlayerAttributes.MAGIC) && level == Config.NETHER_PORTAL_ACTIVATION_MAGIC_MIN_LEVEL;
         boolean teleporterUnlocked = attribute.equals(PlayerAttributes.MAGIC) && level == Config.TELEPORTER_CREATION_MAGIC_MIN_LEVEL;
-        if(filtered.size() == 0 && !netherPortalUnlocked && !teleporterUnlocked) return;
+        boolean tippedArrowUnlocked = attribute.equals(PlayerAttributes.RANGED) && Config.TIPPED_ARROWS_UNLOCKS.stream().filter(x -> x.unlockLevel == level).count() > 0;
+        if(filtered.size() == 0 && !netherPortalUnlocked && !teleporterUnlocked && !tippedArrowUnlocked) return;
         Player player = Bukkit.getServer().getPlayer(playerName);
         player.sendMessage("" + ChatColor.GREEN + "Has desbloqueado los siguientes crafteos:");
         for (LockedRecipe lockedRecipe : filtered) {
@@ -77,6 +78,12 @@ public class RecipesLocker {
         }
         if(netherPortalUnlocked) player.sendMessage(" - " + ChatColor.GOLD + "Portal al Nether");
         if(teleporterUnlocked) player.sendMessage(" - " + ChatColor.GOLD + "Teletransportador");
+        // Tipped arrows
+        if (attribute == PlayerAttributes.RANGED) {
+            for (TippedArrowUnlock tippedArrowUnlock: Config.TIPPED_ARROWS_UNLOCKS) {
+                if (tippedArrowUnlock.unlockLevel == level) player.sendMessage(" - " + ChatColor.GOLD + tippedArrowUnlock.getUnlockName());
+            }
+        }
     }
 
     public static void registerServerRecipes() {
@@ -148,21 +155,21 @@ public class RecipesLocker {
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 23, "minecraft:stone_sword"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 25, "minecraft:stone_axe"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 27, "ourcraft_2:stone_greatsword"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 29, "minecraft:shield"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 31, "ourcraft_2:iron_dagger"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 33, "minecraft:anvil"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 35, "minecraft:iron_sword"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 37, "minecraft:iron_axe"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 39, "ourcraft_2:iron_greatsword"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 41, "minecraft:grindstone"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 43, "ourcraft_2:diamond_dagger"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 45, "minecraft:diamond_sword"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 47, "minecraft:diamond_axe"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 49, "ourcraft_2:diamond_greatsword"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 51, "ourcraft_2:netherite_dagger"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 53, "minecraft:netherite_sword_smithing"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 55, "minecraft:netherite_axe"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 57, "ourcraft_2:netherite_greatsword"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 30, "minecraft:shield"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 35, "ourcraft_2:iron_dagger"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 40, "minecraft:anvil"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 45, "minecraft:iron_sword"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 50, "minecraft:iron_axe"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 55, "ourcraft_2:iron_greatsword"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 60, "minecraft:grindstone"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 65, "ourcraft_2:diamond_dagger"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 70, "minecraft:diamond_sword"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 75, "minecraft:diamond_axe"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 80, "ourcraft_2:diamond_greatsword"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 85, "ourcraft_2:netherite_dagger"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 90, "minecraft:netherite_sword_smithing"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 95, "minecraft:netherite_axe"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MELEE, 100, "ourcraft_2:netherite_greatsword"));
 
         // RANGED
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 5, "ourcraft_2:wooden_dagger"));
@@ -171,15 +178,15 @@ public class RecipesLocker {
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 14, "ourcraft_2:golden_dagger"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 17, "minecraft:target"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 20, "minecraft:bow"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 23, "ourcraft_2:stone_dagger"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 26, "minecraft:crossbow"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 29, "minecraft:fletching_table"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 32, "ourcraft_2:iron_dagger"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 35, "ourcraft_2:reinforced_wooden_bow"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 38, "ourcraft_2:diamond_dagger"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 41, "ourcraft_2:compound_bow"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 44, "ourcraft_2:netherite_dagger"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 47, "ourcraft_2:reinforced_compound_bow"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 25, "ourcraft_2:stone_dagger"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 30, "minecraft:crossbow"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 35, "minecraft:fletching_table"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 40, "ourcraft_2:iron_dagger"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 50, "ourcraft_2:reinforced_wooden_bow"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 60, "ourcraft_2:diamond_dagger"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 70, "ourcraft_2:compound_bow"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 80, "ourcraft_2:netherite_dagger"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RANGED, 100, "ourcraft_2:reinforced_compound_bow"));
 
         // RESISTANCE
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 6, "minecraft:leather_boots"));
@@ -195,20 +202,20 @@ public class RecipesLocker {
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 26, "ourcraft_2:chainmail_boots"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 28, "ourcraft_2:chainmail_helmet"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 30, "ourcraft_2:chainmail_leggings"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 32, "ourcraft_2:chainmail_chestplate"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 34, "minecraft:iron_boots"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 36, "minecraft:iron_helmet"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 38, "minecraft:iron_leggings"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 40, "minecraft:iron_chestplate"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 42, "minecraft:anvil"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 44, "minecraft:diamond_boots"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 46, "minecraft:diamond_helmet"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 48, "minecraft:diamond_leggings"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 50, "minecraft:diamond_chestplate"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 52, "minecraft:netherite_boots_smithing"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 54, "minecraft:netherite_helmet_smithing"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 56, "minecraft:netherite_leggings_smithing"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 58, "minecraft:netherite_chestplate_smithing"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 35, "ourcraft_2:chainmail_chestplate"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 40, "minecraft:iron_boots"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 45, "minecraft:iron_helmet"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 50, "minecraft:iron_leggings"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 55, "minecraft:iron_chestplate"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 60, "minecraft:anvil"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 65, "minecraft:diamond_boots"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 70, "minecraft:diamond_helmet"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 75, "minecraft:diamond_leggings"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 80, "minecraft:diamond_chestplate"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 85, "minecraft:netherite_boots_smithing"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 90, "minecraft:netherite_helmet_smithing"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 95, "minecraft:netherite_leggings_smithing"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.RESISTANCE, 100, "minecraft:netherite_chestplate_smithing"));
 
         // CARPENTRY
         int CARPENTRY_PLANKS_UNLOCK_LEVEL = 2;
@@ -310,7 +317,7 @@ public class RecipesLocker {
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_FENCE_UNLOCK_LEVEL, "minecraft:crimson_fence"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_FENCE_UNLOCK_LEVEL, "minecraft:warped_fence"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 37, "minecraft:cartography_table"));
-        int CARPENTRY_FENCE_GATE_UNLOCK_LEVEL = 39;
+        int CARPENTRY_FENCE_GATE_UNLOCK_LEVEL = 40;
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_FENCE_GATE_UNLOCK_LEVEL, "minecraft:oak_fence_gate"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_FENCE_GATE_UNLOCK_LEVEL, "minecraft:spruce_fence_gate"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_FENCE_GATE_UNLOCK_LEVEL, "minecraft:birch_fence_gate"));
@@ -319,17 +326,17 @@ public class RecipesLocker {
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_FENCE_GATE_UNLOCK_LEVEL, "minecraft:dark_oak_fence_gate"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_FENCE_GATE_UNLOCK_LEVEL, "minecraft:crimson_fence_gate"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_FENCE_GATE_UNLOCK_LEVEL, "minecraft:warped_fence_gate"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 41, "minecraft:loom"));
-        int CARPENTRY_BOAT_UNLOCK_LEVEL = 43;
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 45, "minecraft:loom"));
+        int CARPENTRY_BOAT_UNLOCK_LEVEL = 50;
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_BOAT_UNLOCK_LEVEL, "minecraft:oak_boat"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_BOAT_UNLOCK_LEVEL, "minecraft:spruce_boat"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_BOAT_UNLOCK_LEVEL, "minecraft:birch_boat"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_BOAT_UNLOCK_LEVEL, "minecraft:jungle_boat"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_BOAT_UNLOCK_LEVEL, "minecraft:acacia_boat"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_BOAT_UNLOCK_LEVEL, "minecraft:dark_oak_boat"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 45, "minecraft:barrel"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 47, "minecraft:bow"));
-        int CARPENTRY_TRAPDOOR_UNLOCK_LEVEL = 49;
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 55, "minecraft:barrel"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 60, "minecraft:bow"));
+        int CARPENTRY_TRAPDOOR_UNLOCK_LEVEL = 65;
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_TRAPDOOR_UNLOCK_LEVEL, "minecraft:oak_trapdoor"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_TRAPDOOR_UNLOCK_LEVEL, "minecraft:spruce_trapdoor"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_TRAPDOOR_UNLOCK_LEVEL, "minecraft:birch_trapdoor"));
@@ -338,12 +345,11 @@ public class RecipesLocker {
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_TRAPDOOR_UNLOCK_LEVEL, "minecraft:dark_oak_trapdoor"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_TRAPDOOR_UNLOCK_LEVEL, "minecraft:crimson_trapdoor"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_TRAPDOOR_UNLOCK_LEVEL, "minecraft:warped_trapdoor"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 51, "minecraft:beehive"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 53, "minecraft:bookshelf"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 55, "minecraft:scaffolding"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 56, "minecraft:jukebox"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 57, "minecraft:diamond_axe"));
-        int CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL = 59;
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 70, "minecraft:beehive"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 75, "minecraft:bookshelf"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 80, "minecraft:scaffolding"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 85, "minecraft:jukebox"));
+        int CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL = 90;
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:oak_pressure_plate"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:spruce_pressure_plate"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:birch_pressure_plate"));
@@ -352,7 +358,8 @@ public class RecipesLocker {
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:dark_oak_pressure_plate"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:crimson_pressure_plate"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, CARPENTRY_PRESSURE_PLATE_UNLOCK_LEVEL, "minecraft:warped_pressure_plate"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 60, "minecraft:netherite_axe_smithing"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 95, "minecraft:diamond_axe"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.CARPENTRY, 100, "minecraft:netherite_axe_smithing"));
 
         // MINNING
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 5, "minecraft:wooden_pickaxe"));
@@ -378,19 +385,19 @@ public class RecipesLocker {
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 32, "minecraft:detector_rail"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 33, "minecraft:activator_rail"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 35, "minecraft:hopper"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 37, "minecraft:light_weighted_pressure_plate"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 39, "minecraft:heavy_weighted_pressure_plate"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 41, "minecraft:cauldron"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 43, "minecraft:iron_trapdoor"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 45, "minecraft:iron_door"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 47, "minecraft:iron_bars"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 49, "minecraft:smithing_table"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 51, "minecraft:daylight_detector"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 53, "minecraft:diamond_pickaxe"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 54, "minecraft:diamond_shovel"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 56, "minecraft:anvil"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 59, "minecraft:netherite_pickaxe_smithing"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 60, "minecraft:netherite_shovel_smithing"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 40, "minecraft:light_weighted_pressure_plate"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 45, "minecraft:heavy_weighted_pressure_plate"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 50, "minecraft:cauldron"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 55, "minecraft:iron_trapdoor"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 60, "minecraft:iron_door"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 65, "minecraft:iron_bars"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 70, "minecraft:smithing_table"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 75, "minecraft:daylight_detector"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 80, "minecraft:diamond_pickaxe"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 85, "minecraft:diamond_shovel"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 90, "minecraft:anvil"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 95, "minecraft:netherite_pickaxe_smithing"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.MINING, 100, "minecraft:netherite_shovel_smithing"));
 
         // FARMING
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 5, "minecraft:wooden_hoe"));
@@ -405,20 +412,20 @@ public class RecipesLocker {
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 23, "minecraft:sugar_from_honey_bottle"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 25, "minecraft:cookie"));
         lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 27, "minecraft:rabbit_stew_from_brown_mushroom"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 29, "minecraft:rabbit_stew_from_red_mushroom"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 31, "minecraft:white_wool_from_string"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 33, "minecraft:flower_pot"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 35, "minecraft:smoker"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 37, "minecraft:cake"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 39, "minecraft:golden_carrot"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 41, "minecraft:glistering_melon_slice"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 43, "minecraft:iron_hoe"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 45, "minecraft:honey_block"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 47, "minecraft:honeycomb_block"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 49, "minecraft:loom"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 51, "minecraft:lead"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 53, "minecraft:diamond_hoe"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 55, "minecraft:beehive"));
-        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 57, "minecraft:netherite_hoe_smithing"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 30, "minecraft:rabbit_stew_from_red_mushroom"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 35, "minecraft:white_wool_from_string"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 40, "minecraft:flower_pot"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 45, "minecraft:smoker"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 50, "minecraft:cake"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 55, "minecraft:golden_carrot"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 60, "minecraft:glistering_melon_slice"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 65, "minecraft:iron_hoe"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 70, "minecraft:honey_block"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 75, "minecraft:honeycomb_block"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 80, "minecraft:loom"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 85, "minecraft:lead"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 90, "minecraft:beehive"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 95, "minecraft:diamond_hoe"));
+        lockedRecipes.add(new LockedRecipe(PlayerAttributes.FARMING, 100, "minecraft:netherite_hoe_smithing"));
     }
 }
