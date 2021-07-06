@@ -167,6 +167,31 @@ export const recipes = {
             description: 'Gran espada de netherita diseñada para usarse a dos manos'
         },
         {
+            name: 'Casco de cota de malla',
+            img: 'chainmail_helmet',
+            description: 'Puedes craftear este casco a partir de cadenas'
+        },
+        {
+            name: 'Botas de cota de malla',
+            img: 'chainmail_boots',
+            description: 'Puedes craftear estas botas a partir de cadenas'
+        },
+        {
+            name: 'Pechera de cota de malla',
+            img: 'chainmail_chestplate',
+            description: 'Puedes craftear esta pechera a partir de cadenas'
+        },
+        {
+            name: 'Pantalones de cota de malla',
+            img: 'chainmail_leggings',
+            description: 'Puedes craftear estos pantalones a partir de cadenas'
+        },
+        {
+            name: 'Flechas con efectos de pociones',
+            img: 'potioned_arrows',
+            description: 'Puedes usar distintos tipos de pociones (tal como muestra la imagen), para crear flechas que al impactar apliquen el efecto de la poción utilizada al objetivo'
+        },
+        {
             name: 'Poción de maná',
             img: 'mana_potion',
             description: 'Poción que recupera 20 puntos de maná'
