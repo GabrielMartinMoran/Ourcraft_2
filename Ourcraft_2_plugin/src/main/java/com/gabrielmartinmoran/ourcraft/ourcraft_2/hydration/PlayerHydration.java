@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 public class PlayerHydration {
@@ -49,7 +50,7 @@ public class PlayerHydration {
     }
 
     public void handleNotPurifiedWaterDrinking(Player player) {
-        if((new Random()).nextDouble() > 0.6d) return;
+        if((new SecureRandom()).nextDouble() > 0.6d) return;
         player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 10 * Config.TICKS_PER_SECOND, 0));
     }
 }

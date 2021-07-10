@@ -19,6 +19,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
@@ -26,11 +27,11 @@ import java.util.Random;
 public class BlockBreakListener implements Listener {
 
     private AttributeLevelingHandler attributeLevelingHandler;
-    private Random rand;
+    private SecureRandom rand;
 
     public BlockBreakListener() {
         this.attributeLevelingHandler = new AttributeLevelingHandler();
-        this.rand = new Random();
+        this.rand = new SecureRandom();
     }
 
     @EventHandler

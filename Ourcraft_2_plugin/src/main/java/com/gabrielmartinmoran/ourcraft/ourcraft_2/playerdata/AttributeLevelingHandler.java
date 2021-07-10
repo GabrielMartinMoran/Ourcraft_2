@@ -117,7 +117,7 @@ public class AttributeLevelingHandler {
                         Material.SUGAR_CANE, Material.COCOA_BEANS, Material.CARROTS, Material.POTATOES, Material.BEETROOTS,
                         Material.SWEET_BERRY_BUSH, Material.VINE, Material.TWISTING_VINES_PLANT, Material.WEEPING_VINES_PLANT,
                         Material.NETHER_WART, Material.BROWN_MUSHROOM, Material.RED_MUSHROOM, Material.WARPED_FUNGUS,
-                        Material.CRIMSON_FUNGUS
+                        Material.CRIMSON_FUNGUS, Material.WHEAT_SEEDS, Material.WHEAT
 
                 ).contains(block.getType());
     }

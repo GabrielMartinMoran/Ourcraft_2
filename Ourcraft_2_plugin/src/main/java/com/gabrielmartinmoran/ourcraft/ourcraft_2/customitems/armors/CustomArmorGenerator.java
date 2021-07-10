@@ -3,12 +3,13 @@ package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.armors;
 
 import org.bukkit.Material;
 
+import java.security.SecureRandom;
 import java.util.*;
 
 public class CustomArmorGenerator {
 
     private List<Material> armorsMaterials;
-    private Random rand;
+    private SecureRandom rand;
     private final double CURSE_OF_BINDING_MODIFIER_PROBABILITY = 0.2d;
     private final double CURSE_OF_VANISHING_MODIFIER_PROBABILITY = 0.15d;
     private final double ARMOR_MODIFIER_PROBABILITY = 0.8d;
@@ -27,7 +28,7 @@ public class CustomArmorGenerator {
                 Material.DIAMOND_BOOTS, Material.DIAMOND_HELMET, Material.DIAMOND_LEGGINGS, Material.DIAMOND_CHESTPLATE,
                 Material.NETHERITE_BOOTS, Material.NETHERITE_HELMET, Material.NETHERITE_LEGGINGS, Material.NETHERITE_CHESTPLATE
         );
-        this.rand = new Random();
+        this.rand = new SecureRandom();
     }
 
     public CustomArmor generateArmor() {

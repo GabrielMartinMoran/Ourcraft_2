@@ -12,15 +12,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.security.SecureRandom;
 import java.util.Locale;
 import java.util.Random;
 
 public class ItemUtils {
 
-    private Random rand;
+    private SecureRandom rand;
 
     public ItemUtils() {
-        this.rand = new Random();
+        this.rand = new SecureRandom();
     }
 
     public boolean hasTag(ItemStack item, String tag) {

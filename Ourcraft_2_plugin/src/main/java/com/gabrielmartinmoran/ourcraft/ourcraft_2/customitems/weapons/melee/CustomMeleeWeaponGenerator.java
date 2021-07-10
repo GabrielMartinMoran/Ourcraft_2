@@ -7,6 +7,7 @@ import com.gabrielmartinmoran.ourcraft.ourcraft_2.weapons.melee.MeleeWeaponChara
 import net.minecraft.server.v1_16_R3.ItemStack;
 import org.bukkit.Material;
 
+import java.security.SecureRandom;
 import java.util.*;
 
 public class CustomMeleeWeaponGenerator {
@@ -14,7 +15,7 @@ public class CustomMeleeWeaponGenerator {
     private List<Material> weaponMaterials;
     private List<CustomItemsModelData> axesModels;
     private List<CustomItemsModelData> swordsModels;
-    private Random rand;
+    private SecureRandom rand;
     private final double CHARACTERISTIC_PROBABILITY = 0.25d;
     private final double CURSE_OF_VANISHING_MODIFIER_PROBABILITY = 0.15d;
 
@@ -38,7 +39,7 @@ public class CustomMeleeWeaponGenerator {
                 CustomItemsModelData.CUSTOM_AXE_009, CustomItemsModelData.CUSTOM_AXE_010,
                 CustomItemsModelData.CUSTOM_AXE_011, CustomItemsModelData.CUSTOM_AXE_012
                 );
-        this.rand = new Random();
+        this.rand = new SecureRandom();
     }
 
     public CustomMeleeWeapon generateWeapon() {

@@ -131,7 +131,7 @@ RagersRage:
   - playerwithin{d=32} true
   Skills:
   - potion{type=SPEED;duration=200;level=12;hasParticles=false}
-  - potion{type=INCREASE_DAMAGE;duration=200;level=4;hasParticles=false}
+  - potion{type=INCREASE_DAMAGE;duration=200;level=0;hasParticles=false}
 
 SpiderWebSpit:
   Cooldown: 5 # segundos
@@ -239,3 +239,23 @@ WaterMissile_hit:
     - effect:particlesphere{particle=bubble_column;amount=200;radius=2;fromorigin=true;hS=0.5;vS=0.5} @origin
     - effect:sound{s=block.bubble_column.whirlpool_inside;v=1;p=0}
     - damage{a=5;i=false}
+
+SummonNecromancers:
+  Cooldown: 1 # segundos
+  Conditions:
+  - playerwithin 32
+  Skills:
+  - effect:particlering{particle=reddust;color=#3a3a3b;amount=50;hSpread=0.1;vSpread=0.1;speed=1;radius=4;points=32} @Self
+  - effect:particlering{particle=reddust;color=#3a3a3b;amount=50;hSpread=0.1;vSpread=0.1;speed=1;radius=2.5;points=32;yOffset=0.4} @Self
+  - effect:particlering{particle=reddust;color=#3a3a3b;amount=50;hSpread=0.1;vSpread=0.1;speed=1;radius=1;points=32;yOffset=1} @Self
+  - command{c="ourcraft_2:debug summon NECROMANCER",asCaster=true, asOp=true}
+
+SummonUndeadWizards:
+  Cooldown: 1 # segundos
+  Conditions:
+  - playerwithin 32
+  Skills:
+  - effect:particlering{particle=reddust;color=#3a3a3b;amount=50;hSpread=0.1;vSpread=0.1;speed=1;radius=4;points=32} @Self
+  - effect:particlering{particle=reddust;color=#3a3a3b;amount=50;hSpread=0.1;vSpread=0.1;speed=1;radius=2.5;points=32;yOffset=0.4} @Self
+  - effect:particlering{particle=reddust;color=#3a3a3b;amount=50;hSpread=0.1;vSpread=0.1;speed=1;radius=1;points=32;yOffset=1} @Self
+  - command{c="ourcraft_2:debug summon UNDEAD_WIZARD",asCaster=true, asOp=true}

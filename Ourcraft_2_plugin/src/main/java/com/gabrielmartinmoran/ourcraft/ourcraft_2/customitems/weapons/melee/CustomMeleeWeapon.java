@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.security.SecureRandom;
 import java.util.*;
 
 public class CustomMeleeWeapon {
@@ -101,18 +102,7 @@ public class CustomMeleeWeapon {
     }
 
     private String getName() {
-        /*
-        List<String> prefixes = Arrays.asList(
-                "Castigador de", "Amedrentador de", "Caza", "Rompe", "Mata", "Asesino de", "Carnicero de",
-                "Destructor de"
-        );
-        List<String> suffixes = Arrays.asList(
-                "mortales", "demonios", "huesos", "dragones", "ilusiones", "vidas", "sombras", "imperios"
-        );
-
-        return prefixes.get(rand.nextInt(prefixes.size())) + " " + suffixes.get(rand.nextInt(suffixes.size()));
-         */
-        Random rand = new Random();
+        SecureRandom rand = new SecureRandom();
         // https://donjon.bin.sh/fantasy/name/#type=set
         List<String> names = Arrays.asList(
                 "Castigador de moratales", "Castigador de dragones", "Castigador de demonios",

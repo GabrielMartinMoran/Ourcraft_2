@@ -15,6 +15,7 @@ import org.bukkit.entity.WanderingTrader;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +28,7 @@ public class CustomWanderingTraders {
     private SilverCoin silverCoin = new SilverCoin();
     private GoldenCoin goldenCoin = new GoldenCoin();
     private PlatinumCoin platinumCoin = new PlatinumCoin();
-    private Random rand;
+    private SecureRandom rand;
     private CustomArmorGenerator customArmorGenerator;
     private CustomMeleeWeaponGenerator customMeleeWeaponGenerator;
     private final int UNLIMITED_TRADES_AMOUNT = 999999;
@@ -45,7 +46,7 @@ public class CustomWanderingTraders {
     );
 
     public CustomWanderingTraders() {
-        this.rand = new Random();
+        this.rand = new SecureRandom();
         this.customArmorGenerator = new CustomArmorGenerator();
         this.customMeleeWeaponGenerator = new CustomMeleeWeaponGenerator();
     }

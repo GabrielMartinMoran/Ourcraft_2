@@ -29,8 +29,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.permissions.ServerOperator;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
@@ -39,7 +41,8 @@ import java.util.List;
 public class DebugCommands implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!((Player) sender).isOp()) {
+
+        if (!sender.isOp()) {
             sender.sendMessage("" + ChatColor.RED + "Necesitas ser OP para poder ejecutar este comando!");
             return true;
         }
@@ -63,7 +66,7 @@ public class DebugCommands implements CommandExecutor {
                     sender.sendMessage("- " + type.toString());
                 }
             } else {
-                CustomMobsTypes.valueOf(args[1]).getCustomMob().spawn(((Player) sender).getWorld(), ((Player) sender).getLocation());
+                CustomMobsTypes.valueOf(args[1]).getCustomMob().spawn(((LivingEntity) sender).getWorld(), ((LivingEntity) sender).getLocation());
             }
             return true;
         }

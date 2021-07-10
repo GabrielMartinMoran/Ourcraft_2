@@ -20,15 +20,15 @@ import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.potion.PotionEffectType;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class EconomyTable {
 
-    private static final Random rand = new Random();
+    private static final SecureRandom rand = new SecureRandom();
     private static ArrayList<EconomyItem> pricesList = null;
 
     private static ArrayList<EconomyItem> getPricesList() {
@@ -124,13 +124,14 @@ public class EconomyTable {
         pricesList.add(new EconomyItem(Villager.Profession.LIBRARIAN, Material.BOOKSHELF, 90, true, true));
         int MAX_ENCHANTED_BOOK_COST = 500;
         for (Enchantment enchantment: Enchantment.values()) {
-            ItemStack enchantedBook = new ItemStack(Material.ENCHANTED_BOOK);
-            int enchantmentLevel = rand.nextInt(enchantment.getMaxLevel()) + 1;
-            EnchantmentStorageMeta enchantedBookMeta = (EnchantmentStorageMeta) enchantedBook.getItemMeta();
-            enchantedBookMeta.addStoredEnchant(enchantment, enchantmentLevel, false);
-            enchantedBook.setItemMeta(enchantedBookMeta);
-            int costPerLevel = MAX_ENCHANTED_BOOK_COST / enchantment.getMaxLevel(); // Asi nos aseguramos que el costo de encantamientos de 1 solo nivel es el mas alto
-            pricesList.add(new EconomyItem(Villager.Profession.LIBRARIAN, enchantedBook, costPerLevel * enchantmentLevel, true, true));
+            for (int enchantmentLevel = 1; enchantmentLevel <= enchantment.getMaxLevel(); enchantmentLevel++) {
+                ItemStack enchantedBook = new ItemStack(Material.ENCHANTED_BOOK);
+                EnchantmentStorageMeta enchantedBookMeta = (EnchantmentStorageMeta) enchantedBook.getItemMeta();
+                enchantedBookMeta.addStoredEnchant(enchantment, enchantmentLevel, false);
+                enchantedBook.setItemMeta(enchantedBookMeta);
+                int costPerLevel = MAX_ENCHANTED_BOOK_COST / enchantment.getMaxLevel(); // Asi nos aseguramos que el costo de encantamientos de 1 solo nivel es el mas alto
+                pricesList.add(new EconomyItem(Villager.Profession.LIBRARIAN, enchantedBook, costPerLevel * enchantmentLevel, true, true));
+            }
         }
 
         // CLERIC

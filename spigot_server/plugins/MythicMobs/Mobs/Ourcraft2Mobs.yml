@@ -373,7 +373,7 @@ FireElemental:
 Rager:
   Type: ZOMBIE
   Display: 'Rager'
-  Health: 40
+  Health: 35
   FollowRange: 32
   Damage: 4
   Options:
@@ -533,3 +533,16 @@ DrownedWizard:
   - 2 golems
   Skills:
   - skill{s=WaterMissiles} @target ~onTimer:20 0.8
+
+WitherBoss:
+  Type: WITHER
+  Health: 600
+  Armor: 4
+  Options:
+    Despawn: false
+  Skills:
+  - skill{s=MultiFireball} @PlayersInRadius{r=32} ~onTimer:20 0.6
+  - skill{s=MagicMissiles} @PlayersInRadius{r=32} ~onTimer:20 0.8
+  - skill{s=PoisoningBolt} @PlayersInRadius{r=32} ~onTimer:20 0.8
+  - skill{s=FireBolt} @PlayersInRadius{r=32} ~onTimer:20 0.8
+  - skill{s=DeathShoot} @PlayersInRadius{r=32} ~onTimer:20 0.8

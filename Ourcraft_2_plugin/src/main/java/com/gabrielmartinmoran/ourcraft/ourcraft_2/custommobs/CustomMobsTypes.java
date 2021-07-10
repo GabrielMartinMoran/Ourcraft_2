@@ -35,7 +35,8 @@ public enum CustomMobsTypes {
     POWERED_GHAST(new PoweredGhast()),
     DROWNED_PIRATE(new DrownedPirate()),
     WATER_DRIAD(new WaterDriad()),
-    DROWNED_WIZARD(new DrownedWizard());
+    DROWNED_WIZARD(new DrownedWizard()),
+    WITHER_BOSS(new WitherBoss());
 
     private CustomMob customMob;
 

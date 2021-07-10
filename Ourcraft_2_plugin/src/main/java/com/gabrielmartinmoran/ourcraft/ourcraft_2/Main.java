@@ -1,6 +1,7 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.commands.*;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.WitherReplacementService;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.hydration.HydrationService;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners.*;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.AttributesApplierService;
@@ -27,6 +28,7 @@ public final class Main extends JavaPlugin {
     private ManaRecoverService manaRecoverService;
     private MeleeWeaponsEffectsService meleeWeaponsEffectsService;
     private AttributesApplierService attributesApplierService;
+    private WitherReplacementService witherReplacementService;
     private RecipesLoader recipesLoader;
 
     @Override
@@ -88,6 +90,7 @@ public final class Main extends JavaPlugin {
         this.manaRecoverService = new ManaRecoverService();
         this.meleeWeaponsEffectsService = new MeleeWeaponsEffectsService();
         this.attributesApplierService = new AttributesApplierService();
+        this.witherReplacementService = new WitherReplacementService();
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
         scheduler.scheduleSyncRepeatingTask(this, this.playerUIUpdater, PlayerUIUpdater.EXECUTE_EACH_TICKS, PlayerUIUpdater.EXECUTE_EACH_TICKS);
         scheduler.scheduleSyncRepeatingTask(this, this.hydrationService, HydrationService.EXECUTE_EACH_TICKS, HydrationService.EXECUTE_EACH_TICKS);
@@ -95,6 +98,7 @@ public final class Main extends JavaPlugin {
         scheduler.scheduleSyncRepeatingTask(this, this.manaRecoverService, ManaRecoverService.EXECUTE_EACH_TICKS, ManaRecoverService.EXECUTE_EACH_TICKS);
         scheduler.scheduleSyncRepeatingTask(this, this.meleeWeaponsEffectsService, MeleeWeaponsEffectsService.EXECUTE_EACH_TICKS, MeleeWeaponsEffectsService.EXECUTE_EACH_TICKS);
         scheduler.scheduleSyncRepeatingTask(this, this.attributesApplierService, AttributesApplierService.EXECUTE_EACH_TICKS, AttributesApplierService.EXECUTE_EACH_TICKS);
+        scheduler.scheduleSyncRepeatingTask(this, this.witherReplacementService, WitherReplacementService.EXECUTE_EACH_TICKS, WitherReplacementService.EXECUTE_EACH_TICKS);
     }
 
     private void configureRecipes() {

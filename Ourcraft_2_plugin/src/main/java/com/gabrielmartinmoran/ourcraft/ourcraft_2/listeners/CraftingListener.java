@@ -3,6 +3,10 @@ package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Config;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.crafting.RecipesLocker;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.crafting.TippedArrowUnlock;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ores.RawGold;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ores.RawGoldBlock;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ores.RawIron;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ores.RawIronBlock;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.hydration.HydrationDecreaseEvents;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.AttributeLevelingHandler;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerAttributes;
@@ -26,6 +30,10 @@ import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class CraftingListener implements Listener {
 
     private RecipesLocker recipesLocker;
@@ -41,7 +49,11 @@ public class CraftingListener implements Listener {
         if (event.getRecipe() == null) {
             this.handleTippedArrowCrafting(event);
             return;
-        };
+        }
+        if(!this.isValidRecipe(event)) {
+            event.getInventory().setResult(null);
+            return;
+        }
         HumanEntity hw = event.getView().getPlayer();
         PlayerData playerData = PlayerDataProvider.get(hw.getName());
         if (!this.recipesLocker.isRecipeAvaliable(playerData, event.getRecipe())) {
@@ -109,5 +121,24 @@ public class CraftingListener implements Listener {
                 return;
             }
         }
+    }
+
+    private boolean isValidRecipe(PrepareItemCraftEvent event) {
+        // Oro crudo
+        if(event.getRecipe().getResult().isSimilar(new RawGold().getItem())) {
+            List<ItemStack> matrixNonAir =  Arrays.stream(event.getInventory().getMatrix()).filter(x -> x != null &&
+                    x.getType() != Material.AIR).collect(Collectors.toList());
+            if(matrixNonAir.size() > 1) return false;
+            return matrixNonAir.get(0).isSimilar(new RawGoldBlock().getItem());
+        }
+
+        // Hierro crudo
+        if(event.getRecipe().getResult().isSimilar(new RawIron().getItem())) {
+            List<ItemStack> matrixNonAir =  Arrays.stream(event.getInventory().getMatrix()).filter(x -> x != null &&
+                    x.getType() != Material.AIR).collect(Collectors.toList());
+            if(matrixNonAir.size() > 1) return false;
+            return matrixNonAir.get(0).isSimilar(new RawIronBlock().getItem());
+        }
+        return true;
     }
 }

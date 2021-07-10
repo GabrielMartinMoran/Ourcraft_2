@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,35 +27,16 @@ public class CustomVillagers {
     private GoldenCoin goldenCoin = new GoldenCoin();
     private PlatinumCoin platinumCoin = new PlatinumCoin();
 
-    private Random rand;
-    /*private List<VillagerTrade> trades = Arrays.asList(
-        // Farmer
-        new VillagerTrade(Villager.Profession.FARMER, 1, copperCoin.getItem(1), null, new ItemStack(Material.WHEAT_SEEDS, 32)),
-        new VillagerTrade(Villager.Profession.FARMER, 1, copperCoin.getItem(2), null, new ItemStack(Material.CARROT, 32)),
-        new VillagerTrade(Villager.Profession.FARMER, 1, copperCoin.getItem(3), null, new ItemStack(Material.POTATO, 32)),
-        new VillagerTrade(Villager.Profession.FARMER, 1, copperCoin.getItem(3), null, new ItemStack(Material.BEETROOT_SEEDS, 64)),
-        new VillagerTrade(Villager.Profession.FARMER, 1, silverCoin.getItem(3), null, new ItemStack(Material.BREAD, 10)),
-        new VillagerTrade(Villager.Profession.FARMER, 1, goldenCoin.getItem(3), null, new ItemStack(Material.APPLE, 5)),
-        new VillagerTrade(Villager.Profession.FARMER, 1, platinumCoin.getItem(3), null, new ItemStack(Material.HAY_BLOCK, 3)),
-        new VillagerTrade(Villager.Profession.FARMER, 1, new ItemStack(Material.WHEAT, 15), null, copperCoin.getItem(1)),
-        // Toolsmith
-        new VillagerTrade(Villager.Profession.TOOLSMITH, 1, new ItemStack(Material.IRON_INGOT, 10), null, copperCoin.getItem(1)),
-        new VillagerTrade(Villager.Profession.TOOLSMITH, 1, new ItemStack(Material.GOLD_INGOT, 10), null, silverCoin.getItem(1)),
-        new VillagerTrade(Villager.Profession.TOOLSMITH, 1, new ItemStack(Material.DIAMOND, 10), null, goldenCoin.getItem(1))
-    );*/
-
+    private SecureRandom rand;
     public CustomVillagers() {
-        this.rand = new Random();
+        this.rand = new SecureRandom();
     }
 
     // Retorna false cuando no encuentra recipe para agregar
     public boolean addRecipe(Villager villager, MerchantRecipe originalRecipe) {
-        //VillagerTrade trade = this.getRecipe(villager);
-        //if (trade == null) return false;
         MerchantRecipe recipe = EconomyTable.getTrade(villager.getProfession(), villager.getVillagerLevel());
         if (recipe == null) return false;
         ArrayList<MerchantRecipe> recipes = new ArrayList<MerchantRecipe>(villager.getRecipes());
-        //MerchantRecipe recipe = trade.getRecipe();
         recipe.setMaxUses(originalRecipe.getMaxUses());
         recipe.setVillagerExperience(originalRecipe.getVillagerExperience());
         recipes.add(recipe);

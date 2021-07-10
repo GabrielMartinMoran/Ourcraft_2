@@ -10,6 +10,7 @@ import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,7 @@ public class EconomyItem {
     private int copperUnitSellPrice;
     public boolean allowSell;
     public boolean allowBuy;
-    private Random rand;
+    private SecureRandom rand;
     private static final CopperCoin copperCoin = new CopperCoin();
     private static final SilverCoin silverCoin = new SilverCoin();
     private static final GoldenCoin goldenCoin = new GoldenCoin();
@@ -50,7 +51,7 @@ public class EconomyItem {
      * @param copperUnitSellPrice: indica el precio estandar al que el jugador vende el objeto
      */
     public EconomyItem(Villager.Profession villagerProfession, Material material, int copperUnitSellPrice, boolean allowSell, boolean allowBuy) {
-        this.rand = new Random();
+        this.rand = new SecureRandom();
         this.villagerProfession = villagerProfession;
         this.baseItem = new ItemStack(material);
         this.copperUnitSellPrice = copperUnitSellPrice;
@@ -59,7 +60,7 @@ public class EconomyItem {
     }
 
     public EconomyItem(Villager.Profession villagerProfession, ItemStack baseItem, int copperUnitSellPrice, boolean allowSell, boolean allowBuy) {
-        this.rand = new Random();
+        this.rand = new SecureRandom();
         this.villagerProfession = villagerProfession;
         this.baseItem = baseItem;
         this.copperUnitSellPrice = copperUnitSellPrice;

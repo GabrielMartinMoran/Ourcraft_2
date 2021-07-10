@@ -19,6 +19,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -27,7 +28,7 @@ public class SpellsResolver {
 
     private ItemUtils itemUtils;
     private PlayerUtils playerUtils;
-    private Random rand;
+    private SecureRandom rand;
     private AttributeLevelingHandler attributeLevelingHandler;
     private HashMap<SpellTypes, SpellCastFunction<Player, ItemStack>> spellsMap;
     private final String SPELL_PROJECTILE_TAG = "spellProjectile";
@@ -45,7 +46,7 @@ public class SpellsResolver {
         this.itemUtils = new ItemUtils();
         this.playerUtils = new PlayerUtils();
         this.attributeLevelingHandler = new AttributeLevelingHandler();
-        this.rand = new Random();
+        this.rand = new SecureRandom();
         spellsMap = new HashMap<SpellTypes, SpellCastFunction<Player, ItemStack>>();
         spellsMap.put(SpellTypes.LIGHTNING, (player, item, level) -> this.castLightningSpell(player, item, level));
         spellsMap.put(SpellTypes.NECROMANCER, (player, item, level) -> this.castNecromancerSpell(player, item, level));

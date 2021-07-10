@@ -1,6 +1,7 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.mobs.CustomMob;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.mobs.WitherBoss;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.DifficultyZone;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -13,6 +14,7 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,14 +22,14 @@ import java.util.Random;
 
 public class CustomMobsManager {
 
-    private Random rand;
+    private SecureRandom rand;
     private Gson gson;
     private HashMap<Integer, HashMap<EntityType, MobReplacement[]>> overworldReplacementsMap;
     private HashMap<EntityType, MobReplacement[]> netherReplacementsMap;
     private HashMap<EntityType, MobReplacement[]> endReplacementsMap;
 
     public CustomMobsManager() {
-        this.rand = new Random();
+        this.rand = new SecureRandom();
         this.gson = new Gson();
         this.loadOverworldReplacements();
         this.loadNetherReplacements();
