@@ -30,7 +30,7 @@ public class PlayerDataProvider {
     public static PlayerData get(String playerName) {
         if (dataMap.containsKey(playerName)) return dataMap.get(playerName);
         String json = loadJsonData(playerName);
-        if (json == null) return null;
+        if (json == null) return new PlayerData(playerName);
         PlayerData data = PlayerData.fromJson(json);
         dataMap.put(playerName, data);
         return data;
@@ -53,7 +53,7 @@ public class PlayerDataProvider {
         PlayerData data = new PlayerData(playerName);
         saveJsonData(playerName, data.toJson());
     }
-    
+
     public static void saveAll() {
         System.out.println("Guardando datos de jugadores de Ourcraft 2");
         for (HashMap.Entry<String, PlayerData> entry : dataMap.entrySet()) {
@@ -62,12 +62,12 @@ public class PlayerDataProvider {
     }
 
     private static String loadJsonData(String playerName) {
-        if(!hasData(playerName)) return null;
+        if (!hasData(playerName)) return null;
         Path path = Paths.get(getJsonFullPath(playerName));
         try {
             List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
             return StringUtils.join(lines, "");
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
@@ -87,17 +87,16 @@ public class PlayerDataProvider {
 
     private static void saveJsonData(String playerName, String json) {
         File directory = new File(getJsonDir());
-        if (! directory.exists()){
+        if (!directory.exists()) {
             directory.mkdirs();
         }
         File file = new File(getJsonFullPath(playerName));
-        try{
+        try {
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(json);
             bw.close();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

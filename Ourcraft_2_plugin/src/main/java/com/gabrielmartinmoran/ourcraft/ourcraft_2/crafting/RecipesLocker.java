@@ -3,8 +3,6 @@ package com.gabrielmartinmoran.ourcraft.ourcraft_2.crafting;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Config;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.spells.SpellBook;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.spells.SpellScroll;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.villagers.VillagerTrade;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerAttribute;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerAttributes;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerData;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerDataProvider;
@@ -14,14 +12,9 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.*;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.naming.Name;
-import javax.swing.plaf.basic.BasicButtonUI;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -33,7 +26,7 @@ public class RecipesLocker {
         if(lockedRecipes == null) initializeLockedRecipes();
     }
 
-    public boolean isRecipeAvaliable(PlayerData playerData, Recipe recipe) {
+    public boolean isRecipeAvailable(PlayerData playerData, Recipe recipe) {
         String recipeName = RecipesUtils.getRecipeName(recipe);
         // Prevenimos esto para que no pueda reparar items desde la mesa de crafteo
         if(recipeName.equals("minecraft:repair_item")) return false;

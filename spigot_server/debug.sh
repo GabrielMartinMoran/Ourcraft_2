@@ -1,0 +1,1 @@
+java -Xms1G -Xmx1G -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=50 -XX:+AlwaysPreTouch -DIReallyKnowWhatIAmDoingISwear=true -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -jar spigot-1.19.4.jar nogui

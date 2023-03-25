@@ -5,8 +5,8 @@ import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.CustomMobsManager;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.CustomMobsTypes;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.MobDrop;
 import com.google.gson.Gson;
-import io.lumine.xikage.mythicmobs.MythicMobs;
-import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
+import io.lumine.mythic.bukkit.MythicBukkit;
+import io.lumine.mythic.core.mobs.ActiveMob;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -38,12 +38,12 @@ public abstract class CustomMob {
     }
 
     protected Entity spawnMythicMobsEntity(Location location, String mmMobName) {
-        MythicMobs mmInstance = MythicMobs.inst();
-        if (mmInstance == null) {
+        MythicBukkit mbInstance = MythicBukkit.inst();
+        if (mbInstance == null) {
             System.out.println("MythicMobs instance is null");
             return null;
         }
-        ActiveMob activeMob = mmInstance.getMobManager().spawnMob(mmMobName, location);
+        ActiveMob activeMob = mbInstance.getMobManager().spawnMob(mmMobName, location);
         Entity mob = (Entity) activeMob.getEntity().getBukkitEntity();
         this.tagCustomMob(mob);
         return mob;

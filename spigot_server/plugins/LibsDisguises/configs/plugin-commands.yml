@@ -42,7 +42,6 @@ undisguise:
   enabled: true
   description: Undisguise yourself.
   aliases:
-  - u
   - und
   - undis
   - undisg
@@ -169,6 +168,7 @@ disguiseviewself:
   - selfdisguise
   - selfdisg
   - selfd
+  - toggleselfdisguise
 
 disguisemodifyradius:
   name: disguisemodifyradius
@@ -201,6 +201,15 @@ disguisemodifyplayer:
   - moddisguiseplayer
   - mdisguiseplayer
   - mdisgplayer
+  - dmodifyuuid
+  - dmoduuid
+  - disgmodifyuuid
+  - dismoduuid
+  - disgmoduuid
+  - modifydisguiseuuid
+  - moddisguiseuuid
+  - mdisguiseuuid
+  - mdisguuid
 
 grabhead:
   name: grabhead

@@ -1,10 +1,7 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItemsModelData;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.armors.CustomArmor;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.armors.CustomArmorModifiers;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.weapons.melee.MeleeWeaponCharacteristics;
-import net.minecraft.server.v1_16_R3.ItemStack;
 import org.bukkit.Material;
 
 import java.security.SecureRandom;
@@ -38,7 +35,7 @@ public class CustomMeleeWeaponGenerator {
                 CustomItemsModelData.CUSTOM_AXE_007, CustomItemsModelData.CUSTOM_AXE_008,
                 CustomItemsModelData.CUSTOM_AXE_009, CustomItemsModelData.CUSTOM_AXE_010,
                 CustomItemsModelData.CUSTOM_AXE_011, CustomItemsModelData.CUSTOM_AXE_012
-                );
+        );
         this.rand = new SecureRandom();
     }
 
@@ -70,12 +67,12 @@ public class CustomMeleeWeaponGenerator {
     private CustomItemsModelData getModelData(Material baseMaterial, ArrayList<MeleeWeaponCharacteristics> characteristics) {
         ArrayList<CustomItemsModelData> models = null;
         if (baseMaterial.toString().contains("AXE")) {
-             models = new ArrayList<CustomItemsModelData>(this.axesModels);
-             if (characteristics.contains(MeleeWeaponCharacteristics.TWO_HANDED) ||
-                 characteristics.contains(MeleeWeaponCharacteristics.HEAVY)) {
-                 models.remove(CustomItemsModelData.CUSTOM_AXE_001);
-                 models.remove(CustomItemsModelData.CUSTOM_AXE_007);
-             }
+            models = new ArrayList<CustomItemsModelData>(this.axesModels);
+            if (characteristics.contains(MeleeWeaponCharacteristics.TWO_HANDED) ||
+                    characteristics.contains(MeleeWeaponCharacteristics.HEAVY)) {
+                models.remove(CustomItemsModelData.CUSTOM_AXE_001);
+                models.remove(CustomItemsModelData.CUSTOM_AXE_007);
+            }
         }
         if (baseMaterial.toString().contains("SWORD")) {
             models = new ArrayList<CustomItemsModelData>(this.swordsModels);

@@ -2,23 +2,16 @@ package com.gabrielmartinmoran.ourcraft.ourcraft_2.teleporters;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.crafting.RecipesLocker;
 import de.tr7zw.nbtapi.NBTItem;
-import javafx.util.Pair;
-import jdk.nashorn.internal.ir.Block;
 import org.bukkit.*;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class TeleporterCreationListener implements Listener {
 
@@ -30,9 +23,9 @@ public class TeleporterCreationListener implements Listener {
 
     @EventHandler
     public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
-        if(event.getRightClicked() instanceof ItemFrame) {
+        if (event.getRightClicked() instanceof ItemFrame) {
             ItemFrame itemFrame = (ItemFrame) event.getRightClicked();
-            if(this.hasPlacedLodestoneCompass(itemFrame, event.getPlayer())){
+            if (this.hasPlacedLodestoneCompass(itemFrame, event.getPlayer())) {
                 Location itemFrameLocation = event.getRightClicked().getLocation();
                 Teleporter teleporter = Teleporter.fromStructure(this.getLodedCompass(event.getPlayer()), itemFrameLocation);
                 if (teleporter == null) return;
@@ -42,7 +35,8 @@ public class TeleporterCreationListener implements Listener {
                 } else {
                     event.getPlayer().sendMessage("" + ChatColor.RED + "Tu nivel de magia no es lo suficientemente alto como para crear teletransportadores!");
                 }
-            };
+            }
+            ;
         }
     }
 
@@ -56,13 +50,13 @@ public class TeleporterCreationListener implements Listener {
             if (TeleporterDataProvider.hasData(serializedSearchLocation)) {
                 Teleporter teleporter = TeleporterDataProvider.get(serializedSearchLocation);
                 // Corroboramos la validez de teleporter actual
-                if(!Teleporter.isValidStructure(searchLocation)) {
+                if (!Teleporter.isValidStructure(searchLocation)) {
                     TeleporterDataProvider.remove(serializedSearchLocation);
                     event.getPlayer().sendMessage("" + ChatColor.RED + "Este teletransportador no parece seguir siendo válido!");
                     return;
                 }
                 // Corroboramos la validez de teleporter al que se quiere teletransportar
-                if(!Teleporter.isValidStructure(teleporter.getTargetItemFrameLocation())) {
+                if (!Teleporter.isValidStructure(teleporter.getTargetItemFrameLocation())) {
                     TeleporterDataProvider.remove(TeleporterDataProvider.serializeLocation(teleporter.getTargetItemFrameLocation()));
                     event.getPlayer().sendMessage("" + ChatColor.RED + "El teletransportador al que apunta ya no parece ser válido!");
                     return;
@@ -81,7 +75,7 @@ public class TeleporterCreationListener implements Listener {
     private ItemStack getLodedCompass(Player player) {
         ItemStack lodedCompass = player.getInventory().getItemInMainHand();
         if (lodedCompass == null) lodedCompass = player.getInventory().getItemInOffHand();
-        if (lodedCompass == null || !lodedCompass.getType().equals(Material.COMPASS));
+        if (lodedCompass == null || !lodedCompass.getType().equals(Material.COMPASS)) ;
         NBTItem nbt = new NBTItem(lodedCompass);
         if (nbt.hasKey("LodestoneTracked") && nbt.getByte("LodestoneTracked") == 1) return lodedCompass;
         return null;

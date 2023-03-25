@@ -3,13 +3,18 @@ package com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Config;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.crafting.RecipesLocker;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.hydration.PlayerHydration;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.serialization.deserializers.LocalDateTimeDeserializer;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.serialization.serializers.LocalDateTimeSerializer;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellTypes;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.PlayerNotifier;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.SkillsLevelingUtils;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 import org.bukkit.Bukkit;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public class PlayerData {
@@ -42,12 +47,11 @@ public class PlayerData {
     }
 
     /**
-     *
      * @param attribute
      * @return xp floored as long
      */
     public long getAttributeXp(PlayerAttributes attribute) {
-        if (this.attributes.containsKey(attribute)) return (long)Math.floor(this.attributes.get(attribute).getXp());
+        if (this.attributes.containsKey(attribute)) return (long) Math.floor(this.attributes.get(attribute).getXp());
         return 0;
     }
 
@@ -76,13 +80,13 @@ public class PlayerData {
 
     private void onAttributeLevelUp(PlayerAttributes attribute) {
         int level = this.attributes.get(attribute).getLevel();
-        if(level > Config.MAX_ATTRIBUTE_LEVEL) {
+        if (level > Config.MAX_ATTRIBUTE_LEVEL) {
             this.attributes.get(attribute).setLevel(Config.MAX_ATTRIBUTE_LEVEL);
             return;
         }
         // En caso de que el atributo sea magia aumentamos el mana
         if (attribute.equals(PlayerAttributes.MAGIC)) {
-            this.mana.setMaxMana((int)((Config.INITIAL_MANA * level) + Math.pow(level - 1, Config.MANA_INCREASE_POW_FACTOR)));
+            this.mana.setMaxMana((int) ((Config.INITIAL_MANA * level) + Math.pow(level - 1, Config.MANA_INCREASE_POW_FACTOR)));
             this.mana.setManaRecover(Config.INITIAL_MANA_RECOVER * level);
         }
         PlayerNotifier.notifySkillLevelUp(playerName, attribute.getDisplayName(), level);
@@ -122,12 +126,16 @@ public class PlayerData {
     }
 
     public String toJson() {
-        Gson gson = new Gson();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer());
+        Gson gson = gsonBuilder.create();
         return gson.toJson(this);
     }
 
     public static PlayerData fromJson(String json) {
-        Gson gson = new Gson();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeserializer());
+        Gson gson = gsonBuilder.create();
         PlayerData data = gson.fromJson(json, PlayerData.class);
         return data;
     }

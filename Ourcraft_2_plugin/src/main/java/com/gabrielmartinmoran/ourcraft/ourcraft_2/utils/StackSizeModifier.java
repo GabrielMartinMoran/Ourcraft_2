@@ -11,7 +11,7 @@ public class StackSizeModifier {
      * Modify the maximum stack sizes of an item on the server.
      *
      * @param material Item to change maximum stack size of.
-     * @param size The new maximum stack size.
+     * @param size     The new maximum stack size.
      * @return
      */
     public static boolean modifyStackSize(Material material, int size) {
@@ -24,11 +24,16 @@ public class StackSizeModifier {
             Class<?> magicClass = Class.forName("org.bukkit.craftbukkit." + packageVersion + ".util.CraftMagicNumbers");
             Method method = magicClass.getDeclaredMethod("getItem", Material.class);
             Object item = method.invoke(null, material);
+
+            /*
             // Get the maxItemStack field in Item and change it.
-            Class<?> itemClass = Class.forName("net.minecraft.server." + packageVersion + ".Item");
+            //Class<?> itemClass = Class.forName("net.minecraft.server." + packageVersion + ".Item");
+            Class<?> itemClass = Class.forName("net.minecraft.world.item.Item");
             Field field = itemClass.getDeclaredField("maxStackSize");
             field.setAccessible(true);
             field.setInt(item, size);
+            */
+
             // Change the maxStack field in the Material.
             Field mf = Material.class.getDeclaredField("maxStack");
             mf.setAccessible(true);

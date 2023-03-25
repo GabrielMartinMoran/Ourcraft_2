@@ -26,9 +26,7 @@ import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionData;
-import org.bukkit.potion.PotionEffect;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,7 +54,7 @@ public class CraftingListener implements Listener {
         }
         HumanEntity hw = event.getView().getPlayer();
         PlayerData playerData = PlayerDataProvider.get(hw.getName());
-        if (!this.recipesLocker.isRecipeAvaliable(playerData, event.getRecipe())) {
+        if (!this.recipesLocker.isRecipeAvailable(playerData, event.getRecipe())) {
             event.getInventory().setResult(null);
             return;
         }
@@ -68,7 +66,7 @@ public class CraftingListener implements Listener {
         HumanEntity player = event.getWhoClicked();
         // Sed
         PlayerData playerData = PlayerDataProvider.get(player.getName());
-        if (!this.recipesLocker.isRecipeAvaliable(playerData, event.getRecipe())) {
+        if (!this.recipesLocker.isRecipeAvailable(playerData, event.getRecipe())) {
             player.sendMessage("" + ChatColor.RED + "Tu nivel de " + ChatColor.LIGHT_PURPLE + this.recipesLocker.getRecipeNeededAttribute(event.getRecipe()).getDisplayName() + ChatColor.RED + " no es lo suficientemente alto como para craftear este ítem!");
             event.setCancelled(true);
             return;

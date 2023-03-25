@@ -3,15 +3,16 @@
 # with caution, and make sure you know what each option does before configuring.
 # For a reference for any variable inside this file, check out the Spigot wiki at
 # http://www.spigotmc.org/wiki/spigot-configuration/
-# 
+#
 # If you need help with the configuration or have any questions related to Spigot,
-# join us at the IRC or drop by our forums and leave a post.
-# 
-# IRC: #spigot @ irc.spi.gt ( http://www.spigotmc.org/pages/irc/ )
+# join us at the Discord or drop by our forums and leave a post.
+#
+# Discord: https://www.spigotmc.org/go/discord
 # Forums: http://www.spigotmc.org/
 
 config-version: 12
 settings:
+  log-named-deaths: true
   debug: false
   bungeecord: false
   sample-count: 12
@@ -62,6 +63,11 @@ players:
   disable-saving: false
 world-settings:
   default:
+    below-zero-generation-in-existing-chunks: true
+    hopper-can-load-chunks: false
+    seed-nether: 30084232
+    simulation-distance: default
+    thunder-chance: 100000
     verbose: true
     mob-spawn-range: 6
     enable-zombie-pigmen-portal-spawns: true
@@ -119,12 +125,16 @@ world-settings:
       hopper-transfer: 8
       hopper-check: 1
     entity-activation-range:
+      ignore-spectators: false
       animals: 32
       monsters: 32
       raiders: 48
       misc: 16
       tick-inactive-villagers: true
     growth:
+      twistingvines-modifier: 100
+      weepingvines-modifier: 100
+      cavevines-modifier: 100
       cactus-modifier: 100
       cane-modifier: 100
       melon-modifier: 100

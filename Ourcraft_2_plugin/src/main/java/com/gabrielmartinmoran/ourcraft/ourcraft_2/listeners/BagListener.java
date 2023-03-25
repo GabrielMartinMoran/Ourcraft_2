@@ -1,6 +1,6 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.serializer.SerializedItem;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.serialization.serializers.SerializedItem;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.ItemUtils;
 import com.google.gson.Gson;
 import de.tr7zw.nbtapi.NBTItem;

@@ -4,7 +4,6 @@ import com.gabrielmartinmoran.ourcraft.ourcraft_2.crafting.TippedArrowUnlock;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class Config {
