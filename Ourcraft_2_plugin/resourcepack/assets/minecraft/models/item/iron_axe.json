@@ -1,0 +1,20 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+     "layer0": "item/iron_axe"
+    },
+    "overrides": [
+        { "predicate": {"custom_model_data": 300001}, "model": "item/weapons/melee/weapons_generator/axe_001"},
+        { "predicate": {"custom_model_data": 300002}, "model": "item/weapons/melee/weapons_generator/axe_002"},
+        { "predicate": {"custom_model_data": 300003}, "model": "item/weapons/melee/weapons_generator/axe_003"},
+        { "predicate": {"custom_model_data": 300004}, "model": "item/weapons/melee/weapons_generator/axe_004"},
+        { "predicate": {"custom_model_data": 300005}, "model": "item/weapons/melee/weapons_generator/axe_005"},
+        { "predicate": {"custom_model_data": 300006}, "model": "item/weapons/melee/weapons_generator/axe_006"},
+        { "predicate": {"custom_model_data": 300007}, "model": "item/weapons/melee/weapons_generator/axe_007"},
+        { "predicate": {"custom_model_data": 300008}, "model": "item/weapons/melee/weapons_generator/axe_008"},
+        { "predicate": {"custom_model_data": 300009}, "model": "item/weapons/melee/weapons_generator/axe_009"},
+        { "predicate": {"custom_model_data": 300010}, "model": "item/weapons/melee/weapons_generator/axe_010"},
+        { "predicate": {"custom_model_data": 300011}, "model": "item/weapons/melee/weapons_generator/axe_011"},
+        { "predicate": {"custom_model_data": 300012}, "model": "item/weapons/melee/weapons_generator/axe_012"}
+    ]
+   }

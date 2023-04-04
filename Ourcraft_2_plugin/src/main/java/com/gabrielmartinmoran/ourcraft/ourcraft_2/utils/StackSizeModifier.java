@@ -18,21 +18,23 @@ public class StackSizeModifier {
         if (material.getMaxStackSize() == size) return true;
         try {
             // Get the server package version.
-            // In 1.14, the package that the server class CraftServer is in, is called "org.bukkit.craftbukkit.v1_14_R1".
+            // In 1.14, the package that the server class CraftServer is in, is called "org.bukkit.craftbukkit
+            // .v1_14_R1".
             String packageVersion = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
             // Convert a Material into its corresponding Item by using the getItem method on the Material.
             Class<?> magicClass = Class.forName("org.bukkit.craftbukkit." + packageVersion + ".util.CraftMagicNumbers");
             Method method = magicClass.getDeclaredMethod("getItem", Material.class);
             Object item = method.invoke(null, material);
 
-            /*
             // Get the maxItemStack field in Item and change it.
             //Class<?> itemClass = Class.forName("net.minecraft.server." + packageVersion + ".Item");
-            Class<?> itemClass = Class.forName("net.minecraft.world.item.Item");
-            Field field = itemClass.getDeclaredField("maxStackSize");
+
+            //Class<?> itemClass = Class.forName("net.minecraft.world.item.Item");
+            Class<?> itemClass = net.minecraft.world.item.Item.class;
+            // In 1.19.4, maxStackSize property is obfuscated as -> "e"
+            Field field = itemClass.getDeclaredField("e");
             field.setAccessible(true);
             field.setInt(item, size);
-            */
 
             // Change the maxStack field in the Material.
             Field mf = Material.class.getDeclaredField("maxStack");
@@ -41,7 +43,8 @@ public class StackSizeModifier {
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
-            System.out.println(String.format("Reflection error while modifying maximum stack size of %s.", material.name()));
+            System.out.println(String.format("Reflection error while modifying maximum stack size of %s.",
+                    material.name()));
             return false;
         }
     }

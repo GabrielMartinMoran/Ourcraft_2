@@ -1,44 +1,44 @@
 # For more information, check out the plugin manual or join us on Discord:
 # http://www.mythicmobs.net
-#  
+#
 
 # https://www.mythicmobs.net/manual/doku.php/databases/mobs/overview
 
 IncapacitatingCreeper:
   Type: CREEPER
-  Display: 'Incapacitatinig Creeper'
+  Display: "Incapacitatinig Creeper"
   Options:
     AlwaysShowName: false
   FollowRange: 32
   ExplosionRadius: 1
   Skills:
-  - effect:particles{particle=reddust;color=#3a3a3b;amount=10;hSpread=0.1;vSpread=0.1;speed=1;yOffset=1.8;size=2} @Self ~onTimer:40
-  - potion{type=SLOW;level=1;duration=100} @PlayersInRadius{r=4} ~onExplode
-  - potion{type=BLINDNESS;level=1;duration=100} @PlayersInRadius{r=4} ~onExplode
+    - effect:particles{particle=reddust;color=#3a3a3b;amount=10;hSpread=0.1;vSpread=0.1;speed=1;yOffset=1.8;size=2} @Self ~onTimer:40
+    - potion{type=SLOW;level=1;duration=100} @PlayersInRadius{r=4} ~onExplode
+    - potion{type=BLINDNESS;level=1;duration=100} @PlayersInRadius{r=4} ~onExplode
 
 AmplifiedCreeper:
   Type: CREEPER
-  Display: 'Amplified Creeper'
+  Display: "Amplified Creeper"
   FollowRange: 32
   ExplosionRadius: 7
   Options:
     MovementSpeed: 0.2
     AlwaysShowName: false
   Skills:
-  - effect:particlering{particle=reddust;color=#ad2f28;radius=1;amount=10;hSpread=0.1;vSpread=0.1;speed=0.5;yOffset=0;size=2} @Self ~onTimer:40
+    - effect:particlering{particle=reddust;color=#ad2f28;radius=1;amount=10;hSpread=0.1;vSpread=0.1;speed=0.5;yOffset=0;size=2} @Self ~onTimer:40
 
 JumpingCreeper:
   Type: CREEPER
-  Display: 'Jumping Creeper'
+  Display: "Jumping Creeper"
   FollowRange: 32
   Options:
     AlwaysShowName: false
   Skills:
-  - lunge{velocity=1;velocityY=0.7} @Self ~onTimer:40 0.8
+    - lunge{velocity=1;velocityY=0.7} @Self ~onTimer:40 0.8
 
 SkeletonWizard:
   Type: SKELETON
-  Display: 'Skeleton Wizard'
+  Display: "Skeleton Wizard"
   Health: 30
   FollowRange: 64
   Options:
@@ -48,13 +48,13 @@ SkeletonWizard:
   Disguise:
     Type: SkeletonWizard
   Equipment:
-  - AIR HAND
+    - AIR HAND
   Skills:
-  - skill{s=FireBolt} @Self ~onTimer:40
+    - skill{s=FireBolt} @Self ~onTimer:40
 
 Orc:
   Type: ZOMBIE
-  Display: 'Orc'
+  Display: "Orc"
   Health: 40
   Damage: 6
   Options:
@@ -64,17 +64,16 @@ Orc:
     MovementSpeed: 0.3
     AlwaysShowName: false
   Equipment:
-  - STONE_SWORD HAND
-  Disguise:
-    Type: Orc
+    - STONE_SWORD HAND
+  Disguise: Orc
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
 
 OrcShaman:
   Type: ZOMBIE
-  Display: 'Orc Shaman'
+  Display: "Orc Shaman"
   Health: 40
   Damage: 4
   Options:
@@ -84,19 +83,19 @@ OrcShaman:
     MovementSpeed: 0.3
     AlwaysShowName: false
   Equipment:
-  - BONE HAND
+    - BONE HAND
   Disguise:
     Type: OrcShaman
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
   Skills:
-  - skill{s=PoisoningBolt} @Self ~onTimer:100
+    - skill{s=PoisoningBolt} @Self ~onTimer:100
 
 OrcBrute:
   Type: ZOMBIE
-  Display: 'Orc Brute'
+  Display: "Orc Brute"
   Health: 60
   Damage: 6
   Options:
@@ -107,17 +106,17 @@ OrcBrute:
     KnockbackResistance: 0.5
     AlwaysShowName: false
   Equipment:
-  - STONE_AXE HAND
+    - STONE_AXE HAND
   Disguise:
     Type: OrcBrute
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
 
 Ogre:
   Type: ZOMBIE
-  Display: 'Ogre'
+  Display: "Ogre"
   Health: 100
   FollowRange: 64
   Damage: 18
@@ -131,15 +130,15 @@ Ogre:
   Disguise:
     Type: Ogre
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
   Skills:
-  - skill{s=UpperLaunch} @target ~onAttack
+    - skill{s=UpperLaunch} @target ~onAttack
 
 IceSoul:
   Type: STRAY
-  Display: 'Ice soul'
+  Display: "Ice soul"
   Health: 40
   FollowRange: 64
   Damage: 8
@@ -152,15 +151,15 @@ IceSoul:
   Disguise:
     Type: IceSoul
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
   Skills:
-  - effect:blockmask{m=blue_ice;radius=5;duration=200} @self ~onTimer:20
+    - effect:blockmask{m=blue_ice;radius=5;duration=200} @self ~onTimer:20
 
 RevivedWither:
   Type: WITHER_SKELETON
-  Display: 'Revived Wither'
+  Display: "Revived Wither"
   Health: 20
   FollowRange: 32
   Damage: 4
@@ -171,15 +170,15 @@ RevivedWither:
     AlwaysShowName: false
     PreventOtherDrops: true
   Equipment:
-  - AIR HAND
+    - AIR HAND
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
 
 Necromancer:
   Type: SKELETON
-  Display: 'Necromancer'
+  Display: "Necromancer"
   Health: 50
   FollowRange: 64
   Damage: 6
@@ -192,21 +191,21 @@ Necromancer:
   Disguise:
     Type: Necromancer
   AIGoalSelectors:
-  - 0 clear
-  - 1 skeletonbowattack
+    - 0 clear
+    - 1 skeletonbowattack
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
   Equipment:
-  - AIR HAND
+    - AIR HAND
   Skills:
-  - skill{s=NecromancerSummonWithers} @self ~onTimer:20 0.3
-  - skill{s=DeathShoot} @target ~onTimer:40 0.8
+    - skill{s=NecromancerSummonWithers} @self ~onTimer:20 0.3
+    - skill{s=DeathShoot} @target ~onTimer:40 0.8
 
 UndeadWizard:
   Type: SKELETON
-  Display: 'Undead Wizard'
+  Display: "Undead Wizard"
   Health: 50
   FollowRange: 64
   Damage: 4
@@ -218,20 +217,20 @@ UndeadWizard:
   Disguise:
     Type: UndeadWizard
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
   Equipment:
-  - AIR HAND
+    - AIR HAND
   Skills:
-  - skill{s=MagicMissiles} @target ~onTimer:20 0.8
-  - skill{s=PoisoningBolt} @target ~onTimer:20 0.8
-  - skill{s=FireBolt} @target ~onTimer:20 0.8
-  - skill{s=DeathShoot} @target ~onTimer:20 0.8
+    - skill{s=MagicMissiles} @target ~onTimer:20 0.8
+    - skill{s=PoisoningBolt} @target ~onTimer:20 0.8
+    - skill{s=FireBolt} @target ~onTimer:20 0.8
+    - skill{s=DeathShoot} @target ~onTimer:20 0.8
 
 Mimic:
   Type: ZOMBIE
-  Display: 'Mimic'
+  Display: "Mimic"
   Health: 20
   FollowRange: 32
   Damage: 4
@@ -245,17 +244,17 @@ Mimic:
     Type: BLOCK
     Block: BARREL
   AIGoalSelectors:
-  - 0 clear
-  - 1 meleeattack
+    - 0 clear
+    - 1 meleeattack
   AITargetSelectors:
-  - 0 clear
+    - 0 clear
   Skills:
-  - runaitargetselector{target=players} ~onDamaged
-  - runaitargetselector{target=players} ~onInteract
+    - runaitargetselector{target=players} ~onDamaged
+    - runaitargetselector{target=players} ~onInteract
 
 EnergyNode:
   Type: SILVERFISH
-  Display: 'Energy Node'
+  Display: "Energy Node"
   Health: 50
   Options:
     KnockbackResistance: 1
@@ -263,21 +262,21 @@ EnergyNode:
   Disguise:
     Type: ender_crystal
   DamageModifiers:
-  - PROJECTILE 0
-  - LIGHTNING 0
-  - FIRE_TICK 0
-  - LAVA 0
+    - PROJECTILE 0
+    - LIGHTNING 0
+    - FIRE_TICK 0
+    - LAVA 0
   AIGoalSelectors:
-  - 0 clear
+    - 0 clear
   Skills:
-  - skill{s=EnergySphere} @self ~onTimer:20
-  - skill{s=EnergySphereShoot} @self ~onTimer:20
-  - lightning @PlayersInRadius{r=3} ~onDamaged
-  - damage{amount=4;preventknockback=true} @PlayersInRadius{r=3} ~onDamaged
+    - skill{s=EnergySphere} @self ~onTimer:20
+    - skill{s=EnergySphereShoot} @self ~onTimer:20
+    - lightning @PlayersInRadius{r=3} ~onDamaged
+    - damage{amount=4;preventknockback=true} @PlayersInRadius{r=3} ~onDamaged
 
 Revenant:
   Type: ZOMBIE
-  Display: 'Revenant'
+  Display: "Revenant"
   Health: 40
   FollowRange: 64
   Damage: 6
@@ -289,12 +288,12 @@ Revenant:
     MovementSpeed: 0.35
     AlwaysShowName: false
   Skills:
-  - potion{type=HUNGER;level=1;duration=200} @target ~onAttack
-  - potion{type=WITHER;level=0;duration=100} @target ~onAttack
+    - potion{type=HUNGER;level=1;duration=200} @target ~onAttack
+    - potion{type=WITHER;level=0;duration=100} @target ~onAttack
 
 EnderMage:
   Type: ZOMBIE
-  Display: 'Ender Mage'
+  Display: "Ender Mage"
   Health: 40
   FollowRange: 32
   Damage: 6
@@ -307,18 +306,18 @@ EnderMage:
   Disguise:
     Type: EnderMage
   Equipment:
-  - AIR HAND
+    - AIR HAND
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems  
+    - 0 clear
+    - 1 players
+    - 2 golems
   Skills:
-  - skill{s=AttractTarget} @target ~onTimer:40 0.7
-  - skill{s=EnderBolt} @target ~onTimer:40 0.7
+    - skill{s=AttractTarget} @target ~onTimer:40 0.7
+    - skill{s=EnderBolt} @target ~onTimer:40 0.7
 
 Jockey:
   Type: ZOMBIE
-  Display: 'Jockey'
+  Display: "Jockey"
   Health: 30
   FollowRange: 32
   Options:
@@ -328,21 +327,21 @@ Jockey:
     PreventSunburn: true
     AlwaysShowName: false
   DamageModifiers:
-  - FALL 0.25
+    - FALL 0.25
   Disguise:
     Type: Jockey
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
   Skills:
-  - mounttarget @trigger ~onAttack
-  - skill{s=JockeyMountedAttack} @target ~onAttack
-  - lunge{velocity=1;velocityY=0.7} @Self ~onTimer:40 0.8
+    - mounttarget @trigger ~onAttack
+    - skill{s=JockeyMountedAttack} @target ~onAttack
+    - lunge{velocity=1;velocityY=0.7} @Self ~onTimer:40 0.8
 
 FireElemental:
   Type: ZOMBIE
-  Display: 'Fire Elemental'
+  Display: "Fire Elemental"
   Health: 50
   FollowRange: 32
   Damage: 6
@@ -353,26 +352,26 @@ FireElemental:
     PreventSunburn: true
     AlwaysShowName: false
   DamageModifiers:
-  - FIRE_TICK 0
-  - HOT_FLOOR 0
-  - FIRE -1 # Se cura
-  - LAVA -4 # Se cura
-  - ENTITY_EXPLOSION 0.1
-  - BLOCK_EXPLOSION 0.1
+    - FIRE_TICK 0
+    - HOT_FLOOR 0
+    - FIRE -1 # Se cura
+    - LAVA -4 # Se cura
+    - ENTITY_EXPLOSION 0.1
+    - BLOCK_EXPLOSION 0.1
   Disguise:
     Type: FireElemental
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
   Skills:
-  - effect:blockmask{m=magma_block;radius=5;duration=200} @self ~onTimer:20
-  - skill{s=CastFireball} @target ~onTimer:80
-  - skill{s=BurningAura} @self ~onTimer:80
+    - effect:blockmask{m=magma_block;radius=5;duration=200} @self ~onTimer:20
+    - skill{s=CastFireball} @target ~onTimer:80
+    - skill{s=BurningAura} @self ~onTimer:80
 
 Rager:
   Type: ZOMBIE
-  Display: 'Rager'
+  Display: "Rager"
   Health: 35
   FollowRange: 32
   Damage: 4
@@ -385,30 +384,30 @@ Rager:
   Disguise:
     Type: Rager
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
   Skills:
-  - skill{s=RagersRage} @self ~onDamaged
+    - skill{s=RagersRage} @self ~onDamaged
 
 RealentingSpider:
   Type: SPIDER
-  Display: 'Realenting Spider'
+  Display: "Realenting Spider"
   Health: 40
   FollowRange: 48
   Damage: 6
   Options:
     AlwaysShowName: false
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
   Skills:
-  - skill{s=SpiderWebSpit} @target ~onTimer:40 0.6
+    - skill{s=SpiderWebSpit} @target ~onTimer:40 0.6
 
 EnderWarrior:
   Type: ZOMBIE
-  Display: 'Ender Warrior'
+  Display: "Ender Warrior"
   Health: 50
   FollowRange: 32
   Damage: 6
@@ -421,19 +420,19 @@ EnderWarrior:
   Disguise:
     Type: EnderWarrior
   Equipment:
-  - IRON_SWORD HAND
-  - SHIELD OFFHAND
+    - IRON_SWORD HAND
+    - SHIELD OFFHAND
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
   Skills:
-  - skill{s=SmashAttack} @self ~onTimer:20 0.6
-  - skill{s=EnderBarrier} @self ~onDamaged
+    - skill{s=SmashAttack} @self ~onTimer:20 0.6
+    - skill{s=EnderBarrier} @self ~onDamaged
 
 PossessedPiglin:
   Type: ZOMBIE
-  Display: 'Possessed Piglin'
+  Display: "Possessed Piglin"
   Health: 60
   FollowRange: 32
   Damage: 16
@@ -446,34 +445,34 @@ PossessedPiglin:
   Disguise:
     Type: PossessedPiglin
   Equipment:
-  - GOLDEN_SWORD HAND
+    - GOLDEN_SWORD HAND
   DamageModifiers:
-  - FALL 0.25
-  - FIRE_TICK 0
-  - HOT_FLOOR 0
-  - FIRE 0.5
-  - LAVA 0.5
+    - FALL 0.25
+    - FIRE_TICK 0
+    - HOT_FLOOR 0
+    - FIRE 0.5
+    - LAVA 0.5
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
   Skills:
-  - skill{s=JumpToTarget} @target ~onTimer:20 0.6
+    - skill{s=JumpToTarget} @target ~onTimer:20 0.6
 
 PoweredGhast:
   Type: GHAST
-  Display: 'Powered Ghast'
+  Display: "Powered Ghast"
   Health: 30
   FollowRange: 128
   Options:
     AlwaysShowName: false
   Skills:
-  - effect:particlering{particle=reddust;color=#ad2f28;points=15;radius=4;amount=5;size=4;hSpread=0.1;vSpread=0.1;speed=0.5;yOffset=1.5;fromorigin=true} @Self ~onTimer:20
-  - skill{s=MultiFireball} @target ~onTimer:20 0.6
+    - effect:particlering{particle=reddust;color=#ad2f28;points=15;radius=4;amount=5;size=4;hSpread=0.1;vSpread=0.1;speed=0.5;yOffset=1.5;fromorigin=true} @Self ~onTimer:20
+    - skill{s=MultiFireball} @target ~onTimer:20 0.6
 
 DrownedPirate:
   Type: DROWNED
-  Display: 'Drowned Pirate'
+  Display: "Drowned Pirate"
   Health: 30
   FollowRange: 64
   Damage: 8
@@ -486,15 +485,15 @@ DrownedPirate:
   Disguise:
     Type: DrownedPirate
   Equipment:
-  - GOLDEN_SWORD HAND
+    - GOLDEN_SWORD HAND
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
 
 WaterDriad:
   Type: DROWNED
-  Display: 'Water Driad'
+  Display: "Water Driad"
   Health: 30
   FollowRange: 32
   Damage: 6
@@ -507,15 +506,15 @@ WaterDriad:
   Disguise:
     Type: WaterDriad
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
   Skills:
-  - skill{s=WaterDriadAttractTarget} @target ~onTimer:20 0.8
+    - skill{s=WaterDriadAttractTarget} @target ~onTimer:20 0.8
 
 DrownedWizard:
   Type: DROWNED
-  Display: 'Drowned Wizard'
+  Display: "Drowned Wizard"
   Health: 40
   FollowRange: 32
   Damage: 6
@@ -528,11 +527,11 @@ DrownedWizard:
   Disguise:
     Type: DrownedWizard
   AITargetSelectors:
-  - 0 clear
-  - 1 players
-  - 2 golems
+    - 0 clear
+    - 1 players
+    - 2 golems
   Skills:
-  - skill{s=WaterMissiles} @target ~onTimer:20 0.8
+    - skill{s=WaterMissiles} @target ~onTimer:20 0.8
 
 WitherBoss:
   Type: WITHER
@@ -541,8 +540,8 @@ WitherBoss:
   Options:
     Despawn: false
   Skills:
-  - skill{s=MultiFireball} @PlayersInRadius{r=32} ~onTimer:20 0.6
-  - skill{s=MagicMissiles} @PlayersInRadius{r=32} ~onTimer:20 0.8
-  - skill{s=PoisoningBolt} @PlayersInRadius{r=32} ~onTimer:20 0.8
-  - skill{s=FireBolt} @PlayersInRadius{r=32} ~onTimer:20 0.8
-  - skill{s=DeathShoot} @PlayersInRadius{r=32} ~onTimer:20 0.8
+    - skill{s=MultiFireball} @PlayersInRadius{r=32} ~onTimer:20 0.6
+    - skill{s=MagicMissiles} @PlayersInRadius{r=32} ~onTimer:20 0.8
+    - skill{s=PoisoningBolt} @PlayersInRadius{r=32} ~onTimer:20 0.8
+    - skill{s=FireBolt} @PlayersInRadius{r=32} ~onTimer:20 0.8
+    - skill{s=DeathShoot} @PlayersInRadius{r=32} ~onTimer:20 0.8

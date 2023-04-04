@@ -1,7 +1,7 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CombatPearl;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.CombatPearl;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.weapons.ranged.RangedWeaponsResolver;
 import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.Location;

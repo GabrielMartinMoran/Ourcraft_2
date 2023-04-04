@@ -1,0 +1,17 @@
+{
+  "parent": "minecraft:block/deepslate_tile_wall_inventory",
+  "overrides": [
+    {
+      "predicate": { "custom_model_data": 100001 },
+      "model": "custom/block/teleporting_stone"
+    },
+    {
+      "predicate": { "custom_model_data": 100002 },
+      "model": "custom/block/mana_turret"
+    },
+    {
+      "predicate": { "custom_model_data": 100003 },
+      "model": "custom/block/mana_storager"
+    }
+  ]
+}

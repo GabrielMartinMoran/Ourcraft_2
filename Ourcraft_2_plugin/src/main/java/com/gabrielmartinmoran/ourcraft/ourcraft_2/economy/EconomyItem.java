@@ -1,20 +1,18 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.economy;
 
 
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.CopperCoin;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.GoldenCoin;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.PlatinumCoin;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.SilverCoin;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.coins.CopperCoin;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.coins.GoldenCoin;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.coins.PlatinumCoin;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.coins.SilverCoin;
 import org.bukkit.Material;
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class EconomyItem {
 

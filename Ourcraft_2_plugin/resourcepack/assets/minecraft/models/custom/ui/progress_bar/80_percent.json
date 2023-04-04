@@ -1,0 +1,11 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "custom/ui/progress_bar/80_percent"
+  },
+  "display": {
+    "gui": {
+      "scale": [1.14, 1.14, 1.14]
+    }
+  }
+}

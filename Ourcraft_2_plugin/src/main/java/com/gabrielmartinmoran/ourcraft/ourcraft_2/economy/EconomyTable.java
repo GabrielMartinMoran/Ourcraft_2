@@ -1,16 +1,16 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.economy;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Config;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.*;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.potions.AdvancedManaPotion;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.potions.ManaPotion;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.potions.RegularManaPotion;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.potions.SupremeManaPotion;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.daggers.DiamondDagger;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.daggers.IronDagger;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.greatsword.DiamondGreatSword;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.greatsword.IronGreatSword;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.ranged.bows.BambooBow;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.*;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.mana.potions.AdvancedManaPotion;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.mana.potions.ManaPotion;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.mana.potions.RegularManaPotion;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.mana.potions.SupremeManaPotion;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.weapons.melee.daggers.DiamondDagger;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.weapons.melee.daggers.IronDagger;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.weapons.melee.greatsword.DiamondGreatSword;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.weapons.melee.greatsword.IronGreatSword;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.weapons.ranged.bows.BambooBow;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.TippedArrowsHelper;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

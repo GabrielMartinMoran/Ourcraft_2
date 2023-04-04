@@ -1,6 +1,6 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.commands;
 
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.spells.SpellBook;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.spells.SpellBook;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellTypes;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

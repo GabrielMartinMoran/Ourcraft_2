@@ -1,0 +1,10 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+     "layer0": "item/golden_sword"
+    },
+    "overrides": [
+     { "predicate": {"custom_model_data": 100012}, "model": "item/weapons/melee/daggers/golden_dagger"},
+     { "predicate": {"custom_model_data": 100018}, "model": "item/weapons/melee/greatswords/golden_greatsword"}
+    ]
+   }

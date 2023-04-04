@@ -1,9 +1,9 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.hydration.HydrationDecreaseEvents;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.AttributeLevelingHandler;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerData;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerDataProvider;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.AttributeLevelingHandler;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerData;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerDataProvider;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

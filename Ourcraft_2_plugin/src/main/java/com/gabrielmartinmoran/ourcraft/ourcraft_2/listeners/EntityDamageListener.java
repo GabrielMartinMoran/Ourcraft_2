@@ -1,10 +1,9 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Config;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.MeleeWeapon;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerAttributes;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerData;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerDataProvider;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerAttributes;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerData;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerDataProvider;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellsResolver;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.weapons.melee.MeleeWeaponsResolver;
 import org.bukkit.GameMode;
@@ -14,7 +13,6 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;

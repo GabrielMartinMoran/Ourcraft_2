@@ -1,8 +1,8 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.ui;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Config;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerData;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerDataProvider;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerData;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerDataProvider;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellTypes;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellsResolver;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.DifficultyZone;

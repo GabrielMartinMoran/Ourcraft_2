@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/nether_brick_fence_inventory",
+  "overrides": [
+    {
+      "predicate": { "custom_model_data": 100001 },
+      "model": "custom/block/mana_repeater"
+    }
+  ]
+}

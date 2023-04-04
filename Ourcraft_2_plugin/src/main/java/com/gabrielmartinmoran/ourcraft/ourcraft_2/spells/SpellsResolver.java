@@ -2,9 +2,9 @@ package com.gabrielmartinmoran.ourcraft.ourcraft_2.spells;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Config;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.AttributeLevelingHandler;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerData;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerDataProvider;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.AttributeLevelingHandler;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerData;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerDataProvider;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.ItemUtils;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.PlayerUtils;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.SpellsUtils;
@@ -22,7 +22,6 @@ import org.bukkit.util.Vector;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 public class SpellsResolver {
 
@@ -31,9 +30,9 @@ public class SpellsResolver {
     private SecureRandom rand;
     private AttributeLevelingHandler attributeLevelingHandler;
     private HashMap<SpellTypes, SpellCastFunction<Player, ItemStack>> spellsMap;
-    private final String SPELL_PROJECTILE_TAG = "spellProjectile";
-    private final String SPELL_TYPE_TAG = "spellType";
-    private final String SPELL_LEVEL_TAG = "spellLevel";
+    private static final String SPELL_PROJECTILE_TAG = "spellProjectile";
+    private static final String SPELL_TYPE_TAG = "spellType";
+    private static final String SPELL_LEVEL_TAG = "spellLevel";
     public static HashMap<Entity, SpellTrailInfo> flyingSpellEntities = new HashMap<Entity, SpellTrailInfo>();
     public static ArrayList<Entity> entitiesDamagedBySpells = new ArrayList<Entity>();
 
@@ -57,7 +56,7 @@ public class SpellsResolver {
         spellsMap.put(SpellTypes.SLOW_FALL, (player, item, level) -> this.castSlowFallSpell(player, item, level));
         spellsMap.put(SpellTypes.FIRE_RESISTANCE, (player, item, level) -> this.castFireResistanceSpell(player, item, level));
         spellsMap.put(SpellTypes.MAGIC_ARROWS, (player, item, level) -> this.castMagicArrowsSpell(player, item, level));
-        spellsMap.put(SpellTypes.MAGIC_MISSILES, (player, item, level) -> this.castMagicMisislesSpell(player, item, level));
+        spellsMap.put(SpellTypes.MAGIC_MISSILES, (player, item, level) -> this.castMagicMissilesSpell(player, item, level));
         spellsMap.put(SpellTypes.POISON_CLOUD, (player, item, level) -> this.castPoisonCloudSpell(player, item, level));
         spellsMap.put(SpellTypes.MAKE_LEVITATE, (player, item, level) -> this.castMakeLevitateSpell(player, item, level));
         spellsMap.put(SpellTypes.NAUSEATING_ORB, (player, item, level) -> this.castNauseatingOrbSpell(player, item, level));
@@ -127,13 +126,14 @@ public class SpellsResolver {
         if (flyingSpellEntities.containsKey(projectile)) flyingSpellEntities.remove(projectile);
         SpellTypes spellType = SpellTypes.fromInt(projectile.getMetadata(SPELL_TYPE_TAG).get(0).asInt());
         int spellLevel = projectile.getMetadata(SPELL_LEVEL_TAG).get(0).asInt();
+        projectile.remove();
         if (spellType == SpellTypes.MAGIC_MISSILES) {
             if (target != null) {
                 LivingEntity lEntity = (LivingEntity) target;
                 this.damageEntity(lEntity, 4 * spellLevel, projectile);
                 lEntity.removePotionEffect(PotionEffectType.LEVITATION);
             } else {
-                projectile.getWorld().createExplosion(projectile.getLocation(), (int)Math.ceil(spellLevel / 2d),  false, false, (Entity) projectile.getShooter());
+                projectile.getWorld().createExplosion(projectile.getLocation(), (int) Math.ceil(spellLevel / 2d), false, false, (Entity) projectile.getShooter());
             }
             projectile.getWorld().spawnParticle(Particle.CRIT_MAGIC, projectile.getLocation(), spellLevel * 40);
             projectile.getWorld().playSound(projectile.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1f, 1f);
@@ -226,7 +226,7 @@ public class SpellsResolver {
         }
     }
 
-    private void tagProjectile(Projectile projectile, SpellTypes spellType, int spellLevel) {
+    public static void tagProjectile(Projectile projectile, SpellTypes spellType, int spellLevel) {
         projectile.setMetadata(SPELL_PROJECTILE_TAG, new FixedMetadataValue(JavaPlugin.getPlugin(Main.class), true));
         projectile.setMetadata(SPELL_TYPE_TAG, new FixedMetadataValue(JavaPlugin.getPlugin(Main.class), spellType.getId()));
         projectile.setMetadata(SPELL_LEVEL_TAG, new FixedMetadataValue(JavaPlugin.getPlugin(Main.class), spellLevel));
@@ -308,7 +308,7 @@ public class SpellsResolver {
         // Lo subimos un bloque
         location.setY(location.getY() + 1);
         player.getWorld().spawnParticle(Particle.SPELL_WITCH, location, level * 100);
-        player.getWorld().playSound(location, Sound.ENTITY_VEX_CHARGE , 1f, 0.3f);
+        player.getWorld().playSound(location, Sound.ENTITY_VEX_CHARGE, 1f, 0.3f);
         for (int i = 0; i < level; i++) {
             Monster wither = (Monster) player.getWorld().spawnEntity(location, EntityType.WITHER_SKELETON);
             if (targetedEntity != null) wither.setTarget((LivingEntity) targetedEntity);
@@ -367,7 +367,7 @@ public class SpellsResolver {
         }
     }
 
-    private void castMagicMisislesSpell(Player player, ItemStack item, int level) {
+    private void castMagicMissilesSpell(Player player, ItemStack item, int level) {
         player.playSound(player.getLocation(), Sound.BLOCK_FIRE_AMBIENT, 1f, 1f);
         int maxRange = 8 + (level * 2);
         Entity targetedEntity = this.playerUtils.getTargetedLivingEntity(player, maxRange);
@@ -495,7 +495,7 @@ public class SpellsResolver {
     private void castSelfHealingSpell(Player player, ItemStack item, int level) {
         player.playSound(player.getLocation(), Sound.BLOCK_BREWING_STAND_BREW, 1f, 1f);
         player.spawnParticle(Particle.CRIMSON_SPORE, player.getLocation(), level * 25);
-        int time = (int)Math.floor((4.5d * level) - 2.5d);
+        int time = (int) Math.floor((4.5d * level) - 2.5d);
         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, time, 6));
     }
 
@@ -526,8 +526,8 @@ public class SpellsResolver {
             effectsToIgnore.add(PotionEffectType.DAMAGE_RESISTANCE);
             effectsToIgnore.add(PotionEffectType.ABSORPTION);
         }
-        for (PotionEffect effect: player.getActivePotionEffects()) {
-            if(!effectsToIgnore.contains(effect.getType())) player.removePotionEffect(effect.getType());
+        for (PotionEffect effect : player.getActivePotionEffects()) {
+            if (!effectsToIgnore.contains(effect.getType())) player.removePotionEffect(effect.getType());
         }
     }
 }

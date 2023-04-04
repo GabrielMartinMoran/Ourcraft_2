@@ -1,7 +1,7 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CombatPearl;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.AttributeLevelingHandler;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.CombatPearl;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.AttributeLevelingHandler;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellsResolver;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.weapons.melee.MeleeWeaponsResolver;
 import org.bukkit.Particle;
@@ -11,8 +11,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
-
-import java.util.List;
 
 public class ProjectileHitListener implements Listener {
 

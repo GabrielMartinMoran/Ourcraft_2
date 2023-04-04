@@ -1,0 +1,23 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+     "layer0": "item/iron_sword"
+    },
+    "overrides": [
+     { "predicate": {"custom_model_data": 100014}, "model": "item/weapons/melee/daggers/iron_dagger"},
+     { "predicate": {"custom_model_data": 100020}, "model": "item/weapons/melee/greatswords/iron_greatsword"},     
+
+     { "predicate": {"custom_model_data": 200001}, "model": "item/weapons/melee/weapons_generator/sword_001"},
+     { "predicate": {"custom_model_data": 200002}, "model": "item/weapons/melee/weapons_generator/sword_002"},
+     { "predicate": {"custom_model_data": 200003}, "model": "item/weapons/melee/weapons_generator/sword_003"},
+     { "predicate": {"custom_model_data": 200004}, "model": "item/weapons/melee/weapons_generator/sword_004"},
+     { "predicate": {"custom_model_data": 200005}, "model": "item/weapons/melee/weapons_generator/sword_005"},
+     { "predicate": {"custom_model_data": 200006}, "model": "item/weapons/melee/weapons_generator/sword_006"},
+     { "predicate": {"custom_model_data": 200007}, "model": "item/weapons/melee/weapons_generator/sword_007"},
+     { "predicate": {"custom_model_data": 200008}, "model": "item/weapons/melee/weapons_generator/sword_008"},
+     { "predicate": {"custom_model_data": 200009}, "model": "item/weapons/melee/weapons_generator/sword_009"},
+     { "predicate": {"custom_model_data": 200010}, "model": "item/weapons/melee/weapons_generator/sword_010"},
+     { "predicate": {"custom_model_data": 200011}, "model": "item/weapons/melee/weapons_generator/sword_011"},
+     { "predicate": {"custom_model_data": 200012}, "model": "item/weapons/melee/weapons_generator/sword_012"}
+    ]
+   }

@@ -1,6 +1,5 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.teleporters;
 
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerData;
 import com.google.gson.Gson;
 import de.tr7zw.nbtapi.NBTCompound;
 import de.tr7zw.nbtapi.NBTItem;
@@ -11,13 +10,9 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ItemFrame;
-import org.bukkit.entity.Minecart;
 import org.bukkit.inventory.ItemStack;
 
-import java.nio.Buffer;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 public class Teleporter {

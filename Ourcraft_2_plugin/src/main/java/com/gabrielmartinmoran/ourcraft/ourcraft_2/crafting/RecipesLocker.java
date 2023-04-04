@@ -1,15 +1,13 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.crafting;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Config;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.spells.SpellBook;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.spells.SpellScroll;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerAttributes;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerData;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerDataProvider;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.spells.SpellBook;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.spells.SpellScroll;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerAttributes;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerData;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerDataProvider;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellTypes;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.RecipesUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

@@ -1,7 +1,7 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.crafting.RecipesLoader;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.CustomItem;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.CustomItem;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

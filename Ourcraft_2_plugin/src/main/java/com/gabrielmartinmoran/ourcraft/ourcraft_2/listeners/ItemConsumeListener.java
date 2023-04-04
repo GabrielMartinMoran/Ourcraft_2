@@ -1,8 +1,8 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.PurifiedWaterBottle;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.potions.BaseManaPotion;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerDataProvider;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.PurifiedWaterBottle;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.mana.potions.BaseManaPotion;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerDataProvider;
 import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

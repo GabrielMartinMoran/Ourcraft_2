@@ -1,0 +1,132 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minecraft:item/barrier"
+  },
+  "overrides": [
+    {
+      "predicate": { "custom_model_data": 100001 },
+      "model": "custom/ui/gray_ui_slot"
+    },
+    {
+      "predicate": { "custom_model_data": 100002 },
+      "model": "custom/ui/teleport_button"
+    },
+    {
+      "predicate": { "custom_model_data": 100003 },
+      "model": "custom/ui/mana_link_connected"
+    },
+    {
+      "predicate": { "custom_model_data": 100004 },
+      "model": "custom/ui/mana_link_disconnected"
+    },
+    {
+      "predicate": { "custom_model_data": 100005 },
+      "model": "custom/ui/valid"
+    },
+    {
+      "predicate": { "custom_model_data": 100006 },
+      "model": "custom/ui/invalid"
+    },
+    {
+      "predicate": { "custom_model_data": 200000 },
+      "model": "custom/ui/progress_bar/0_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200001 },
+      "model": "custom/ui/progress_bar/10_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200002 },
+      "model": "custom/ui/progress_bar/20_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200003 },
+      "model": "custom/ui/progress_bar/30_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200004 },
+      "model": "custom/ui/progress_bar/40_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200005 },
+      "model": "custom/ui/progress_bar/50_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200006 },
+      "model": "custom/ui/progress_bar/60_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200007 },
+      "model": "custom/ui/progress_bar/70_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200008 },
+      "model": "custom/ui/progress_bar/80_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200009 },
+      "model": "custom/ui/progress_bar/90_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200010 },
+      "model": "custom/ui/progress_bar/100_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200100 },
+      "model": "custom/ui/mana_container/0_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200101 },
+      "model": "custom/ui/mana_container/10_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200102 },
+      "model": "custom/ui/mana_container/20_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200103 },
+      "model": "custom/ui/mana_container/30_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200104 },
+      "model": "custom/ui/mana_container/40_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200105 },
+      "model": "custom/ui/mana_container/50_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200106 },
+      "model": "custom/ui/mana_container/60_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200107 },
+      "model": "custom/ui/mana_container/70_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200108 },
+      "model": "custom/ui/mana_container/80_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200109 },
+      "model": "custom/ui/mana_container/90_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 200110 },
+      "model": "custom/ui/mana_container/100_percent"
+    },
+    {
+      "predicate": { "custom_model_data": 300001 },
+      "model": "custom/ui/block/mana_turret"
+    },
+    {
+      "predicate": { "custom_model_data": 300002 },
+      "model": "custom/ui/mana_channels/transmission_channel"
+    },
+    {
+      "predicate": { "custom_model_data": 300003 },
+      "model": "custom/ui/mana_channels/reception_channel"
+    }
+  ]
+}

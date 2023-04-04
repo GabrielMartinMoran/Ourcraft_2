@@ -1,0 +1,10 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+     "layer0": "item/netherite_sword"
+    },
+    "overrides": [
+     { "predicate": {"custom_model_data": 100016}, "model": "item/weapons/melee/daggers/netherite_dagger"},
+     { "predicate": {"custom_model_data": 100022}, "model": "item/weapons/melee/greatswords/netherite_greatsword"}
+    ]
+   }

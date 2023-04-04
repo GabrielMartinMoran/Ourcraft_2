@@ -1,29 +1,21 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.weapons.melee;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.PlatinumCoin;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerAttributes;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerDataProvider;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellTypes;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerAttributes;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerDataProvider;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.ItemUtils;
 import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.GameMode;
-import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
-import org.bukkit.block.data.type.Snow;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 
 public class MeleeWeaponsResolver {
 

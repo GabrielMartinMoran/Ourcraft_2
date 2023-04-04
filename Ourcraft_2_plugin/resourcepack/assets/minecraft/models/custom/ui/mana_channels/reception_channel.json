@@ -1,0 +1,12 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "custom/ui/mana_channels/reception_channel"
+  },
+  "display": {
+    "gui": {
+      "translation": [0, -9, -78],
+      "scale": [1.1, 2.25, 0.01]
+    }
+  }
+}

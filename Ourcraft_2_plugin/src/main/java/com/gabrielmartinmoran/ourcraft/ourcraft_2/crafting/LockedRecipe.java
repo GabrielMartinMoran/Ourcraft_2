@@ -1,6 +1,6 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.crafting;
 
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerAttributes;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerAttributes;
 
 public class LockedRecipe {
 

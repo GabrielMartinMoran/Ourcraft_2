@@ -1,0 +1,10 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+     "layer0": "item/stone_sword"
+    },
+    "overrides": [
+     { "predicate": {"custom_model_data": 100013}, "model": "item/weapons/melee/daggers/stone_dagger"},
+     { "predicate": {"custom_model_data": 100019}, "model": "item/weapons/melee/greatswords/stone_greatsword"}
+    ]
+   }

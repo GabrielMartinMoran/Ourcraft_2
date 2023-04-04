@@ -2,7 +2,7 @@ package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Config;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.crafting.RecipesLocker;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerAttributes;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.player_data.PlayerAttributes;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;

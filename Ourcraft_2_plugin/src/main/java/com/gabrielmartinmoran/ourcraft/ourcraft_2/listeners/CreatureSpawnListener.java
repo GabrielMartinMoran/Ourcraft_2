@@ -1,8 +1,6 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.CustomMobsManager;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Creature;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.mobs.CustomMobsManager;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

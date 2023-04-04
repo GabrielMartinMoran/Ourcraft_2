@@ -39,3 +39,5 @@ spigot_server/banned-players.json
 spigot_server/usercache.json
 spigot_server/whitelist.json
 spigot_server/ops.json
+
+minecraft_resources

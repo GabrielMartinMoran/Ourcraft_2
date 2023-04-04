@@ -1,28 +1,32 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.commands;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.*;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.bags.Bag;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.bags.OgreSkinBag;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.bags.ReinforcedBag;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.CopperCoin;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.GoldenCoin;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.PlatinumCoin;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.coins.SilverCoin;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ores.RawGold;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ores.RawGoldBlock;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ores.RawIron;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.ores.RawIronBlock;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.potions.*;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.spells.SpellBook;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.Rock;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.daggers.*;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.melee.greatsword.*;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.ranged.bows.BambooBow;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.ranged.bows.CompoundBow;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.ranged.bows.ReinforcedCompoundBow;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.customitems.weapons.ranged.bows.ReinforcedWoodenBow;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.CustomMobsTypes;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.*;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.bags.Bag;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.bags.OgreSkinBag;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.bags.ReinforcedBag;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.coins.CopperCoin;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.coins.GoldenCoin;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.coins.PlatinumCoin;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.coins.SilverCoin;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.mana.ManaBattery;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.mana.blocks.*;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.mana.buffs.DistanceTablet;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.mana.buffs.PowerTablet;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.mana.buffs.SpeedupTablet;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.mana.potions.AdvancedManaPotion;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.mana.potions.ManaPotion;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.mana.potions.RegularManaPotion;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.mana.potions.SupremeManaPotion;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.spells.SpellBook;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.weapons.melee.Rock;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.weapons.melee.daggers.*;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.weapons.melee.greatsword.*;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.weapons.ranged.bows.BambooBow;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.weapons.ranged.bows.CompoundBow;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.weapons.ranged.bows.ReinforcedCompoundBow;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.items.weapons.ranged.bows.ReinforcedWoodenBow;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.mobs.CustomMobsTypes;
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.spells.SpellTypes;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -32,7 +36,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.permissions.ServerOperator;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
@@ -60,13 +63,14 @@ public class DebugCommands implements CommandExecutor {
             return true;
         }
         if (order.equalsIgnoreCase("summon") && args.length == 2) {
-            if(args[1].equalsIgnoreCase("help")) {
+            if (args[1].equalsIgnoreCase("help")) {
                 sender.sendMessage("Listado de custom mobs posibles de sumonear");
-                for (CustomMobsTypes type: CustomMobsTypes.values()) {
+                for (CustomMobsTypes type : CustomMobsTypes.values()) {
                     sender.sendMessage("- " + type.toString());
                 }
             } else {
-                CustomMobsTypes.valueOf(args[1]).getCustomMob().spawn(((LivingEntity) sender).getWorld(), ((LivingEntity) sender).getLocation());
+                CustomMobsTypes.valueOf(args[1]).getCustomMob().spawn(((LivingEntity) sender).getWorld(),
+                        ((LivingEntity) sender).getLocation());
             }
             return true;
         }
@@ -92,15 +96,19 @@ public class DebugCommands implements CommandExecutor {
 
     private void showCustomItems(Player player) {
         List<CustomItem> customItems = Arrays.asList(
-                new CopperCoin(), new SilverCoin(), new GoldenCoin(), new PlatinumCoin(), new Rock(), new WoodenDagger(),
+                new CopperCoin(), new SilverCoin(), new GoldenCoin(), new PlatinumCoin(), new Rock(),
+                new WoodenDagger(),
                 new GoldenDagger(), new StoneDagger(), new IronDagger(), new DiamondDagger(), new NetheriteDagger(),
                 new WoodenGreatSword(), new GoldenGreatSword(), new StoneGreatSword(), new IronGreatSword(),
                 new DiamondGreatSword(), new NetheriteGreatSword(), new BambooBow(), new ReinforcedWoodenBow(),
                 new CompoundBow(), new ReinforcedCompoundBow(), new Bag(), new ReinforcedBag(), new OgreSkinBag(),
-                new ReinforcedString(), new ReinforcedLeather(), new ManaEssence(), new MagicEssence(), new ManaPotion(),
+                new ReinforcedString(), new ReinforcedLeather(), new ManaEssence(), new MagicEssence(),
+                new ManaPotion(),
                 new RegularManaPotion(), new AdvancedManaPotion(), new SupremeManaPotion(),
                 new SpellBook(SpellTypes.NONE, 0), new PurifiedWaterBottle(), new OgreSkin(),
-                new CombatPearl(), new OrcSkin(), new RawIron(), new RawIronBlock(), new RawGold(), new RawGoldBlock()
+                new CombatPearl(), new OrcSkin(), new ManaGenerator(), new TeleportingStone(), new ManaTurret(),
+                new DistanceTablet(), new PowerTablet(), new SpeedupTablet(), new ManaStorager(), new ManaRepeater(),
+                new ManaBottler(), new ManaCharger(), new ManaBattery()
         );
         int size = customItems.size() + (9 - (customItems.size() % 9));
         Inventory inventory = Bukkit.createInventory(null, size, "Custom items");

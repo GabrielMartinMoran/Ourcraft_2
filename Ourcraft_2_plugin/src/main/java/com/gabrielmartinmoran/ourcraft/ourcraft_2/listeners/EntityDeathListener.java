@@ -1,6 +1,6 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.CustomMobsManager;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.mobs.CustomMobsManager;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;

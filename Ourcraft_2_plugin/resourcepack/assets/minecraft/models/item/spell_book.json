@@ -1,0 +1,131 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "custom/spellbook_leather",
+		"1": "custom/spellbook_pages",
+		"2": "custom/spellbook_front",
+		"particle": "custom/spellbook_leather"
+	},
+	"elements": [
+		{
+			"name": "book_front",
+			"from": [4, 1, 2],
+			"to": [12, 1, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 8, 12], "rotation": 180, "texture": "#2"},
+				"east": {"uv": [0, 0, 8, 12], "rotation": 180, "texture": "#2"},
+				"south": {"uv": [0, 0, 8, 12], "rotation": 180, "texture": "#2"},
+				"west": {"uv": [0, 0, 8, 12], "rotation": 180, "texture": "#2"},
+				"up": {"uv": [0, 0, 8, 12], "rotation": 180, "texture": "#2"},
+				"down": {"uv": [8, 0, 16, 12], "rotation": 180, "texture": "#2"}
+			}
+		},
+		{
+			"from": [4, 0, 2],
+			"to": [12, 0, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 8, 0], "rotation": 180, "texture": "#0"},
+				"east": {"uv": [0, 0, 12, 0], "rotation": 180, "texture": "#0"},
+				"south": {"uv": [0, 0, 8, 0], "rotation": 180, "texture": "#0"},
+				"west": {"uv": [0, 0, 12, 0], "rotation": 180, "texture": "#0"},
+				"up": {"uv": [0, 0, 8, 12], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [0, 0, 8, 12], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [4, 0, 2],
+			"to": [4, 1, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 0, 1], "rotation": 180, "texture": "#0"},
+				"east": {"uv": [0, 0, 12, 1], "rotation": 180, "texture": "#0"},
+				"south": {"uv": [0, 0, 0, 1], "rotation": 180, "texture": "#0"},
+				"west": {"uv": [0, 0, 12, 1], "rotation": 180, "texture": "#0"},
+				"up": {"uv": [0, 0, 0, 12], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [0, 0, 0, 12], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [4, 0, 13],
+			"to": [11, 1, 13],
+			"faces": {
+				"north": {"uv": [0, 0, 7, 1], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [0, 0, 0, 1], "rotation": 180, "texture": "#1"},
+				"south": {"uv": [0, 0, 7, 1], "rotation": 180, "texture": "#1"},
+				"west": {"uv": [0, 0, 0, 1], "rotation": 180, "texture": "#1"},
+				"up": {"uv": [0, 0, 7, 0], "rotation": 180, "texture": "#1"},
+				"down": {"uv": [0, 0, 7, 0], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [11, 0, 3],
+			"to": [11, 1, 13],
+			"faces": {
+				"north": {"uv": [0, 0, 0, 1], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [0, 0, 10, 1], "rotation": 180, "texture": "#1"},
+				"south": {"uv": [0, 0, 0, 1], "rotation": 180, "texture": "#1"},
+				"west": {"uv": [0, 0, 10, 1], "rotation": 180, "texture": "#1"},
+				"up": {"uv": [0, 0, 0, 10], "rotation": 180, "texture": "#1"},
+				"down": {"uv": [0, 0, 0, 10], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [4, 0, 3],
+			"to": [11, 1, 3],
+			"faces": {
+				"north": {"uv": [0, 0, 7, 1], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [0, 0, 0, 1], "rotation": 180, "texture": "#1"},
+				"south": {"uv": [0, 0, 7, 1], "rotation": 180, "texture": "#1"},
+				"west": {"uv": [0, 0, 0, 1], "rotation": 180, "texture": "#1"},
+				"up": {"uv": [0, 0, 7, 0], "rotation": 180, "texture": "#1"},
+				"down": {"uv": [0, 0, 7, 0], "rotation": 180, "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [101.5, 0, 70.25],
+			"translation": [-4.75, 0.75, 1.25],
+			"scale": [0.62695, 0.62695, 0.62695]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [101.5, 0, 70],
+			"translation": [-5.25, 1.25, 1.25],
+			"scale": [0.62695, 0.62695, 0.62695]
+		},
+		"firstperson_righthand": {
+			"rotation": [104, -13, 108],
+			"translation": [-3.75, 6.5, -0.25],
+			"scale": [0.8, 0.8, 0.8]
+		},
+		"firstperson_lefthand": {
+			"rotation": [99, -9, 108],
+			"translation": [-3.75, 7.25, -0.25],
+			"scale": [0.8, 0.8, 0.8]
+		},
+		"ground": {
+			"translation": [0, 5.75, 0]
+		},
+		"gui": {
+			"rotation": [90, -36, 0]
+		},
+		"head": {
+			"translation": [0, 14.5, 0]
+		},
+		"fixed": {
+			"rotation": [90, 35, -180],
+			"translation": [0, 0, -8.75]
+		}
+	},
+	"groups": [0,
+		{
+			"name": "leather",
+			"origin": [8, 8, 8],
+			"children": [1, 2]
+		},
+		{
+			"name": "pages",
+			"origin": [0, 0, 0],
+			"children": [3, 4, 5]
+		}
+	]
+}

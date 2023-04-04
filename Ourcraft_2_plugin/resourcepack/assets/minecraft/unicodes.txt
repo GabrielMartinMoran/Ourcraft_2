@@ -1,0 +1,2 @@
+Convertidor: https://www.rapidtables.com/convert/number/hex-to-ascii.html
+Los unicodes empiezan del 9000 y aumentan en hexa

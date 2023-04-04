@@ -1,0 +1,51 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "minecraft:item/firework_star",
+    "layer1": "minecraft:item/firework_star_overlay"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 100007
+      },
+      "model": "item/copper_coin"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 100008
+      },
+      "model": "item/silver_coin"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 100009
+      },
+      "model": "item/golden_coin"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 100010
+      },
+      "model": "item/platinum_coin"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 100028
+      },
+      "model": "item/mana_essence"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 100029
+      },
+      "model": "item/magic_essence"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 100038
+      },
+      "model": "custom/item/mana_battery"
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.teleporters;
 
 import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerData;
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.BufferedWriter;
@@ -44,7 +44,7 @@ public class TeleporterDataProvider {
     }
 
     public static void saveAll() {
-        System.out.println("Guardando datos de teleporters de Ourcraft 2");
+        Bukkit.getServer().getConsoleSender().sendMessage("" + ChatColor.GREEN + "Guardando datos de teleporters de Ourcraft 2");
         for (HashMap.Entry<String, Teleporter> entry : dataMap.entrySet()) {
             saveJsonData(entry.getKey(), entry.getValue().toJson());
         }
@@ -60,12 +60,12 @@ public class TeleporterDataProvider {
     }
 
     private static String loadJsonData(String serializedLocation) {
-        if(!hasData(serializedLocation)) return null;
+        if (!hasData(serializedLocation)) return null;
         Path path = Paths.get(getJsonFullPath(serializedLocation));
         try {
             List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
             return StringUtils.join(lines, "");
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
@@ -85,17 +85,16 @@ public class TeleporterDataProvider {
 
     private static void saveJsonData(String serializedLocation, String json) {
         File directory = new File(getJsonDir());
-        if (! directory.exists()){
+        if (!directory.exists()) {
             directory.mkdirs();
         }
         File file = new File(getJsonFullPath(serializedLocation));
-        try{
+        try {
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(json);
             bw.close();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -104,10 +103,9 @@ public class TeleporterDataProvider {
         File directory = new File(getJsonDir());
         if (!directory.exists()) return;
         File file = new File(getJsonFullPath(serializedLocation));
-        try{
+        try {
             Files.deleteIfExists(file.toPath());
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

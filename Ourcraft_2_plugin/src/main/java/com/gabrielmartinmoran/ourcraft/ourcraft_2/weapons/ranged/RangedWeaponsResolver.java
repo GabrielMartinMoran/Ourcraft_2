@@ -1,24 +1,10 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.weapons.ranged;
 
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.Main;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerAttributes;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.playerdata.PlayerDataProvider;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.utils.ItemUtils;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.weapons.melee.MeleeWeaponCharacteristics;
 import de.tr7zw.nbtapi.NBTItem;
-import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.metadata.MetadataValue;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
-
-import java.util.HashMap;
-import java.util.List;
 
 public class RangedWeaponsResolver {
 

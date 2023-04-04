@@ -1,0 +1,22 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "minecraft:block/furnace_front",
+    "side": "minecraft:block/furnace_side",
+    "top": "minecraft:block/furnace_top"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 100001
+      },
+      "model": "custom/block/mana_generator"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 100002
+      },
+      "model": "custom/block/mana_bottler"
+    }
+  ]
+}

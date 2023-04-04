@@ -1,7 +1,7 @@
 package com.gabrielmartinmoran.ourcraft.ourcraft_2.listeners;
 
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.villagers.CustomVillagers;
-import com.gabrielmartinmoran.ourcraft.ourcraft_2.custommobs.wanderingtraders.CustomWanderingTraders;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.mobs.villagers.CustomVillagers;
+import com.gabrielmartinmoran.ourcraft.ourcraft_2.mobs.wanderingtraders.CustomWanderingTraders;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.WanderingTrader;
 import org.bukkit.event.EventHandler;
